@@ -1,0 +1,83 @@
+object PagDireccion: TPagDireccion
+  Left = 0
+  Top = 0
+  Align = alClient
+  BorderStyle = bsNone
+  ClientHeight = 668
+  ClientWidth = 1163
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object CardPanel1: TCardPanel
+    Left = 0
+    Top = 0
+    Width = 1163
+    Height = 668
+    Align = alClient
+    ActiveCard = Card1
+    Caption = 'CardPanel1'
+    TabOrder = 0
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitHeight = 572
+    object Card1: TCard
+      Left = 1
+      Top = 1
+      Width = 1161
+      Height = 666
+      Caption = 'Card1'
+      CardIndex = 0
+      TabOrder = 0
+      ExplicitHeight = 570
+      object SpeedButton1: TSpeedButton
+        Left = 40
+        Top = 24
+        Width = 209
+        Height = 201
+        Caption = 'Registrar Pais'
+        OnClick = SpeedButton1Click
+      end
+      object SpeedButton2: TSpeedButton
+        Left = 264
+        Top = 24
+        Width = 209
+        Height = 201
+        Caption = 'Registrar Departamento'
+      end
+      object SpeedButton3: TSpeedButton
+        Left = 488
+        Top = 24
+        Width = 209
+        Height = 201
+        Caption = 'Registrar Ciudad'
+      end
+    end
+    object Card2: TCard
+      Left = 1
+      Top = 1
+      Width = 1161
+      Height = 666
+      Caption = 'Card2'
+      CardIndex = 1
+      TabOrder = 1
+      ExplicitHeight = 570
+      object PnlCentral: TPanel
+        Left = 0
+        Top = 0
+        Width = 1161
+        Height = 666
+        Align = alClient
+        BevelOuter = bvNone
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitHeight = 570
+      end
+    end
+  end
+end

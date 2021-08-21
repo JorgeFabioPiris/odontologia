@@ -1,0 +1,71 @@
+unit SimplePed.Model.Producto;
+
+interface
+
+uses
+  Data.DB,
+  SimpleDAO,
+  SimpleInterface,
+  SimpleQueryFiredac,
+  SimplePed.Model.Producto.Interfaces,
+  SimplePed.Model.Entidades.Producto;
+
+type
+  TModelProducto = class (TInterfacedOBject, iModelProducto)
+    private
+    FEntidade : TPRODUCTO;
+    FDAO : iSimpleDao<TPRODUCTO>;
+    FDataSource : TDataSource;
+
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New : iModelProducto;
+      function Entidad : TPRODUCTO;
+      function DAO : iSimpleDAO<TPRODUCTO>;
+      function DataSource (aDataSource : TDataSource) : iModelProducto;
+  end;
+
+implementation
+
+
+{ TModelProducto }
+
+uses SimplePed.Model.Conexion, System.SysUtils;
+
+constructor TModelProducto.Create;
+begin
+  FEntidade := TPRODUCTO.Create;
+  FDAO := TSimpleDAO<TPRODUCTO>
+            .New(TSimpleQueryFiredac.New(ModelConexion.Conexion));
+end;
+
+function TModelProducto.DAO: iSimpleDAO<TPRODUCTO>;
+begin
+  Result := FDAO;
+end;
+
+function TModelProducto.DataSource(aDataSource: TDataSource): iModelProducto;
+begin
+  Result := Self;
+  FDataSource := aDataSource;
+  FDAO.DataSource(FDataSource);
+end;
+
+destructor TModelProducto.Destroy;
+begin
+  FreeAndNil(FEntidade);
+  inherited;
+end;
+
+function TModelProducto.Entidad: TPRODUCTO;
+begin
+  Result := FEntidade;
+end;
+
+class function TModelProducto.New: iModelProducto;
+begin
+  Result := Self.Create;
+end;
+
+end.

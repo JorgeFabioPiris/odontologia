@@ -1,0 +1,98 @@
+unit SimplePed.View.Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.Buttons, Vcl.StdCtrls, SimplePed.Controller.Interfaces,
+  SimplePed.Controller.Producto.Interfaces;
+
+type
+  TForm1 = class(TForm)
+    [Bind('ID')]
+    edtID: TEdit;
+
+    [Bind('NOMBRE')]
+    edtNOMBRE: TEdit;
+
+    [Bind('PRECIO')]
+    edtPRECIO: TEdit;
+
+    btnBuscar: TSpeedButton;
+    btnInsertar: TSpeedButton;
+    btnModificar: TSpeedButton;
+    btnEliminar: TSpeedButton;
+
+    DBGrid1: TDBGrid;
+    DataSource1: TDataSource;
+
+    procedure FormCreate(Sender: TObject);
+    procedure btnBuscarClick(Sender: TObject);
+    procedure btnInsertarClick(Sender: TObject);
+    procedure btnModificarClick(Sender: TObject);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure btnEliminarClick(Sender: TObject);
+  private
+    { Private declarations }
+    FController: iController;
+    FProducto: iControllerProducto;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses
+  SimplePed.Controller;
+
+{$R *.dfm}
+
+procedure TForm1.btnBuscarClick(Sender: TObject);
+begin
+  FProducto.Buscar;
+end;
+
+procedure TForm1.btnEliminarClick(Sender: TObject);
+begin
+  FProducto.Entidad.ID := StrToInt(edtID.Text);
+  FProducto.Eliminar;
+  FProducto.Buscar;
+end;
+
+procedure TForm1.btnInsertarClick(Sender: TObject);
+begin
+  FProducto.Entidad.NOMBRE := edtNOMBRE.Text;
+  FProducto.Entidad.PRECIO := StrToCurr(edtPRECIO.Text);
+  FProducto.Insertar;
+  FProducto.Buscar;
+end;
+
+procedure TForm1.btnModificarClick(Sender: TObject);
+begin
+  FProducto.Entidad.ID := StrToInt(edtID.Text);
+  FProducto.Entidad.NOMBRE := edtNOMBRE.Text;
+  FProducto.Entidad.PRECIO := StrToCurr(edtPRECIO.Text);
+  FProducto.Modificar;
+  FProducto.Buscar;
+end;
+
+procedure TForm1.DataSource1DataChange(Sender: TObject; Field: TField);
+begin
+   edtID.Text := DataSource1.DataSet.FieldByName('ID').AsString;
+   edtNOMBRE.Text := DataSource1.DataSet.FieldByName('NOMBRE').AsString;
+   edtPRECIO.Text := DataSource1.DataSet.FieldByName('PRECIO').AsString;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  FController := TController.New;
+  FProducto := FController.Producto.DataSource(DataSource1);
+end;
+
+end.

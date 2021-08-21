@@ -1,0 +1,213 @@
+unit SimplePed.View.Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  SimplePed.View.Home, SimplePed.View.Direccion, Vcl.Imaging.pngimage;
+
+type
+  TPageMain = class(TForm)
+    ImageList1: TImageList;
+    pnlMain: TPanel;
+    PnlMenuLateral: TPanel;
+    BtnMenLatSalir: TSpeedButton;
+    PnlMenuLateralConfiguracion: TPanel;
+    BtnPnelMenuConfImpresora: TSpeedButton;
+    BtnPnelMenuConfBKP: TSpeedButton;
+    BtnPnelMenuConfOpciones: TSpeedButton;
+    PnlMenuConfiguracionDiv01: TPanel;
+    PnelSombraMenuConf: TPanel;
+    BtnPnelMenuConfExpandir: TSpeedButton;
+    PnlMenuLateralConsulta: TPanel;
+    BtnPnelMenuConsPaciente: TSpeedButton;
+    BtnPnelMenuConsConsSeguro: TSpeedButton;
+    BtnPnelMenuConsAgenda: TSpeedButton;
+    BtnPnelMenuConsEmpresa: TSpeedButton;
+    BtnPnelMenuConsMedico: TSpeedButton;
+    BtnPnelMenuConsProveedor: TSpeedButton;
+    PnlMenuConsultaDiv01: TPanel;
+    PnelSombraMenuCons: TPanel;
+    BtnPnelMenuConsExpandir: TSpeedButton;
+    PnlMenuLateralDiv01: TPanel;
+    PnlMenuLateralDiv02: TPanel;
+    PnlMenuLateralDiv03: TPanel;
+    PnlMenuLateralDiv04: TPanel;
+    PnlMenuLateralDiv05: TPanel;
+    PnlMenuLateralFinanciero: TPanel;
+    BtnPnelMenuFinanLanzamiento: TSpeedButton;
+    BtnPnelMenuFinanListadoCaja: TSpeedButton;
+    BtnPnelMenuFinanSaldoCaja: TSpeedButton;
+    BtnPnelMenuFinanHistorial: TSpeedButton;
+    PnlMenuFinancieroDiv01: TPanel;
+    PnelSombraMenuFinan: TPanel;
+    BtnPnelMenuFinanExpandir: TSpeedButton;
+    PnlMenuLateralRegistro: TPanel;
+    BtnPnelMenuRegPaciente: TSpeedButton;
+    BtnPnelMenuRegSeguro: TSpeedButton;
+    BtnPnelMenuRegFuncionario: TSpeedButton;
+    BtnPnelMenuRegDireccion: TSpeedButton;
+    BtnPnelMenuRegProducto: TSpeedButton;
+    BtnPnelMenuRegUsuario: TSpeedButton;
+    BtnPnelMenuRegAgenda: TSpeedButton;
+    BtnPnelMenuRegEmpresa: TSpeedButton;
+    BtnPnelMenuRegMedico: TSpeedButton;
+    BtnPnelMenuRegProveedor: TSpeedButton;
+    PnlMenuRegistroDiv01: TPanel;
+    PnelSombraMenuReg: TPanel;
+    BtnPnelMenuRegExpandir: TSpeedButton;
+    pnlCentral: TPanel;
+    pnlCabecera: TPanel;
+    PnlBotonera: TPanel;
+    PnlSombraBotoneraCaja: TPanel;
+    BtnPnlBotoneraCaja: TSpeedButton;
+    PnlSombraBotoneraServicio: TPanel;
+    BtnPnlBotoneraServicio: TSpeedButton;
+    PnlSombraBotoneraAgenda: TPanel;
+    BtnPnlBotoneraAgenda: TSpeedButton;
+    PnlSombraBotoneraMedico: TPanel;
+    BtnPnlBotoneraMedico: TSpeedButton;
+    PnlSombraBotoneraPaciente: TPanel;
+    BtnPnlBotoneraPaciente: TSpeedButton;
+    PnlSombraBotoneraSaldo: TPanel;
+    BtnPnlBotoneraCajaSaldo: TSpeedButton;
+    PnlSombraBotoneraInicio: TPanel;
+    BtnMenLatInicio: TSpeedButton;
+    PnlBotoneraResaltador: TPanel;
+    PnlTitulo: TPanel;
+    lblTitulo: TLabel;
+    Image1: TImage;
+    procedure FormCreate(Sender: TObject);
+    procedure BtnPnelMenuRegDireccionClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure prc_expandir_menu(largo_panel: Integer; boton: TSpeedButton;
+      expandir: Boolean);
+    procedure prc_mover_resaltador(panel: TPanel);
+    procedure prc_marcar_boton_activo(boton: TSpeedButton; marcar: Boolean);
+  public
+    { Public declarations }
+  end;
+
+var
+  PageMain: TPageMain;
+  PagHome: TPagHome;
+  PagDireccion: TPagDireccion;
+  nombre_comp : String;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPageMain.BtnPnelMenuRegDireccionClick(Sender: TObject);
+begin
+  PagDireccion := TPagDireccion.Create(Self);
+  PagDireccion.Parent := pnlCentral;
+  PagDireccion.Show;
+end;
+
+procedure TPageMain.FormCreate(Sender: TObject);
+begin
+  PagHome := TPagHome.Create(Self);
+  PagHome.Parent := pnlCentral;
+  PagHome.Show;
+  nombre_comp := '';
+  prc_expandir_menu(45, BtnPnlBotoneraPaciente, false);
+  prc_mover_resaltador(PnlSombraBotoneraInicio);
+  prc_marcar_boton_activo(BtnMenLatInicio, false);
+end;
+
+procedure TPageMain.prc_expandir_menu(largo_panel: Integer; boton: TSpeedButton;
+  expandir: Boolean);
+var i : Integer;
+  begin
+    if expandir then
+      begin
+        //Recorrer los componentes del formulario
+        for I := 0 to PageMain.ComponentCount - 1 do
+          begin
+            //Verifica si el componente es un panel
+            if (PageMain.Components[i] is TPanel) and (
+               (PageMain.Components[i] as TPanel).Tag <> 0) then
+              begin
+                //Verifica que el panel está asociado al boton pasado como parametro
+                if (PageMain.Components[i] as TPanel).Tag = boton.Tag then
+                  begin
+                    //Muestra el panel asociado al boton
+//                    (Form2.Components[i] as TPanel).Visible := True;
+                    (PageMain.Components[i] as TPanel).Height := largo_panel;
+                  end else
+//                    (Form2.Components[i] as TPanel).Visible := False;
+                    (PageMain.Components[i] as TPanel).Height := 45;
+
+              end;
+
+          end;
+
+      end else // fin de expandir
+      //Recorrer los componentes del formulario
+      begin
+        for I := 0 to PageMain.ComponentCount - 1 do
+          begin
+              //Verifica si el componente es un panel
+            if (PageMain.Components[i] is TPanel) and (
+               (PageMain.Components[i] as TPanel).Tag <> 0) then
+              begin
+                (PageMain.Components[i] as TPanel).Height := 45;
+              end;
+          end;
+      end;
+end;
+
+procedure TPageMain.prc_marcar_boton_activo (boton: TSpeedButton; marcar :Boolean);
+  var i : Integer;
+  begin
+    PnlBotoneraResaltador.Visible := false;
+    if marcar then  //En caso de que el parametro sea verdadero
+      begin
+                    //Recorrer los componentes del formulario
+        for I := 0 to PageMain.ComponentCount - 1 do
+          begin
+                    //Verifica si el componente es un Panel y si su Tag esta en el rango deseado
+            if (PageMain.Components[i] is TPanel) and (
+               (PageMain.Components[i] as TPanel).Tag > 100) then
+              begin
+                    //Verifica que el panel está asociado al boton pasado como parametro
+                if (PageMain.Components[i] as TPanel).Tag = (boton.Tag+100) then
+                  begin
+                    //Muestra el panel asociado al boton
+                    (PageMain.Components[i] as TPanel).Color := clGray;
+                  end else
+                    (PageMain.Components[i] as TPanel).Color := clWhite;
+              end;
+
+          end;
+
+      end else // En caso del parametro ser falso
+      //Recorrer los componentes del formulario
+      begin
+        for I := 0 to PageMain.ComponentCount - 1 do
+          begin
+            //Verifica si el componente es un Panel y si su Tag esta en el rango deseado
+            if (PageMain.Components[i] is TPanel) and (
+               (PageMain.Components[i] as TPanel).Tag > 100) then
+              begin
+                (PageMain.Components[i] as TPanel).Color := clWhite;
+              end;
+          end;
+      end;
+  end;
+
+procedure TPageMain.prc_mover_resaltador(panel: TPanel);
+  begin
+    PnlBotoneraResaltador.Visible := True;
+    nombre_comp := '';
+    prc_expandir_menu (45, BtnPnlBotoneraPaciente, false);
+    PnlBotoneraResaltador.Left := panel.Left;
+    PnlBotoneraResaltador.Width := panel.Width;
+  end;
+
+end.

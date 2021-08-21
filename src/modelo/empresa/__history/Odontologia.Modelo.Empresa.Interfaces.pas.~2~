@@ -1,0 +1,24 @@
+unit Odontologia.Modelo.Empresa.Interfaces;
+
+interface
+
+uses
+  Data.DB,
+  SimpleInterface,
+  Odontologia.Modelo.Entidades.Empresa,
+  Odontologia.Modelo.Ciudad.Interfaces;
+
+type
+  iModelEmpresa = interface
+['{F10B4FB4-166F-4CD6-8497-779C2A43D9EC}']
+    function Entidad      : TDEPRESA; overload;
+    function Entidad(aEntidad: TDEPRESA)    : iModelEmpresa; overload;
+    function DAO          : iSimpleDAO<TDEPRESA>;
+    function DataSource(aDataSource: TDataSource) : iModelEmpresa;
+    function Ciudad       : iModelCiudad;
+    function TimpoEmpresa : iModelcIUDAD;
+  end;
+
+implementation
+
+end.

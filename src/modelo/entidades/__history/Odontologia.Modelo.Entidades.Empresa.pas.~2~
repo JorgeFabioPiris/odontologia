@@ -1,0 +1,26 @@
+unit Odontologia.Modelo.Entidades.Empresa;
+
+interface
+
+uses
+  SimpleAttributes;
+
+type
+[Tabela('DEMPRESA')]
+TDEMPRESA = class
+  property EMP_CODIGO;
+  property EMP_RAZSOCIAL;
+  property EMP_FANTASIA;
+  property
+  property
+  property
+  property
+  property
+  property
+  property
+  property
+end;
+
+implementation
+
+end.

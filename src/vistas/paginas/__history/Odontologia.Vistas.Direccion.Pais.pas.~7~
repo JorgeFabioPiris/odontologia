@@ -1,0 +1,121 @@
+unit Odontologia.Vistas.Direccion.Pais;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Odontologia.Vistas.Template, Data.DB,
+  System.ImageList, Vcl.ImgList, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
+  Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls,
+  Odontologia.Controlador.Interfaces, Odontologia.Controlador.Pais.Interfaces,
+  Odontologia.Vistas.Direccion.Pais;
+
+type
+  TPagTemplate1 = class(TPagTemplate)
+    Label1: TLabel;
+    Label2: TLabel;
+
+    [Bind('ID')]
+    edtCodigo: TEdit;
+
+    [Bind('NOMBRE')]
+    edtNombre: TEdit;
+
+    procedure btnNuevoClick(Sender: TObject);
+    procedure btnActualizarClick(Sender: TObject);
+    procedure btnBorrarClick(Sender: TObject);
+    procedure btnGuardarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure DBGrid1DblClick(Sender: TObject);
+    procedure edtSearchKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+    FController: iController;
+    FPais: iControllerPais;
+    procedure prc_estado_inicial;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  PagPais: TPagPais;
+  Insercion: Boolean;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPagTemplate1.btnActualizarClick(Sender: TObject);
+begin
+  inherited;
+  FPais.Buscar();
+end;
+
+procedure TPagTemplate1.btnBorrarClick(Sender: TObject);
+var
+  ShouldClose: Boolean;
+begin
+  inherited;
+  if MessageDlg('Realmente desea eliminar este registro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    Fpais.Entidad.PAI_CODIGO := StrToInt(edtCodigo.Text);
+    FPais.Eliminar;
+    FPais.Buscar;
+    prc_estado_inicial;
+  end else
+  begin
+    edtNombre.SetFocus;
+  end;
+end;
+
+procedure TPagTemplate1.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  prc_estado_inicial;
+end;
+
+procedure TPagTemplate1.btnGuardarClick(Sender: TObject);
+begin
+  if Insercion then
+  begin
+    FPais.Entidad.NOMBRE := edtNombre.Text;
+    FPais.Insertar;
+  end
+  else
+  begin
+    FPais.Entidad.ID := StrToInt(edtCodigo.Text);
+    FPais.Entidad.NOMBRE := edtNombre.Text;
+    FPais.Modificar;
+  end;
+  prc_estado_inicial;
+end;
+
+procedure TPagTemplate1.btnNuevoClick(Sender: TObject);
+begin
+  inherited;
+  CardPanel1.ActiveCard := Card2;
+  lblTitulo2.Caption := 'Agregar nuevo registro';
+  edtCodigo.Enabled := false;
+  edtNombre.SetFocus;
+end;
+
+procedure TPagTemplate1.DBGrid1DblClick(Sender: TObject);
+begin
+  inherited;
+  Insercion := false;
+  CardPanel1.ActiveCard := Card2;
+  lblTitulo2.Caption := 'Modificar registro';
+  edtCodigo.Text := DataSource1.DataSet.FieldByName('PAI_CODIGO').AsString;
+  edtNombre.Text := DataSource1.DataSet.FieldByName('PAI_NOMBRE').AsString;
+end;
+
+procedure TPagTemplate1.edtSearchKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  FPais.Buscar(edtSearch.Text);
+end;
+
+end.

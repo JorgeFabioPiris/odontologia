@@ -1,0 +1,114 @@
+unit SimplePed.View.Direccion.Pais;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.WinXPanels, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, System.ImageList,
+  Vcl.ImgList, SimplePed.Controller.Interfaces,
+  Odontologia.Controller.Pais.Interfaces;
+
+type
+  TPagPais = class(TForm)
+    DataSource1: TDataSource;
+    PnlPrincipal: TPanel;
+    CardPanel1: TCardPanel;
+    Card1: TCard;
+    PnlGrid: TPanel;
+    DBGrid1: TDBGrid;
+    pnlMainTopLine: TPanel;
+    PnlBotonAccion: TPanel;
+    btnActualizar: TSpeedButton;
+    btnNuevo: TSpeedButton;
+    PnlPagina: TPanel;
+    btnPrior: TSpeedButton;
+    btnNext: TSpeedButton;
+    lblPagina: TLabel;
+    PnlCabecera: TPanel;
+    PnlBusqueda: TPanel;
+    lblSearch: TLabel;
+    edtSearch: TEdit;
+    pnlMainTopBodySearchLine: TPanel;
+    PnlTitulo: TPanel;
+    lblTitulo: TLabel;
+    Card2: TCard;
+    PnlFormulario: TPanel;
+    StackPanel1: TStackPanel;
+    Label1: TLabel;
+
+    [Bind('ID')]
+    edtCodigo: TEdit;
+    Label2: TLabel;
+
+    [Bind('NOMBRE')]
+    edtNombre: TEdit;
+    StackPanel2: TStackPanel;
+    PnlBotonEdicion: TPanel;
+    btnBorrar: TSpeedButton;
+    btnCerrar: TSpeedButton;
+    btnGuardar: TSpeedButton;
+    PnlSubTitulo: TPanel;
+    lblTitulo2: TLabel;
+    ImageList1: TImageList;
+    procedure FormCreate(Sender: TObject);
+    procedure btnNuevoClick(Sender: TObject);
+    procedure btnGuardarClick(Sender: TObject);
+    procedure btnCerrarClick(Sender: TObject);
+  private
+    { Private declarations }
+    FController: iController;
+    FPais: iControllerPais;
+    procedure prc_estado_inicial;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  PagPais: TPagPais;
+
+implementation
+
+uses
+  SimplePed.Controller;
+
+{$R *.dfm}
+
+procedure TPagPais.btnCerrarClick(Sender: TObject);
+begin
+  prc_estado_inicial;
+end;
+
+procedure TPagPais.btnGuardarClick(Sender: TObject);
+begin
+  FPais.Entidad.NOMBRE := edtNOMBRE.Text;
+  FPais.Insertar;
+  prc_estado_incial;
+end;
+
+procedure TPagPais.btnNuevoClick(Sender: TObject);
+begin
+  CardPanel1.ActiveCard := Card2;
+  lblTitulo2.Caption := 'Agregar nuevo registro';
+  edtCodigo.Enabled := false;
+  edtNombre.SetFocus;
+end;
+
+procedure TPagPais.FormCreate(Sender: TObject);
+begin
+  FController := TController.New;
+  FPais := FController.Pais.DataSource(DataSource1);
+  prc_estado_inicial;
+  end;
+
+procedure TPagPais.prc_estado_inicial;
+begin
+  CardPanel1.ActiveCard := Card1;
+  edtSearch.Text := '';
+  edtCodigo.Text := '';
+  edtNombre.Text := '';
+  FPais.Buscar;
+end;
+
+end.

@@ -1,0 +1,55 @@
+unit Odontologia.Modelo;
+
+interface
+
+uses
+  SimplePed.Model.Interfaces,
+  SimplePed.Model.Producto.Interfaces, Odontologia.Modelo.Pais.Interfaces;
+
+type
+  TModel = Class(TInterfacedObject, iModel)
+
+  private
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iModel;
+    function Producto: iModelProducto;
+    function Pais : iModelPais;
+  End;
+
+implementation
+
+uses
+  SimplePed.Model.Producto, Odontologia.Modelo.Pais;
+
+{ TModel }
+
+constructor TModel.Create;
+begin
+
+end;
+
+destructor TModel.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TModel.New: iModel;
+begin
+  Result := Self.Create;
+end;
+
+function TModel.Pais: iModelPais;
+begin
+  Result := TModelPais.New;
+end;
+
+function TModel.Producto: iModelProducto;
+begin
+  Result := TModelProducto.New;
+end;
+
+end.

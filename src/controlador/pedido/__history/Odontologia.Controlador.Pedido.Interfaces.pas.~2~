@@ -1,0 +1,23 @@
+unit Odontologia.Controlador.Pedido.Interfaces;
+
+interface
+
+uses
+  Data.DB,
+  Odontologia.Modelo.Entidades.Pedido;
+
+type
+  iControllerPedido = interface
+    ['{CF622183-1258-4B6E-B4A1-A3D28F5CC81E}']
+    function DataSource (aDataSource : TDataSource) : iControllerPedido;
+    function Buscar : iControllerPedido;
+    function Insertar : iControllerPedido;
+    function Modificar : iControllerPedido;
+    function Eliminar : iControllerPedido;
+    function Entidad : TPEDIDO;
+    //function Item : iControllerPedidoItem;
+  end;
+
+implementation
+
+end.

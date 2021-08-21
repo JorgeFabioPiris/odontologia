@@ -1,0 +1,31 @@
+inherited PagTemplate1: TPagTemplate1
+  Caption = 'PagTemplate1'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PnlPrincipal: TPanel
+    inherited CardPanel1: TCardPanel
+      inherited Card1: TCard
+        inherited PnlBotonAccion: TPanel
+          inherited PnlPagina: TPanel
+            inherited lblPagina: TLabel
+              Height = 73
+            end
+          end
+        end
+        inherited PnlCabecera: TPanel
+          inherited PnlBusqueda: TPanel
+            inherited lblSearch: TLabel
+              Width = 433
+            end
+          end
+          inherited PnlTitulo: TPanel
+            inherited lblTitulo: TLabel
+              Width = 645
+              Height = 43
+            end
+          end
+        end
+      end
+    end
+  end
+end

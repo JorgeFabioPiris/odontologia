@@ -1,0 +1,27 @@
+unit Odontologia.Modelo.Entidades.Empresa;
+
+interface
+
+uses
+  simpleattributes;
+
+type
+  TDEMPRESA = class
+
+    property EMP_CODIGO;
+    property EMP_RAZSOCIAL;
+    property EMP_FANTASIA;
+    property EMP_DIRECCION;
+    property EMP_NUMERO;
+    property EMP_BARRIO;
+    property EMP_TELEFONO;
+    property EMP_EMAIL;
+    property EMP_RUC;
+    property EMP_COD_CIUDAD;
+    property EMP_COD_TIP_EMPRESA;
+
+  end;
+
+implementation
+
+end.

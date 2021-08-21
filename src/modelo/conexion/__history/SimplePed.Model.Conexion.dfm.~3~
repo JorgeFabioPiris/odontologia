@@ -1,0 +1,13 @@
+object ModelConexion: TModelConexion
+  OldCreateOrder = False
+  Height = 289
+  Width = 420
+  object Conexion: TFDConnection
+    Params.Strings = (
+      'Database=D:\Proyectos\Delphi\SimplePed\data\datadb.db'
+      'DriverID=SQLite')
+    LoginPrompt = False
+    Left = 160
+    Top = 80
+  end
+end

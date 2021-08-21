@@ -1,0 +1,19 @@
+unit Odontologia.Controlador.PedidoItem;
+
+interface
+
+uses
+  Odontologia.Controlador.Pedido.Interfaces;
+
+type
+  TControllerPedidoItem = class (TInterfacedObject, iControllerPedidoItem)
+    private
+    public
+      constructor Create;
+      destructor Destroy;
+      class function New : iControllerPedidoItem;
+  end;
+
+implementation
+
+end.

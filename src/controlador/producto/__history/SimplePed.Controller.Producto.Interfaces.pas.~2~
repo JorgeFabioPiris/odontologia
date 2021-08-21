@@ -1,0 +1,22 @@
+unit SimplePed.Controller.Producto.Interfaces;
+
+interface
+
+uses
+  Data.DB,
+  SimplePed.Model.Entidades.Producto;
+
+type
+  iControllerProducto = interface
+    ['{CF622183-1258-4B6E-B4A1-A3D28F5CC81E}']
+    function DataSource (aDataSource : TDataSource) : iControllerProducto;
+    function Buscar  : iControllerProducto;
+    function Insertar  : iControllerProducto;
+    function Modificar  : iControllerProducto;
+    function Eliminar  : iControllerProducto;
+    function Entidad : TPRODUCTO;
+  end;
+
+implementation
+
+end.

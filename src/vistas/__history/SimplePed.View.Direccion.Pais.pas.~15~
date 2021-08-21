@@ -1,0 +1,154 @@
+unit SimplePed.View.Direccion.Pais;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.WinXPanels, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, System.ImageList,
+  Vcl.ImgList, SimplePed.Controller.Interfaces,
+  Odontologia.Controller.Pais.Interfaces;
+
+type
+  TPagPais = class(TForm)
+    //Panels
+    PnlPrincipal: TPanel;
+    PnlGrid: TPanel;
+    pnlMainTopLine: TPanel;
+    PnlBotonAccion: TPanel;
+    PnlCabecera: TPanel;
+    PnlBusqueda: TPanel;
+    pnlMainTopBodySearchLine: TPanel;
+    PnlTitulo: TPanel;
+    PnlFormulario: TPanel;
+    PnlPagina: TPanel;
+    PnlBotonEdicion: TPanel;
+    PnlSubTitulo: TPanel;
+
+    btnBorrar: TSpeedButton;
+    btnCerrar: TSpeedButton;
+    btnGuardar: TSpeedButton;
+    btnActualizar: TSpeedButton;
+    btnNuevo: TSpeedButton;
+    btnPrior: TSpeedButton;
+    btnNext: TSpeedButton;
+
+    lblTitulo: TLabel;
+    lblTitulo2: TLabel;
+    lblPagina: TLabel;
+    lblSearch: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+
+    DataSource1: TDataSource;
+    CardPanel1: TCardPanel;
+    Card1: TCard;
+    Card2: TCard;
+    DBGrid1: TDBGrid;
+    ImageList1: TImageList;
+
+    [Bind('ID')]
+    edtCodigo: TEdit;
+
+    [Bind('NOMBRE')]
+    edtNombre: TEdit;
+
+    edtSearch: TEdit;
+
+    procedure FormCreate(Sender: TObject);
+    procedure btnNuevoClick(Sender: TObject);
+    procedure btnGuardarClick(Sender: TObject);
+    procedure btnCerrarClick(Sender: TObject);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure DBGrid1DblClick(Sender: TObject);
+    procedure edtSearchKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+    FController: iController;
+    FPais: iControllerPais;
+    procedure prc_estado_inicial;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  PagPais: TPagPais;
+  Insercion : Boolean;
+
+implementation
+
+uses
+  SimplePed.Controller;
+
+{$R *.dfm}
+
+procedure TPagPais.btnCerrarClick(Sender: TObject);
+  begin
+    prc_estado_inicial;
+  end;
+
+procedure TPagPais.btnGuardarClick(Sender: TObject);
+begin
+  if Insercion then
+  begin
+    FPais.Entidad.NOMBRE := edtNOMBRE.Text;
+    FPais.Insertar;
+  end else
+  begin
+    Fpais.Entidad.ID := StrToInt(edtCodigo.Text);
+    FPais.Entidad.NOMBRE := edtNombre.Text;
+    FPais.Modificar;
+  end;
+  prc_estado_inicial;
+end;
+
+procedure TPagPais.btnNuevoClick(Sender: TObject);
+begin
+  CardPanel1.ActiveCard := Card2;
+  lblTitulo2.Caption := 'Agregar nuevo registro';
+  edtCodigo.Enabled := false;
+  edtNombre.SetFocus;
+end;
+
+procedure TPagPais.DataSource1DataChange(Sender: TObject; Field: TField);
+  begin
+    edtCodigo.Text := DataSource1.DataSet.FieldByName('ID').AsString;
+    edtNombre.Text := DataSource1.DataSet.FieldByName('NOMBRE').AsString;
+  end;
+
+procedure TPagPais.DBGrid1DblClick(Sender: TObject);
+  begin
+    Insercion := False;
+    CardPanel1.ActiveCard := Card2;
+    lblTitulo2.Caption := 'Modificar registro';
+    edtCodigo.Text := DataSource1.DataSet.FieldByName('ID').AsString;
+    edtNombre.Text := DataSource1.DataSet.FieldByName('NOMBRE').AsString;
+  end;
+
+procedure TPagPais.edtSearchKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+  begin
+    FPais.Buscar(edtSearch.Text);
+  end;
+
+procedure TPagPais.FormCreate(Sender: TObject);
+  begin
+    edtCodigo.Enabled := False;
+    FController := TController.New;
+    FPais := FController.Pais.DataSource(DataSource1);
+    prc_estado_inicial;
+  end;
+
+procedure TPagPais.prc_estado_inicial;
+  begin
+    Insercion := True;
+    CardPanel1.ActiveCard := Card1;
+    edtSearch.Text := '';
+    edtCodigo.Text := '';
+    edtNombre.Text := '';
+    FPais.Buscar;
+  end;
+
+end.

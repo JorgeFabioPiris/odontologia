@@ -1,0 +1,100 @@
+﻿unit Odontologia.Controlador.PedidoItem;
+
+interface
+
+uses
+  Odontologia.Controlador.Pedido.Interfaces,
+  Odontologia.Modelo.Entidades.PedidoItems,
+  Odontologia.Modelo.Pedido.Interfaces, Data.DB, System.Generics.Collections;
+
+type
+  TControllerPedidoItem = class(TInterfacedObject, iControllerPedidoItem)
+  private
+    Fmodel : iModelPedidoItem;
+    FDatasource : TDataSource;
+    Flista : TobjectList<TPEDIDOITEM>;
+  public
+    constructor Create;
+    destructor Destroy;
+    class function New: iControllerPedidoItem;
+    function DataSource(aDataSource: TDataSource): iControllerPedidoItem;
+    function Buscar: iControllerPedidoItem; overload;
+    function Buscar(aId: Integer): iControllerPedidoItem; overload;
+    function Insertar: iControllerPedidoItem;
+    function Modificar: iControllerPedidoItem;
+    function Eliminar: iControllerPedidoItem;
+    function Entidad: TPEDIDOITEM;
+  end;
+
+implementation
+
+uses
+  System.SysUtils, Odontologia.Modelo;
+
+{ TControllerPedidoItem }
+
+function TControllerPedidoItem.Buscar: iControllerPedidoItem;
+begin
+  Result := Self;
+  FLista := TObjectList<TPEDIDOITEM>.Create;
+  FModel.DAO.Find(FLista);
+end;
+
+function TControllerPedidoItem.Buscar(aId: Integer): iControllerPedidoItem;
+begin
+  Result := Self;
+  FLista := TObjectList<TPEDIDOITEM>.Create;
+  FDatasource.dataset.DisableControls;
+  FModel.DAO.SQL.Where('ID_PEDIDO = ' + IntToStr(aId)).&End.Find;
+  FDatasource.dataset.enablecontrols;
+end;
+
+constructor TControllerPedidoItem.Create;
+begin
+  Fmodel := TModel.New.PedidoItem;
+end;
+
+function TControllerPedidoItem.DataSource(
+  aDataSource: TDataSource): iControllerPedidoItem;
+begin
+   Result := Self;
+   FDataSource := aDataSource;
+   Fmodel.DataSource(FDatasource);
+end;
+
+destructor TControllerPedidoItem.Destroy;
+begin
+  if Assigned(Flista) then
+    Flista.Free;
+  inherited;
+end;
+
+function TControllerPedidoItem.Eliminar: iControllerPedidoItem;
+begin
+  Result := Self;
+  Fmodel.DAO.Delete(Fmodel.Entidad);
+end;
+
+function TControllerPedidoItem.Entidad: TPEDIDOITEM;
+begin
+   Result := Fmodel.Entidad;
+end;
+
+function TControllerPedidoItem.Insertar: iControllerPedidoItem;
+begin
+   Result := Self;
+  Fmodel.DAO.Insert(Fmodel.Entidad);
+end;
+
+function TControllerPedidoItem.Modificar: iControllerPedidoItem;
+begin
+   Result := Self;
+  Fmodel.DAO.Update(Fmodel.Entidad);
+end;
+
+class function TControllerPedidoItem.New: iControllerPedidoItem;
+begin
+  Result := Self.Create;
+end;
+
+end.

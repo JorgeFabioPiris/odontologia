@@ -1,0 +1,24 @@
+unit Odontologia.Modelo.Departamento.Interfaces;
+
+interface
+
+uses
+  Data.DB,
+  SimpleInterface,
+  Odontologia.Modelo.Entidades.Departamento,
+  Odontologia.Modelo.Pais.Interfaces;
+
+type
+  iModelDepartamento = interface
+    ['{7ED9D844-588E-4ADE-A8B6-1FCD26A9AEA6}']
+    function Entidad: TDDEPARTAMENTO; overload;
+    function Entidad(aEntidad: TDDEPARTAMENTO): iModelDepartamento; overload;
+    function DAO: iSimpleDAO<TDDEPARTAMENTO>;
+    function DataSource(aDataSource: TDataSource): iModelDepartamento;
+    function Ciudad: iModelPais;
+    function Empresa: iModelPais;
+  end;
+
+implementation
+
+end.

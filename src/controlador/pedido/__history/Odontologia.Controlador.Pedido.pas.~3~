@@ -1,0 +1,76 @@
+unit Odontologia.Controlador.Pedido;
+
+interface
+
+uses
+  Odontologia.Controlador.Pedido.Interfaces;
+
+type
+  TControllerPedido = class(TInterfacedObject, icontrollerPedido)
+  private
+    FModel : iModelPeido
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: icontrollerPedido;
+    function DataSource(aDataSource: TDataSource): icontrollerPedido;
+    function Buscar: icontrollerPedido;
+    function Insertar: icontrollerPedido;
+    function Modificar: icontrollerPedido;
+    function Eliminar: icontrollerPedido;
+    function Entidad: TPEDIDO;
+    // function Item : iControllerPedidoItem;
+  end;
+
+implementation
+
+{ TControllerPedido }
+
+function TControllerPedido.Buscar: icontrollerPedido;
+begin
+
+end;
+
+constructor TControllerPedido.Create;
+begin
+
+end;
+
+function TControllerPedido.DataSource(
+  aDataSource: TDataSource): icontrollerPedido;
+begin
+
+end;
+
+destructor TControllerPedido.Destroy;
+begin
+
+  inherited;
+end;
+
+function TControllerPedido.Eliminar: icontrollerPedido;
+begin
+
+end;
+
+function TControllerPedido.Entidad: TPEDIDO;
+begin
+
+end;
+
+function TControllerPedido.Insertar: icontrollerPedido;
+begin
+
+end;
+
+function TControllerPedido.Modificar: icontrollerPedido;
+begin
+
+end;
+
+class function TControllerPedido.New: icontrollerPedido;
+begin
+
+end;
+
+end.

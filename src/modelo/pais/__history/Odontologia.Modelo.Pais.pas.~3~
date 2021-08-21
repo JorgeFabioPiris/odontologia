@@ -1,0 +1,73 @@
+unit Odontologia.Modelo.Pais;
+
+interface
+
+uses
+  Data.DB,
+  SimpleDAO,
+  SimpleInterface,
+  SimpleQueryRestDW,
+  Odontologia.Modelo.Pais.Interfaces,
+  Odontologia.Modelo.Entidades.Pais,
+  Odontologia.Modelo.Conexion.RestDW,
+  System.SysUtils;
+
+type
+  TModelPais = class (TInterfacedOBject, iModelPais)
+
+    private
+    FEntidade : TPAIS;
+    FDAO : iSimpleDao<TPAIS>;
+    FDataSource : TDataSource;
+
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New : iModelPais;
+      function Entidad : TPAIS;
+      function DAO : iSimpleDAO<TPAIS>;
+      function DataSource (aDataSource : TDataSource) : iModelPais;
+  end;
+
+implementation
+
+
+{ TModelPais }
+
+constructor TModelPais.Create;
+begin
+  FEntidade := TPAIS.Create;
+  FDAO := TSimpleDAO<TPAIS>
+            .New(TSimpleQueryRestDW<TPAIS>
+                .New(ModelConexion.RESTDWDataBase1));
+end;
+
+function TModelPais.DAO: iSimpleDAO<TPAIS>;
+begin
+  Result := FDAO;
+end;
+
+function TModelPais.DataSource(aDataSource: TDataSource): iModelPais;
+begin
+  Result := Self;
+  FDataSource := aDataSource;
+  FDAO.DataSource(FDataSource);
+end;
+
+destructor TModelPais.Destroy;
+begin
+  FreeAndNil(FEntidade);
+  inherited;
+end;
+
+function TModelPais.Entidad: TPAIS;
+begin
+  Result := FEntidade;
+end;
+
+class function TModelPais.New: iModelPais;
+begin
+  Result := Self.Create;
+end;
+
+end.

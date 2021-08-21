@@ -1,0 +1,111 @@
+unit Odontologia.Modelo.Entidades.Usuario;
+
+interface
+
+uses
+
+  SimpleAttributes;
+
+type
+  [Tabela('DUSUARIO')]
+  TDUSUARIO = class
+
+  private
+    FUSU_LOGIN: String;
+    FUSU_ESTADO: String;
+    FUSU_CLAVE: String;
+    FUSU_COD_EMPRESA: Integer;
+    FUSU_CODIGO: Integer;
+//    FUSU_FECHA_INC: TDateTime;
+    FUSU_FOTO: String;
+    FUSU_NIVEL: Integer;
+//    FUSU_FECHA_MOD: TDateTime;
+    procedure SetUSU_CLAVE(const Value: String);
+    procedure SetUSU_COD_EMPRESA(const Value: Integer);
+    procedure SetUSU_CODIGO(const Value: Integer);
+    procedure SetUSU_ESTADO(const Value: String);
+//    procedure SetUSU_FECHA_INC(const Value: TDateTime);
+//    procedure SetUSU_FECHA_MOD(const Value: TDateTime);
+    procedure SetUSU_FOTO(const Value: String);
+    procedure SetUSU_LOGIN(const Value: String);
+    procedure SetUSU_NIVEL(const Value: Integer);
+
+  published
+    [Campo('USU_CODIGO'), Pk, AutoInc]
+    property USU_CODIGO: Integer read FUSU_CODIGO write SetUSU_CODIGO;
+
+    [Campo('USU_LOGIN')]
+    property USU_LOGIN: String read FUSU_LOGIN write SetUSU_LOGIN;
+
+    [Campo('USU_ESTADO')]
+    property USU_ESTADO: String read FUSU_ESTADO write SetUSU_ESTADO;
+
+    [Campo('USU_NIVEL')]
+    property USU_NIVEL: Integer read FUSU_NIVEL write SetUSU_NIVEL;
+
+//    [Campo('USU_FECHA_INC')]
+//    property USU_FECHA_INC: TDateTime read FUSU_FECHA_INC write SetUSU_FECHA_INC;
+
+ //   [Campo('USU_FECHA_MOD')]
+//    property USU_FECHA_MOD: TDateTime read FUSU_FECHA_MOD write SetUSU_FECHA_MOD;
+
+    [Campo('USU_CLAVE')]
+    property USU_CLAVE: String read FUSU_CLAVE write SetUSU_CLAVE;
+
+    [Campo('USU_COD_EMPRESA')]
+    property USU_COD_EMPRESA: Integer read FUSU_COD_EMPRESA write SetUSU_COD_EMPRESA;
+
+    [Campo('USU_FOTO')]
+    property USU_FOTO: String read FUSU_FOTO write SetUSU_FOTO;
+  end;
+
+implementation
+
+{ TDUSUARIO }
+
+procedure TDUSUARIO.SetUSU_CLAVE(const Value: String);
+begin
+  FUSU_CLAVE := Value;
+end;
+
+procedure TDUSUARIO.SetUSU_CODIGO(const Value: Integer);
+begin
+  FUSU_CODIGO := Value;
+end;
+
+procedure TDUSUARIO.SetUSU_COD_EMPRESA(const Value: Integer);
+begin
+  FUSU_COD_EMPRESA := Value;
+end;
+
+procedure TDUSUARIO.SetUSU_ESTADO(const Value: String);
+begin
+  FUSU_ESTADO := Value;
+end;
+ {
+procedure TDUSUARIO.SetUSU_FECHA_INC(const Value: TDateTime);
+begin
+  FUSU_FECHA_INC := Value;
+end;
+
+procedure TDUSUARIO.SetUSU_FECHA_MOD(const Value: TDateTime);
+begin
+  FUSU_FECHA_MOD := Value;
+end;
+ }
+procedure TDUSUARIO.SetUSU_FOTO(const Value: String);
+begin
+  FUSU_FOTO := Value;
+end;
+
+procedure TDUSUARIO.SetUSU_LOGIN(const Value: String);
+begin
+  FUSU_LOGIN := Value;
+end;
+
+procedure TDUSUARIO.SetUSU_NIVEL(const Value: Integer);
+begin
+  FUSU_NIVEL := Value;
+end;
+
+end.

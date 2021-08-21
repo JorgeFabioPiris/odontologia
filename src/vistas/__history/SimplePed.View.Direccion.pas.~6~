@@ -1,0 +1,42 @@
+unit SimplePed.View.Direccion;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,
+  Vcl.WinXPanels,
+  SimplePed.View.Direccion.Pais;
+
+type
+  TPagDireccion = class(TForm)
+    CardPanel1: TCardPanel;
+    Card1: TCard;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    Card2: TCard;
+    PnlCentral: TPanel;
+    procedure SpeedButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PagDireccion: TPagDireccion;
+  PagPais : TPagPais;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPagDireccion.SpeedButton1Click(Sender: TObject);
+begin
+  PagPais := TPagPais.Create(Self);
+  PagPais.Parent := PnlCentral;
+  PagPais.Show;
+end;
+
+end.

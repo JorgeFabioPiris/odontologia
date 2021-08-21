@@ -1,0 +1,118 @@
+unit Osontologia.Vistas.Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.Buttons, Vcl.StdCtrls, Odontologia.Controlador.Interfaces,
+  Odontologia.Controlador.Producto.Interfaces, Vcl.DBCtrls,
+  Odontologia.Controlador.Pedido.Interfaces;
+
+type
+  TForm1 = class(TForm)
+    [Bind('ID')]
+    edtID: TEdit;
+
+    [Bind('NOMBRE')]
+    edtNOMBRE: TEdit;
+
+    [Bind('PRECIO')]
+    edtPRECIO: TEdit;
+
+    btnBuscar: TSpeedButton;
+    btnInsertar: TSpeedButton;
+    btnModificar: TSpeedButton;
+    btnEliminar: TSpeedButton;
+
+    DBGrid1: TDBGrid;
+    DataSource1: TDataSource;
+    DBGrid2: TDBGrid;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Edit1: TEdit;
+    Button1: TButton;
+    DBGrid3: TDBGrid;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton3: TSpeedButton;
+    SpeedButton4: TSpeedButton;
+    DataSource2: TDataSource;
+    DataSource3: TDataSource;
+
+    procedure FormCreate(Sender: TObject);
+    procedure btnBuscarClick(Sender: TObject);
+    procedure btnInsertarClick(Sender: TObject);
+    procedure btnModificarClick(Sender: TObject);
+    procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure btnEliminarClic(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+    FController: iController;
+    FProducto: iControllerProducto;
+    FPedido : iControllerPedido;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses
+  Odontologia.Controlador;
+
+{$R *.dfm}
+
+procedure TForm1.btnBuscarClick(Sender: TObject);
+begin
+  FProducto.Buscar;
+end;
+
+procedure TForm1.btnEliminarClic(Sender: TObject);
+begin
+  FProducto.Entidad.ID := StrToInt(edtID.Text);
+  FProducto.Eliminar;
+  FProducto.Buscar;
+end;
+
+procedure TForm1.btnInsertarClick(Sender: TObject);
+begin
+  FProducto.Entidad.NOMBRE := edtNOMBRE.Text;
+  FProducto.Entidad.PRECIO := StrToCurr(edtPRECIO.Text);
+  FProducto.Insertar;
+  FProducto.Buscar;
+end;
+
+procedure TForm1.btnModificarClick(Sender: TObject);
+begin
+  FProducto.Entidad.ID := StrToInt(edtID.Text);
+  FProducto.Entidad.NOMBRE := edtNOMBRE.Text;
+  FProducto.Entidad.PRECIO := StrToCurr(edtPRECIO.Text);
+  FProducto.Modificar;
+  FProducto.Buscar;
+end;
+
+procedure TForm1.DataSource1DataChange(Sender: TObject; Field: TField);
+begin
+   edtID.Text := DataSource1.DataSet.FieldByName('ID').AsString;
+   edtNOMBRE.Text := DataSource1.DataSet.FieldByName('NOMBRE').AsString;
+   edtPRECIO.Text := DataSource1.DataSet.FieldByName('PRECIO').AsString;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  FController := TController.New;
+  FProducto := FController.Producto.DataSource(DataSource1);
+  FPedido := FController.Pedido.DataSource(DataSource2);
+  FPedido.Item.DataSource(DataSource3);
+end;
+
+procedure TForm1.SpeedButton1Click(Sender: TObject);
+begin
+  FPedido.Buscar;
+end;
+
+end.

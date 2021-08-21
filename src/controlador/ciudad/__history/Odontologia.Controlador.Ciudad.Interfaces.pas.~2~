@@ -1,0 +1,25 @@
+unit Odontologia.Controlador.Ciudad.Interfaces;
+
+interface
+
+uses
+  Data.DB,
+  Odontologia.Modelo.Entidades.Ciudad,
+  Odontologia.Controlador.Departamento.Interfaces;
+
+type
+  iControllerCiudad = interface
+    ['{CF622183-1258-4B6E-B4A1-A3D28F5CC81E}']
+    function DataSource (aDataSource : TDataSource) : iControllerCiudad;
+    function Buscar : iControllerCiudad; overload;
+    function Buscar (aCiudad : String) : iControllerCiudad; overload;
+    function Insertar : iControllerCiudad;
+    function Modificar : iControllerCiudad;
+    function Eliminar : iControllerCiudad;
+    function Entidad : TDCIUDAD;
+    function Departamento : iControllerDepartamento;
+  end;
+
+implementation
+
+end.

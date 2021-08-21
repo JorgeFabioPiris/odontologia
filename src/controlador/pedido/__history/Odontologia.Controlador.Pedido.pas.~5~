@@ -1,0 +1,91 @@
+unit Odontologia.Controlador.Pedido;
+
+interface
+
+uses
+  Odontologia.Controlador.Pedido.Interfaces,
+  Odontologia.Modelo.Pedido.Interfaces, Data.DB,
+  Odontologia.Modelo.Entidades.Pedido, System.Generics.Collections;
+
+type
+  TControllerPedido = class(TInterfacedObject, icontrollerPedido)
+  private
+    FModel : iModelPedido;
+    FDataSourse : TDataSource;
+    FLista : TobjectList<TPEDIDO>;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: icontrollerPedido;
+    function DataSource(aDataSource: TDataSource): icontrollerPedido;
+    function Buscar: icontrollerPedido;
+    function Insertar: icontrollerPedido;
+    function Modificar: icontrollerPedido;
+    function Eliminar: icontrollerPedido;
+    function Entidad: TPEDIDO;
+    // function Item : iControllerPedidoItem;
+  end;
+
+implementation
+
+uses
+  Odontologia.Modelo, System.ZLib;
+
+{ TControllerPedido }
+
+function TControllerPedido.Buscar: icontrollerPedido;
+begin
+  Result := Self;
+  FLista := TObjectList<TPEDIDO>.Create;
+  FModel.DAO.Find(FLista);
+end;
+
+constructor TControllerPedido.Create;
+begin
+  FModel := TModel.New.Pedido;
+end;
+
+function TControllerPedido.DataSource(
+  aDataSource: TDataSource): icontrollerPedido;
+begin
+  Result := Self;
+  FDataSourse := aDataSource;
+  FModel.DataSource(FDataSourse);
+end;
+
+destructor TControllerPedido.Destroy;
+begin
+  if Assigned(Flista) then
+    Flista.Free;
+  inherited;
+end;
+
+function TControllerPedido.Eliminar: icontrollerPedido;
+begin
+  Result := Self;
+  FModel.DAO.Delete(Fmodel.Entidad);
+end;
+
+function TControllerPedido.Entidad: TPEDIDO;
+begin
+  Result := FModel.Entidad;
+end;
+
+function TControllerPedido.Insertar: icontrollerPedido;
+begin
+   Result := Self;
+  FModel.DAO.Insert(Fmodel.Entidad);
+end;
+
+function TControllerPedido.Modificar: icontrollerPedido;
+begin
+  Result := Self;
+  FModel.DAO.Update(Fmodel.Entidad);
+end;
+
+class function TControllerPedido.New: icontrollerPedido;
+begin
+   Result := Self.Create;
+end;
+
+end.

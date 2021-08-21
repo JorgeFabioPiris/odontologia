@@ -1,0 +1,31 @@
+unit Odontologia.Modelo.Pedido.Interfaces;
+
+interface
+
+uses
+  SimplePed.Model.Entidades.Pedido, SIMPLEINTERFACE, Data.DB,
+  SimplePed.Model.Entidades.PedidoItem;
+
+type
+  iModelPedidoItem = interface;
+
+  iModelPedido = interface
+    ['{18F42EE3-AD99-44E3-888B-5B91130A91EA}']
+    function Entidad : TPEDIDO; overload;
+    function Entidad (aEntidad : TPEdido) : iModelPedido; overload;
+    function DAO : iSimpleDAO<TPEDIDO>;
+    function DataSource (aDataSource : TDataSource) : iModelPedido;
+    function Item : iModelPedidoItem;
+  end;
+
+  iModelPedidoItem = interface
+    ['{18F42EE3-AD99-44E3-888B-5B91130A91EA}']
+    function Entidad : TPEDIDOITEM; overload;
+    function Entidad (aEntidad : TPEDIDOITEM) : iModelPedidoItem; overload;
+    function DAO : iSimpleDAO<TPEDIDOITEM>;
+    function DataSource (aDataSource : TDataSource) : iModelPedidoItem;
+  end;
+
+implementation
+
+end.

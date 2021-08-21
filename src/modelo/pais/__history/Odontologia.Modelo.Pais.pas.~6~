@@ -1,0 +1,41 @@
+unit Odontologia.Modelo.Pais;
+
+interface
+
+uses
+  Odontologia.Modelo.Pais.Interfaces, Odontologia.Modelo.Entidades.Pais,
+  Data.DB;
+
+type
+  TModelPais = class(TInterfacedObject, iModelPais)
+  private
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iModelPais;
+    function Entidad: TDPAIS;
+    function DAO: iSimpleDAO<TDPAIS>;
+    function DataSource(aDataSource: TDataSource): iModelPais;
+  end;
+
+implementation
+
+{ TModelPais }
+
+constructor TModelPais.Create;
+begin
+
+end;
+
+destructor TModelPais.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TModelPais.New: iModelPais;
+begin
+  Result := Self.Create;
+end;
+
+end.

@@ -1,0 +1,82 @@
+unit SimplePed.View.Direccion.Pais;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.WinXPanels, Vcl.StdCtrls,
+  Vcl.Buttons, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, System.ImageList,
+  Vcl.ImgList, SimplePed.Controller.Interfaces,
+  SimplePed.Controller.Producto.Interfaces;
+
+type
+  TPagPais = class(TForm)
+    DataSource1: TDataSource;
+    PnlPrincipal: TPanel;
+    CardPanel1: TCardPanel;
+    Card1: TCard;
+    PnlGrid: TPanel;
+    DBGrid1: TDBGrid;
+    pnlMainTopLine: TPanel;
+    PnlBotonAccion: TPanel;
+    btnActualizar: TSpeedButton;
+    btnNuevo: TSpeedButton;
+    PnlPagina: TPanel;
+    btnPrior: TSpeedButton;
+    btnNext: TSpeedButton;
+    lblPagina: TLabel;
+    PnlCabecera: TPanel;
+    PnlBusqueda: TPanel;
+    lblSearch: TLabel;
+    edtSearch: TEdit;
+    pnlMainTopBodySearchLine: TPanel;
+    PnlTitulo: TPanel;
+    lblTitulo: TLabel;
+    Card2: TCard;
+    PnlFormulario: TPanel;
+    StackPanel1: TStackPanel;
+    Label1: TLabel;
+
+    [Bind('ID')]
+    edtCodigo: TEdit;
+    Label2: TLabel;
+
+    [Bind('NOMBRE')]
+    edtNombre: TEdit;
+    StackPanel2: TStackPanel;
+    PnlBotonEdicion: TPanel;
+    btnBorrar: TSpeedButton;
+    btnCerrar: TSpeedButton;
+    btnGuardar: TSpeedButton;
+    PnlSubTitulo: TPanel;
+    lblTitulo2: TLabel;
+    ImageList1: TImageList;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+    FController: iController;
+    FPais: iControllerProducto;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  PagPais: TPagPais;
+
+implementation
+
+uses
+  SimplePed.Controller;
+
+{$R *.dfm}
+
+procedure TPagPais.FormCreate(Sender: TObject);
+begin
+  CardPanel1.ActiveCard := Card1;
+  FController := TController.New;
+  FPais := FController.Producto.DataSource(DataSource1);
+  FPais.Buscar;
+end;
+
+end.

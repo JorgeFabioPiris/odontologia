@@ -1,0 +1,20 @@
+unit Odontologia.Modelo.Interfaces;
+
+interface
+
+uses
+  Odontologia.Modelo.Producto.Interfaces,
+  Odontologia.Modelo.Pais.Interfaces, Odontologia.Modelo.Pedido.Interfaces;
+
+type
+  iModel = interface
+    ['{0F7A1B03-B62A-4EBE-A93C-FAD6EC966E64}']
+    function Producto : iModelProducto;
+    function Pais : iModelPais;
+    function Pedido : iModelPedido;
+    function PedidoItem : iModelPedidoItem;
+  end;
+
+implementation
+
+end.

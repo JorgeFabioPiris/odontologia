@@ -1,0 +1,86 @@
+unit Odontologia.Controlador;
+
+interface
+
+uses
+  Odontologia.Controlador.Interfaces,
+  Odontologia.Controlador.Pais,
+  Odontologia.Controlador.Pais.Interfaces,
+  Odontologia.Controlador.Producto,
+  Odontologia.Controlador.Producto.Interfaces,
+  Odontologia.Controlador.Pedido.Interfaces,
+  Odontologia.Controlador.Pedido,
+  Odontologia.Controlador.pedidoItem,
+  Odontologia.Controlador.Ciudad,
+  Odontologia.Controlador.Departamento,
+  Odontologia.Controlador.Departamento.Interfaces,
+  Odontologia.Controlador.Ciudad.Interfaces;
+
+type
+  TController = class(TInterfacedObject, iController)
+
+  private
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iController;
+    function Ciudad         : iControllerCiudad;
+    function Departamento   : iControllerDepartamento;
+    function Producto       : iControllerProducto;
+    function Pais           : iControllerPais;
+    function Pedido         : icontrollerpedido;
+    function pedidoItem     : icontrollerpedidoitem;
+  end;
+
+implementation
+
+{ TController }
+
+function TController.Ciudad: iControllerCiudad;
+begin
+  Result := TControllerCiudad.new;
+end;
+
+constructor TController.Create;
+begin
+
+end;
+
+function TController.Departamento: iControllerDepartamento;
+begin
+  Result := TControllerDepartamento.new;
+end;
+
+destructor TController.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TController.New: iController;
+begin
+  Result := Self.Create;
+end;
+
+function TController.Pais: iControllerPais;
+begin
+  Result := TControllerPais.New;
+end;
+
+function TController.Pedido: icontrollerpedido;
+begin
+  Result := TControllerPedido.New;
+end;
+
+function TController.pedidoItem: icontrollerpedidoitem;
+begin
+  Result := TControllerPedidoItem.New;
+end;
+
+function TController.Producto: iControllerProducto;
+begin
+  Result := TControllerProducto.New;
+end;
+
+end.

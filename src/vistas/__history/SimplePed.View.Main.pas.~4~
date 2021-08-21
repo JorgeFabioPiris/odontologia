@@ -1,0 +1,103 @@
+unit SimplePed.View.Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  SimplePed.View.Home;
+
+type
+  TForm2 = class(TForm)
+    ImageList2: TImageList;
+    pnlMain: TPanel;
+    PnlMenuLateral: TPanel;
+    BtnMenLatSalir: TSpeedButton;
+    PnlMenuLateralConfiguracion: TPanel;
+    BtnPnelMenuConfImpresora: TSpeedButton;
+    BtnPnelMenuConfBKP: TSpeedButton;
+    BtnPnelMenuConfOpciones: TSpeedButton;
+    PnlMenuConfiguracionDiv01: TPanel;
+    PnelSombraMenuConf: TPanel;
+    BtnPnelMenuConfExpandir: TSpeedButton;
+    PnlMenuLateralConsulta: TPanel;
+    BtnPnelMenuConsPaciente: TSpeedButton;
+    BtnPnelMenuConsConsSeguro: TSpeedButton;
+    BtnPnelMenuConsAgenda: TSpeedButton;
+    BtnPnelMenuConsEmpresa: TSpeedButton;
+    BtnPnelMenuConsMedico: TSpeedButton;
+    BtnPnelMenuConsProveedor: TSpeedButton;
+    PnlMenuConsultaDiv01: TPanel;
+    PnelSombraMenuCons: TPanel;
+    BtnPnelMenuConsExpandir: TSpeedButton;
+    PnlMenuLateralDiv01: TPanel;
+    PnlMenuLateralDiv02: TPanel;
+    PnlMenuLateralDiv03: TPanel;
+    PnlMenuLateralDiv04: TPanel;
+    PnlMenuLateralDiv05: TPanel;
+    PnlMenuLateralFinanciero: TPanel;
+    BtnPnelMenuFinanLanzamiento: TSpeedButton;
+    BtnPnelMenuFinanListadoCaja: TSpeedButton;
+    BtnPnelMenuFinanSaldoCaja: TSpeedButton;
+    BtnPnelMenuFinanHistorial: TSpeedButton;
+    PnlMenuFinancieroDiv01: TPanel;
+    PnelSombraMenuFinan: TPanel;
+    BtnPnelMenuFinanExpandir: TSpeedButton;
+    PnlMenuLateralRegistro: TPanel;
+    BtnPnelMenuRegPaciente: TSpeedButton;
+    BtnPnelMenuRegSeguro: TSpeedButton;
+    BtnPnelMenuRegFuncionario: TSpeedButton;
+    BtnPnelMenuRegDireccion: TSpeedButton;
+    BtnPnelMenuRegProducto: TSpeedButton;
+    BtnPnelMenuRegUsuario: TSpeedButton;
+    BtnPnelMenuRegAgenda: TSpeedButton;
+    BtnPnelMenuRegEmpresa: TSpeedButton;
+    BtnPnelMenuRegMedico: TSpeedButton;
+    BtnPnelMenuRegProveedor: TSpeedButton;
+    PnlMenuRegistroDiv01: TPanel;
+    PnelSombraMenuReg: TPanel;
+    BtnPnelMenuRegExpandir: TSpeedButton;
+    pnlCentral: TPanel;
+    pnlCabecera: TPanel;
+    PnlBotonera: TPanel;
+    PnlSombraBotoneraCaja: TPanel;
+    BtnPnlBotoneraCaja: TSpeedButton;
+    PnlSombraBotoneraServicio: TPanel;
+    BtnPnlBotoneraServicio: TSpeedButton;
+    PnlSombraBotoneraAgenda: TPanel;
+    BtnPnlBotoneraAgenda: TSpeedButton;
+    PnlSombraBotoneraMedico: TPanel;
+    BtnPnlBotoneraMedico: TSpeedButton;
+    PnlSombraBotoneraPaciente: TPanel;
+    BtnPnlBotoneraPaciente: TSpeedButton;
+    PnlSombraBotoneraSaldo: TPanel;
+    BtnPnlBotoneraCajaSaldo: TSpeedButton;
+    PnlSombraBotoneraInicio: TPanel;
+    BtnMenLatInicio: TSpeedButton;
+    PnlBotoneraResaltador: TPanel;
+    PnlTitulo: TPanel;
+    lblTitulo: TLabel;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+  PagHome : TPagHome;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  PagHome := TPagHome.Create(Self);
+  PagHome.Parent := pnlCentral;
+  PagHome.Show;
+end;
+
+end.

@@ -1,0 +1,26 @@
+unit Odontologia.Modelo.Conexion.RestDW;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uDWAbout, uRESTDWPoolerDB;
+
+type
+  TModeloConexion = class(TDataModule)
+    RESTDWDataBase1: TRESTDWDataBase;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ModeloConexion: TModeloConexion;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

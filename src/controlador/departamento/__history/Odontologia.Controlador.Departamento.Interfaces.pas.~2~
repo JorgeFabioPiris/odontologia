@@ -1,0 +1,24 @@
+unit Odontologia.Controlador.Departamento.Interfaces;
+
+interface
+
+uses
+  Data.DB,
+  Odontologia.Modelo.Entidades.Departamento,
+  Odontologia.Controller.Pais.Interfaces;
+
+type
+  iControllerDepartamento = interface
+    ['{CF622183-1258-4B6E-B4A1-A3D28F5CC81E}']
+    function DataSource (aDataSource : TDataSource) : iControllerDepartamento;
+    function Buscar : iControllerDepartamento;
+    function Insertar : iControllerDepartamento;
+    function Modificar : iControllerDepartamento;
+    function Eliminar : iControllerDepartamento;
+    function Entidad : TDDEPARTAMENTO;
+    function Item : iControllerpais;
+  end;
+
+implementation
+
+end.

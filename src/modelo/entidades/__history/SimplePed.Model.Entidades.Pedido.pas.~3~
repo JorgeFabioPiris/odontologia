@@ -1,0 +1,35 @@
+unit SimplePed.Model.Entidades.Pedido;
+
+interface
+
+uses
+  SimpleAttributes;
+
+type
+  TPEDIDO = class
+  private
+    FFECHA: TDateTime;
+    FID: Integer;
+    procedure SetFECHA(const Value: TDateTime);
+    procedure SetID(const Value: Integer);
+  published
+    [PK, AutoInc]
+    property ID : Integer read FID write SetID;
+    property FECHA : TDateTime read FFECHA write SetFECHA;
+  end;
+
+implementation
+
+{ TPEDIDO }
+
+procedure TPEDIDO.SetFECHA(const Value: TDateTime);
+begin
+  FFECHA := Value;
+end;
+
+procedure TPEDIDO.SetID(const Value: Integer);
+begin
+  FID := Value;
+end;
+
+end.

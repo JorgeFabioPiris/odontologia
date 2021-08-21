@@ -1,0 +1,90 @@
+unit SimplePed.Controller.Producto;
+
+interface
+
+uses
+  Data.DB,
+  System.Generics.Collections,
+  SimplePed.Model.Entidades.Producto,
+  SimplePed.Model.Producto.Interfaces,
+  SimplePed.Controller.Producto.Interfaces;
+
+type
+  TControllerProducto = class (TInterfacedObject, iControllerProducto)
+    private
+      FModel : iModelProducto;
+      FDataSource : TDataSource;
+      Flista : TObjectList<TPRODUCTO>;
+
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New : iControllerProducto;
+      function DataSource (aDataSource : TDataSource) : iControllerProducto;
+      function Buscar  : iControllerProducto;
+      function Insertar  : iControllerProducto;
+      function Modificar  : iControllerProducto;
+      function Eliminar  : iControllerProducto;
+      function Entidad : TPRODUCTO;
+  end;
+
+implementation
+
+{ TControllerProducto }
+
+function TControllerProducto.Buscar: iControllerProducto;
+begin
+  Result := Self;
+  if Assigned(Flista) then
+    Flista.Free;
+
+  Flista := FModel.DAO.Find;
+end;
+
+constructor TControllerProducto.Create;
+begin
+  FModel := TModel.New.Producto;
+end;
+
+function TControllerProducto.DataSource(
+  aDataSource: TDataSource): iControllerProducto;
+begin
+   Result := Self;
+   FDataSource := aDataSource;
+   FModel.DataSource(FDataSource);
+end;
+
+destructor TControllerProducto.Destroy;
+begin
+  if Assigned(Flista) then
+    Flista.Free;
+  inherited;
+end;
+
+function TControllerProducto.Eliminar: iControllerProducto;
+begin
+  Result := Self;
+  FModel.DAO.Eliminar(FModel.Entidad);
+end;
+
+function TControllerProducto.Entidad: TPRODUCTO;
+begin
+
+end;
+
+function TControllerProducto.Insertar: iControllerProducto;
+begin
+
+end;
+
+function TControllerProducto.Modificar: iControllerProducto;
+begin
+
+end;
+
+class function TControllerProducto.New: iControllerProducto;
+begin
+  Result := Self.Create;
+end;
+
+end.

@@ -1,0 +1,88 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 529
+  ClientWidth = 852
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnBuscar: TSpeedButton
+    Left = 72
+    Top = 153
+    Width = 100
+    Height = 50
+    Caption = 'Buscar'
+    OnClick = btnBuscarClick
+  end
+  object btnInsertar: TSpeedButton
+    Left = 72
+    Top = 209
+    Width = 100
+    Height = 50
+    Caption = 'Insertar'
+    OnClick = btnInsertarClick
+  end
+  object btnModificar: TSpeedButton
+    Left = 72
+    Top = 269
+    Width = 100
+    Height = 50
+    Caption = 'Modificar'
+    OnClick = btnModificarClick
+  end
+  object btnEliminar: TSpeedButton
+    Left = 72
+    Top = 325
+    Width = 100
+    Height = 50
+    Caption = 'Eliminar'
+    OnClick = btnEliminarClick
+  end
+  object edtID: TEdit
+    Left = 128
+    Top = 32
+    Width = 121
+    Height = 21
+    TabOrder = 0
+  end
+  object edtNOMBRE: TEdit
+    Left = 136
+    Top = 88
+    Width = 273
+    Height = 21
+    TabOrder = 1
+  end
+  object edtPRECIO: TEdit
+    Left = 480
+    Top = 88
+    Width = 121
+    Height = 21
+    TabOrder = 2
+  end
+  object DBGrid1: TDBGrid
+    Left = 200
+    Top = 152
+    Width = 625
+    Height = 345
+    DataSource = DataSource1
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object DataSource1: TDataSource
+    OnDataChange = DataSource1DataChange
+    Left = 768
+    Top = 48
+  end
+end

@@ -1,0 +1,74 @@
+unit Odontologia.Vistas.Direccion;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.Buttons,
+  Vcl.WinXPanels,
+  Odontologia.Vistas.Direccion.Pais,
+  Odontologia.Vistas.Direccion.Departamento;
+
+type
+  TPagDireccion = class(TForm)
+    CardPanel1: TCardPanel;
+    Card1: TCard;
+    btnPais: TSpeedButton;
+    btnDepartamento: TSpeedButton;
+    btnCiudad: TSpeedButton;
+    Card2: TCard;
+    PnlCentral: TPanel;
+    procedure btnPaisClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnDepartamentoClick(Sender: TObject);
+  private
+    procedure pcr_abrir_sub_ventana(TPage : TForm);
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PagDireccion: TPagDireccion;
+  PagDepartamento : TPagDepartamento;
+  PagPais : TPagPais;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPagDireccion.btnPaisClick(Sender: TObject);
+begin
+
+  PagPais := TPagPais.Create(Self);
+  pcr_abrir_sub_ventana(PagPais);
+end;
+
+procedure TPagDireccion.btnDepartamentoClick(Sender: TObject);
+begin
+  PagDepartamento := TPagDepartamento.Create(Self);
+  pcr_abrir_sub_ventana(PagDepartamento);
+end;
+
+procedure TPagDireccion.FormCreate(Sender: TObject);
+begin
+  CardPanel1.ActiveCard := Card1;
+end;
+
+procedure TPagDireccion.pcr_abrir_sub_ventana(TPage : TForm);
+begin
+  CardPanel1.ActiveCard := Card2;
+  Tpage.Parent := PnlCentral;
+  Tpage.Show;
+end;
+
+end.

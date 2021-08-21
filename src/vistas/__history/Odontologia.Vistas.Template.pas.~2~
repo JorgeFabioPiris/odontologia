@@ -1,0 +1,66 @@
+unit Odontologia.Vistas.Template;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls, System.ImageList,
+  Vcl.ImgList;
+
+type
+  TPagTemplate = class(TForm)
+    DataSource1: TDataSource;
+    ImageList1: TImageList;
+    PnlPrincipal: TPanel;
+    CardPanel1: TCardPanel;
+    Card1: TCard;
+    PnlGrid: TPanel;
+    DBGrid1: TDBGrid;
+    pnlMainTopLine: TPanel;
+    PnlBotonAccion: TPanel;
+    btnActualizar: TSpeedButton;
+    btnNuevo: TSpeedButton;
+    PnlPagina: TPanel;
+    btnPrior: TSpeedButton;
+    btnNext: TSpeedButton;
+    lblPagina: TLabel;
+    PnlCabecera: TPanel;
+    PnlBusqueda: TPanel;
+    lblSearch: TLabel;
+    edtSearch: TEdit;
+    pnlMainTopBodySearchLine: TPanel;
+    PnlTitulo: TPanel;
+    lblTitulo: TLabel;
+    Card2: TCard;
+    PnlFormulario: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    edtCodigo: TEdit;
+    edtNombre: TEdit;
+    PnlBotonEdicion: TPanel;
+    btnBorrar: TSpeedButton;
+    btnCerrar: TSpeedButton;
+    btnGuardar: TSpeedButton;
+    PnlSubTitulo: TPanel;
+    lblTitulo2: TLabel;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PagTemplate: TPagTemplate;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPagTemplate.FormCreate(Sender: TObject);
+begin
+  CardPanel1.ActiveCard := Card1;
+end;
+
+end.

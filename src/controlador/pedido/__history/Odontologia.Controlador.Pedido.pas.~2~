@@ -1,0 +1,10 @@
+unit Odontologia.Controlador.Pedido;
+
+interface
+
+type
+  TControllerPedido = class (TInterfacedObject, icontrollerPedido)
+
+implementation
+
+end.

@@ -1,0 +1,16 @@
+unit SimplePed.Model.Producto;
+
+interface
+
+type
+  TModelProducto = class (TInterfacedOBject, iModelProducto)
+    private
+    public
+      constructor Create;
+      destructor Destroy; override;
+      class function New : iModelProducto)
+  end;
+
+implementation
+
+end.

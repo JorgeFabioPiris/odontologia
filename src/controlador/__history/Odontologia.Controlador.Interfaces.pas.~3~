@@ -1,0 +1,18 @@
+unit Odontologia.Controlador.Interfaces;
+
+interface
+
+uses
+  Odontologia.Controlador.Producto.Interfaces,
+  Odontologia.Controller.Pais.Interfaces;
+
+type
+   iController = interface
+     ['{2ED23A69-9FB5-4B6A-936D-075F0A044F80}']
+     function Producto : iControllerProducto;
+     function Pais : iControllerPais;
+   end;
+
+implementation
+
+end.
