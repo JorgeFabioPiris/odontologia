@@ -18,11 +18,25 @@ inherited PagUsuario: TPagUsuario
           inherited btnNuevo: TSpeedButton
             OnClick = btnNuevoClick
           end
+          inherited PnlPagina: TPanel
+            inherited lblPagina: TLabel
+              Height = 73
+            end
+          end
         end
         inherited PnlCabecera: TPanel
           inherited PnlBusqueda: TPanel
+            inherited lblSearch: TLabel
+              Width = 433
+            end
             inherited edtSearch: TEdit
               OnKeyUp = edtSearchKeyUp
+            end
+          end
+          inherited PnlTitulo: TPanel
+            inherited lblTitulo: TLabel
+              Width = 645
+              Height = 43
             end
           end
         end
@@ -38,35 +52,35 @@ inherited PagUsuario: TPagUsuario
           end
           object Label11: TLabel
             Left = 14
-            Top = 173
+            Top = 205
             Width = 28
             Height = 13
             Caption = 'NIVEL'
           end
           object Label2: TLabel
-            Left = 15
-            Top = 117
+            Left = 13
+            Top = 141
             Width = 40
             Height = 13
             Caption = 'ESTADO'
           end
           object Label3: TLabel
-            Left = 16
-            Top = 288
+            Left = 14
+            Top = 328
             Width = 46
             Height = 13
             Caption = 'EMPRESA'
           end
           object Label5: TLabel
             Left = 14
-            Top = 233
+            Top = 265
             Width = 31
             Height = 13
             Caption = 'CLAVE'
           end
           object Label8: TLabel
             Left = 15
-            Top = 62
+            Top = 78
             Width = 31
             Height = 13
             Caption = 'LOGIN'
@@ -81,8 +95,8 @@ inherited PagUsuario: TPagUsuario
             OnClick = btnGuardarImagenClick
           end
           object cmbEmpresa: TDBLookupComboBox
-            Left = 15
-            Top = 307
+            Left = 13
+            Top = 347
             Width = 201
             Height = 21
             KeyField = 'CODIGO'
@@ -100,7 +114,7 @@ inherited PagUsuario: TPagUsuario
           end
           object edtClave: TEdit
             Left = 14
-            Top = 252
+            Top = 284
             Width = 450
             Height = 30
             AutoSize = False
@@ -109,7 +123,7 @@ inherited PagUsuario: TPagUsuario
           end
           object edtNivel: TEdit
             Left = 14
-            Top = 192
+            Top = 224
             Width = 450
             Height = 30
             AutoSize = False
@@ -118,7 +132,7 @@ inherited PagUsuario: TPagUsuario
           end
           object edtLogin: TEdit
             Left = 15
-            Top = 81
+            Top = 97
             Width = 202
             Height = 30
             AutoSize = False
@@ -126,8 +140,8 @@ inherited PagUsuario: TPagUsuario
             TabOrder = 1
           end
           object cmbEstado: TComboBox
-            Left = 14
-            Top = 136
+            Left = 13
+            Top = 160
             Width = 267
             Height = 21
             TabOrder = 2
@@ -302,6 +316,12 @@ inherited PagUsuario: TPagUsuario
           end
           inherited btnGuardar: TSpeedButton
             OnClick = btnGuardarClick
+          end
+        end
+        inherited PnlSubTitulo: TPanel
+          inherited lblTitulo2: TLabel
+            Width = 1088
+            Height = 73
           end
         end
       end

@@ -214,6 +214,7 @@ end;
 procedure TPagUsuario.FormCreate(Sender: TObject);
 begin
   inherited;
+  path := ExtractFilePath(ParamStr(0));
   lblTitulo.Caption := 'Registro de usuarios';
   edtCodigo.Enabled := False;
   FController       := TController.New;
@@ -238,7 +239,6 @@ end;
 
 procedure TPagUsuario.prc_copiar_img_directorio(origen : String);
 begin
-  path := ExtractFilePath(ParamStr(0));
   imagenURL := path + 'fotos\avatar_' + edtLogin.text + '.jpg';
   CopyFile(PChar(origen),PChar(imagenURL),False);
 end;
@@ -247,7 +247,8 @@ procedure TPagUsuario.prc_estado_inicial;
 begin
   ImgMod                := false;
   imagenURL := path + 'fotos\noimage.jpg';
-  if FileExists(OpenPictureDialog1.FileName) then
+  ShowMessage('la ruta de la imagen es ' + imagenURL);
+  if FileExists(imagenURL) then
     begin
       Image1.Picture.LoadFromFile(imagenURL);
     end else
