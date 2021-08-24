@@ -18,25 +18,11 @@ inherited PagUsuario: TPagUsuario
           inherited btnNuevo: TSpeedButton
             OnClick = btnNuevoClick
           end
-          inherited PnlPagina: TPanel
-            inherited lblPagina: TLabel
-              Height = 73
-            end
-          end
         end
         inherited PnlCabecera: TPanel
           inherited PnlBusqueda: TPanel
-            inherited lblSearch: TLabel
-              Width = 433
-            end
             inherited edtSearch: TEdit
-              OnKeyPress = edtSearchKeyPress
-            end
-          end
-          inherited PnlTitulo: TPanel
-            inherited lblTitulo: TLabel
-              Width = 645
-              Height = 43
+              OnKeyUp = edtSearchKeyUp
             end
           end
         end
@@ -91,6 +77,7 @@ inherited PagUsuario: TPagUsuario
             Width = 169
             Height = 52
             Caption = 'Guardar Imagen'
+            Enabled = False
             OnClick = btnGuardarImagenClick
           end
           object cmbEmpresa: TDBLookupComboBox
@@ -315,12 +302,6 @@ inherited PagUsuario: TPagUsuario
           end
           inherited btnGuardar: TSpeedButton
             OnClick = btnGuardarClick
-          end
-        end
-        inherited PnlSubTitulo: TPanel
-          inherited lblTitulo2: TLabel
-            Width = 1088
-            Height = 73
           end
         end
       end

@@ -48,8 +48,6 @@ begin
     .Fields('DUSUARIO.USU_LOGIN AS LOGIN,')
     .Fields('DUSUARIO.USU_ESTADO AS ESTADO,')
     .Fields('DUSUARIO.USU_NIVEL AS NIVEL,')
-//    .Fields('DUSUARIO.USU_FECHA_INC AS INCLUSION,')
-//    .Fields('DUSUARIO.USU_FECHA_MOD AS MODIFICACION,')
     .Fields('DUSUARIO.USU_CLAVE AS CLAVE,')
     .Fields('DUSUARIO.USU_FOTO AS FOTO,')
     .Fields('DUSUARIO.USU_COD_EMPRESA AS CODEMPRESA,')
@@ -60,10 +58,10 @@ begin
   .&End.Find;
   FDataSource.dataset.EnableControls;
   FDataSource.dataset.FieldByName('CODIGO').Visible := False;
-//  FDataSource.dataset.FieldByName('INCLUSION').Visible := False;
-//  FDataSource.dataset.FieldByName('MODIFICACION').Visible := False;
-  FDataSource.dataset.FieldByName('CLAVE').Visible := True;
-  FDataSource.dataset.FieldByName('FOTO').Visible := false;
+  FDataSource.dataset.FieldByName('CLAVE').Visible := False;
+  FDataSource.dataset.FieldByName('NIVEL').Visible := False;
+  FDataSource.dataset.FieldByName('CODEMPRESA').Visible := False;
+  FDataSource.dataset.FieldByName('FOTO').Visible := False;
   FDataSource.dataset.FieldByName('LOGIN').DisplayWidth :=50;
 end;
 
@@ -71,35 +69,25 @@ function TControllerUsuario.Buscar(aDepartamento: String): iControllerUsuario;
 begin
   Result := Self;
   FDataSource.dataset.DisableControls;
-  FModel.DAO.SQL.Fields('DEMPRESA.EMP_CODIGO AS CODIGO,')
-    .Fields('DEMPRESA.EMP_RAZSOCIAL AS RAZON,')
-    .Fields('DEMPRESA.EMP_FANTASIA AS FANTASIA,')
-    .Fields('DEMPRESA.EMP_RUC AS RUC,')
-    .Fields('DEMPRESA.EMP_DIRECCION AS DIRECCION,')
-    .Fields('DEMPRESA.EMP_NUMERO AS NUMERO,')
-    .Fields('DEMPRESA.EMP_BARRIO AS BARRIO,')
-    .Fields('DEMPRESA.EMP_TELEFONO AS TELEFONO,')
-    .Fields('DEMPRESA.EMP_EMAIL AS EMAIL,')
-    .Fields('DEMPRESA.EMP_COD_CIUDAD AS COD_CIU,')
-    .Fields('DEMPRESA.EMP_COD_TIP_EMPRESA AS COD_EMP,')
-    .Fields('DCIUDAD.CIU_NOMBRE AS CIUDAD')
-    .Join('INNER JOIN DCIUDAD ON DCIUDAD.CIU_CODIGO = DEMPRESA.EMP_COD_CIUDAD ')
-    .Where('DEMPRESA.EMP_RAZSOCIAL CONTAINING ' +QuotedStr(aDepartamento) + '')
-  .OrderBy('RAZON')
+  FModel.DAO.SQL.Fields('DUSUARIO.USU_CODIGO AS CODIGO,')
+    .Fields('DUSUARIO.USU_LOGIN AS LOGIN,')
+    .Fields('DUSUARIO.USU_ESTADO AS ESTADO,')
+    .Fields('DUSUARIO.USU_NIVEL AS NIVEL,')
+    .Fields('DUSUARIO.USU_CLAVE AS CLAVE,')
+    .Fields('DUSUARIO.USU_FOTO AS FOTO,')
+    .Fields('DUSUARIO.USU_COD_EMPRESA AS CODEMPRESA,')
+    .Fields('DEMPRESA.EMP_FANTASIA AS EMPRESA')
+    .Join('INNER JOIN DEMPRESA ON DEMPRESA.EMP_CODIGO = DUSUARIO.USU_COD_EMPRESA')
+    .Where('DUSUARIO.USU_LOGIN LIKE ' +QuotedStr(aDepartamento) + '')
+  .OrderBy('LOGIN')
   .&End.Find;
   FDataSource.dataset.EnableControls;
-  FDataSource.dataset.FieldByName('CODIGO').Visible := false;
-  FDataSource.dataset.FieldByName('RAZON').Visible := TRUE;
-  FDataSource.dataset.FieldByName('FANTASIA').Visible := True;
-  FDataSource.dataset.FieldByName('RUC').Visible := tRUE;
-  FDataSource.dataset.FieldByName('DIRECCION').Visible := false;
-  FDataSource.dataset.FieldByName('NUMERO').Visible := false;
-  FDataSource.dataset.FieldByName('BARRIO').Visible := false;
-  FDataSource.dataset.FieldByName('TELEFONO').Visible := True;
-  FDataSource.dataset.FieldByName('EMAIL').Visible := True;
-  FDataSource.dataset.FieldByName('COD_CIU').Visible := false;
-  FDataSource.dataset.FieldByName('COD_EMP').Visible := FALSE;
-  FDataSource.dataset.FieldByName('RAZON').DisplayWidth :=50;
+  FDataSource.dataset.FieldByName('CODIGO').Visible := False;
+  FDataSource.dataset.FieldByName('CLAVE').Visible := False;
+  FDataSource.dataset.FieldByName('NIVEL').Visible := False;
+  FDataSource.dataset.FieldByName('CODEMPRESA').Visible := False;
+  FDataSource.dataset.FieldByName('FOTO').Visible := False;
+  FDataSource.dataset.FieldByName('LOGIN').DisplayWidth :=50;
 end;
 
 constructor TControllerUsuario.Create;

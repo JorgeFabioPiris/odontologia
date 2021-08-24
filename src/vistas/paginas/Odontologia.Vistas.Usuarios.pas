@@ -52,12 +52,12 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnNuevoClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);
-    procedure btnCerrarClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
-    procedure edtSearchKeyPress(Sender: TObject; var Key: Char);
     procedure Image1DblClick(Sender: TObject);
     procedure btnGuardarImagenClick(Sender: TObject);
+    procedure edtSearchKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     FController   : iController;
@@ -77,6 +77,8 @@ var
   Insercion   : Boolean;
   ImgURL      : String;
   ImgMod      : Boolean;
+  path        : string;
+
 
 implementation
 
@@ -88,7 +90,8 @@ uses
 procedure TPagUsuario.btnActualizarClick(Sender: TObject);
 begin
   inherited;
-  FEmpresa.Buscar;
+  FUsuario.Buscar;
+  prc_estado_inicial;
 end;
 
 procedure TPagUsuario.btnBorrarClick(Sender: TObject);
@@ -114,12 +117,6 @@ begin
   prc_estado_inicial;
 end;
 
-procedure TPagUsuario.btnCerrarClick(Sender: TObject);
-begin
-  inherited;
-  prc_estado_inicial;
-end;
-
 procedure TPagUsuario.btnGuardarClick(Sender: TObject);
 begin
   inherited;
@@ -129,31 +126,26 @@ begin
     FUsuario.Entidad.USU_ESTADO        := cmbEstado.ItemIndex.ToString ;
     FUsuario.Entidad.USU_NIVEL         := StrToInt(edtNivel.Text);
     FUsuario.Entidad.USU_CLAVE         := edtClave.Text;
-    FUsuario.Entidad.USU_COD_EMPRESA   := 1;//DataSource2.DataSet.FieldByName('CODIGO').AsInteger;
+    FUsuario.Entidad.USU_COD_EMPRESA   := DataSource2.DataSet.FieldByName('CODIGO').AsInteger;
     if ImgMod then
       begin
-        FUsuario.Entidad.USU_FOTO        := imagenURL;
+        FUsuario.Entidad.USU_FOTO      := imagenURL;
       end else
       begin
-        FUsuario.Entidad.USU_FOTO        := '';
+        FUsuario.Entidad.USU_FOTO      := '';
       end;
     FUsuario.Insertar;
   end
   else
   begin
+    FUsuario.Entidad.USU_CODIGO        := StrToInt(edtCodigo.Text);
     FUsuario.Entidad.USU_LOGIN         := edtLogin.Text;
     FUsuario.Entidad.USU_ESTADO        := cmbEstado.ItemIndex.ToString ;
     FUsuario.Entidad.USU_NIVEL         := StrToInt(edtNivel.Text);
     FUsuario.Entidad.USU_CLAVE         := edtClave.Text;
-    FUsuario.Entidad.USU_COD_EMPRESA   := 1;//DataSource2.DataSet.FieldByName('CODIGO').AsInteger;
-    if ImgMod then
-      begin
-        FUsuario.Entidad.USU_FOTO        := imagenURL;
-      end else
-      begin
-        FUsuario.Entidad.USU_FOTO        := '';
-      end;
-    FEmpresa.Modificar;
+    FUsuario.Entidad.USU_COD_EMPRESA   := DataSource2.DataSet.FieldByName('CODIGO').AsInteger;
+    FUsuario.Entidad.USU_FOTO          := imagenURL;
+    FUsuario.Modificar;
   end;
   prc_estado_inicial;
 end;
@@ -169,6 +161,7 @@ begin
     begin
       prc_copiar_img_directorio(OpenPictureDialog1.FileName);
       ImgMod := true;
+      btnGuardarImagen.Enabled := false;
     end;
   ShowMessage('La imagen ha sido guardada');
 end;
@@ -211,10 +204,11 @@ begin
   end;
 end;
 
-procedure TPagUsuario.edtSearchKeyPress(Sender: TObject; var Key: Char);
+procedure TPagUsuario.edtSearchKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
   inherited;
-  FUsuario.Buscar(edtSearch.Text);
+  FUsuario.Buscar('%' + edtSearch.Text + '%');
 end;
 
 procedure TPagUsuario.FormCreate(Sender: TObject);
@@ -233,23 +227,33 @@ begin
   inherited;
   if OpenPictureDialog1.Execute then
     if FileExists(OpenPictureDialog1.FileName) then
-      Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName)
-    else
+    begin
+      Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+      btnGuardarImagen.Enabled := true;
+    end else
+    begin
       raise Exception.Create('File does not exist.');
+    end;
 end;
 
 procedure TPagUsuario.prc_copiar_img_directorio(origen : String);
-var
-  path : string;
 begin
   path := ExtractFilePath(ParamStr(0));
-  imagenURL := path + '\fotos\avatar_' + edtLogin.text + '.jpg';
+  imagenURL := path + 'fotos\avatar_' + edtLogin.text + '.jpg';
   CopyFile(PChar(origen),PChar(imagenURL),False);
 end;
 
 procedure TPagUsuario.prc_estado_inicial;
 begin
   ImgMod                := false;
+  imagenURL := path + 'fotos\noimage.jpg';
+  if FileExists(OpenPictureDialog1.FileName) then
+    begin
+      Image1.Picture.LoadFromFile(imagenURL);
+    end else
+    begin
+      Image1.Picture.Assign(nil);
+    end;
   Insercion             := True;
   CardPanel1.ActiveCard := Card1;
   edtSearch.Text        := '';
