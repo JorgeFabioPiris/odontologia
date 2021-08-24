@@ -21,13 +21,11 @@ type
     { Private declarations }
   public
     { Public declarations }
-    log                     : Integer;
-    vGlb_nombre_usuario     : String;
-    vGlb_avatar_usuario_url : String;
+    log: Integer;
   end;
 
 var
-  PagLogin                : TPagLogin;
+  PagLogin: TPagLogin;
 
 implementation
 
@@ -41,8 +39,6 @@ var
 
 begin
   log := 1;
-  vGlb_nombre_usuario     := 'ADMIN';
-  vGlb_avatar_usuario_url := 'D:\SGOdontologia\fotos\avatar_ADMIN.jpg';
   close;
 end;
 

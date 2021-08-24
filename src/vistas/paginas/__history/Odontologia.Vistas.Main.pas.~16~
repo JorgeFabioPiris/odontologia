@@ -341,13 +341,10 @@ procedure TPageMain.FormCreate(Sender: TObject);
 begin
 
   pnlCentral.Color                      := COLOR_BACKGROUND;
-  pnlCabecera.Color                     := COLOR_BACKGROUND_TOP;
-  pnlCabeceraTitulo.Color               := COLOR_BACKGROUND_TOP;
-  pnlCabeceraTituloLogin.Color          := COLOR_BACKGROUND_TOP;
-  pnlCabeceraTituloNombreEmpresa.Color  := COLOR_BACKGROUND_TOP;
-
-  Self.font.Color                       := FONT_COLOR;
-  Self.font.Size                        := FONT_H7;
+  pnlCabecera.Color                     := COLOR_BACKGROUND;
+  pnlCabeceraTitulo.Color               := COLOR_BACKGROUND;
+  pnlCabeceraTituloLogin.Color          := COLOR_BACKGROUND;
+  pnlCabeceraTituloNombreEmpresa.Color  := COLOR_BACKGROUND;
 
 
   PagHome         := TPagHome.Create(Self);

@@ -33,7 +33,7 @@ object PagTemplate: TPagTemplate
       Width = 1118
       Height = 668
       Align = alClient
-      ActiveCard = Card2
+      ActiveCard = Card1
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 0
@@ -45,7 +45,7 @@ object PagTemplate: TPagTemplate
         Caption = 'Card1'
         CardIndex = 0
         TabOrder = 0
-        object PnlCentralGrid: TPanel
+        object PnlGrid: TPanel
           Left = 0
           Top = 73
           Width = 1118
@@ -73,7 +73,7 @@ object PagTemplate: TPagTemplate
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
           end
-          object PnlCentralGridLinea: TPanel
+          object PnlGridLinea: TPanel
             Left = 15
             Top = 15
             Width = 1088
@@ -84,7 +84,7 @@ object PagTemplate: TPagTemplate
             TabOrder = 1
           end
         end
-        object PnlPieBotonAccion: TPanel
+        object PnlBotonAccion: TPanel
           Left = 0
           Top = 595
           Width = 1118
@@ -191,7 +191,7 @@ object PagTemplate: TPagTemplate
           BevelOuter = bvNone
           ParentBackground = False
           TabOrder = 2
-          object PnlCabeceraBusqueda: TPanel
+          object PnlBusqueda: TPanel
             Left = 660
             Top = 0
             Width = 458
@@ -222,7 +222,7 @@ object PagTemplate: TPagTemplate
               CharCase = ecUpperCase
               TabOrder = 0
             end
-            object PnlCabeceraBusquedaLinea: TPanel
+            object PnlBusquedaLinea: TPanel
               Left = 15
               Top = 72
               Width = 433
@@ -233,7 +233,7 @@ object PagTemplate: TPagTemplate
               TabOrder = 1
             end
           end
-          object PnlCabeceraTitulo: TPanel
+          object PnlTitulo: TPanel
             Left = 0
             Top = 0
             Width = 660
@@ -275,7 +275,7 @@ object PagTemplate: TPagTemplate
         Padding.Left = 15
         Padding.Right = 15
         TabOrder = 1
-        object PnlCentralFormulario: TPanel
+        object PnlFormulario: TPanel
           Left = 15
           Top = 73
           Width = 1088
@@ -287,7 +287,7 @@ object PagTemplate: TPagTemplate
           ParentBackground = False
           TabOrder = 0
         end
-        object PnlPieBotonEdicion: TPanel
+        object PnlBotonEdicion: TPanel
           Left = 15
           Top = 595
           Width = 1088

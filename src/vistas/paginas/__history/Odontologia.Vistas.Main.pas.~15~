@@ -18,11 +18,13 @@ uses
   Vcl.Buttons,
   Vcl.ExtCtrls,
   Vcl.Imaging.pngimage,
-  Odontologia.Vistas.Home,
+  Odontologia.Vistas.Empresa,
   Odontologia.Vistas.Direccion.Pais,
   Odontologia.Vistas.Direccion,
+  Odontologia.Vistas.Home,
   Odontologia.Vistas.Producto,
-  Odontologia.Vistas.Pedido;
+  Odontologia.Vistas.Pedido,
+  Odontologia.Vistas.Usuarios;
 
 type
   TPageMain = class(TForm)
@@ -194,6 +196,9 @@ type
     procedure btnOcultarPanelLateralClick(Sender: TObject);
     procedure btnPnelMenuRegEmpresaClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure btnMenLatSalirClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnPnelMenuRegUsuarioClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -204,22 +209,31 @@ type
 
   public
     { Public declarations }
-  end;
+   end;
 
 var
-  PageMain      : TPageMain;
-  PagHome       : TPagHome;
-  PagDireccion  : TPagDireccion;
-  PagProducto   : TPagProducto;
-  PagPedido     : TPagPedido;
-  nombre_comp   : String;
+  PagDireccion            : TPagDireccion;
+  PagEmpresa              : TPagEmpresa;
+  PagHome                 : TPagHome;
+  PageMain                : TPageMain;
+  PagProducto             : TPagProducto;
+  PagPedido               : TPagPedido;
+  Pagusuario              : TPagUsuario;
+  nombre_comp             : String;
+  log                     : Integer;
+  vGlb_nombre_usuario     : String;
+  vGlb_avatar_usuario_url : String;
 
 implementation
 
 {$R *.dfm}
 
+uses Odontologia.Vistas.Login;
+
 procedure TPageMain.btnMenLatInicioClick(Sender: TObject);
 begin
+  PagHome := TPagHome.Create(Self);
+  prc_abrir_ventana(Sender , PagHome);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraInicio);
 
@@ -251,8 +265,8 @@ end;
 
 procedure TPageMain.btnPnelMenuRegEmpresaClick(Sender: TObject);
 begin
-  PagPedido := TPagPedido.Create(Self);
-  prc_abrir_ventana(Sender , PagPedido);
+  PagEmpresa := TPagEmpresa.Create(Self);
+  prc_abrir_ventana(Sender , PagEmpresa);
 end;
 
 procedure TPageMain.btnPnelMenuRegExpandirClick(Sender: TObject);
@@ -267,6 +281,12 @@ procedure TPageMain.btnPnelMenuRegProductoClick(Sender: TObject);
 begin
   Pagproducto := TPagProducto.Create(Self);
   prc_abrir_ventana(Sender , PagProducto);
+end;
+
+procedure TPageMain.btnPnelMenuRegUsuarioClick(Sender: TObject);
+begin
+  PagUsuario := TPagUsuario.Create(Self);
+  prc_abrir_ventana(Sender , PagUsuario);
 end;
 
 procedure TPageMain.btnPnlBotoneraAgendaClick(Sender: TObject);
@@ -308,7 +328,12 @@ end;
 procedure TPageMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if MessageDlg('Está seguro de cerrar la aplicación?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
+    begin
     CanClose := True;
+    end else
+    begin
+    CanClose := False;
+    end;
 end;
 
 procedure TPageMain.FormCreate(Sender: TObject);
@@ -320,6 +345,21 @@ begin
   prc_expandir_menu(45, BtnPnlBotoneraPaciente);
   prc_marcar_boton_activo(BtnMenLatInicio, false);
   BtnMenLatInicio.Click;
+end;
+
+procedure TPageMain.FormShow(Sender: TObject);
+begin
+  PagLogin := TpagLogin.Create(Self);
+  paglogin.ShowModal;
+  log := paglogin.log;;
+  if log=0 then
+    begin
+      Application.Terminate;
+    end;
+  vGlb_nombre_usuario     := PagLogin.vGlb_nombre_usuario;
+  vGlb_avatar_usuario_url := Paglogin.vGlb_avatar_usuario_url;
+  LblUserLogin.Caption := vGlb_nombre_usuario;
+  UserLoginImg.Picture.LoadFromFile(vGlb_avatar_usuario_url);
 end;
 
 procedure TPageMain.prc_expandir_menu(largo_panel: Integer;
@@ -435,21 +475,16 @@ begin
   PnlBotoneraResaltador.Width := panel.Width;
 end;
 
+procedure TPageMain.btnMenLatSalirClick(Sender: TObject);
+begin
+  if MessageDlg('Está seguro de cerrar la aplicación?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
+    Application.Terminate;
+end;
+
 procedure TPageMain.btnOcultarPanelLateralClick(Sender: TObject);
 var
   i: Integer;
 begin
-{    if PnlMenuLateralMain.Width = 50 then
-    begin
-    for i := 50 to 200 do
-    PnlMenuLateralMain.Width := i;
-    end
-    else
-    begin
-    for i := 200 downto 50 do
-    PnlMenuLateralMain.Width := i;
-    end;
-}
   if PnlMenuLateralMain.Width = 50 then
   begin
     PnlMenuLateralMain.Width := 200;

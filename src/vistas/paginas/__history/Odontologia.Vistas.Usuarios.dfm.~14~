@@ -4,30 +4,45 @@ inherited PagUsuario: TPagUsuario
   TextHeight = 13
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
+      ActiveCard = Card2
       inherited Card1: TCard
-        inherited PnlCentralGrid: TPanel
+        inherited PnlGrid: TPanel
           inherited DBGrid1: TDBGrid
             OnDblClick = DBGrid1DblClick
           end
         end
-        inherited PnlPieBotonAccion: TPanel
+        inherited PnlBotonAccion: TPanel
           inherited btnActualizar: TSpeedButton
             OnClick = btnActualizarClick
           end
           inherited btnNuevo: TSpeedButton
             OnClick = btnNuevoClick
           end
+          inherited PnlPagina: TPanel
+            inherited lblPagina: TLabel
+              Height = 73
+            end
+          end
         end
         inherited PnlCabecera: TPanel
-          inherited PnlCabeceraBusqueda: TPanel
+          inherited PnlBusqueda: TPanel
+            inherited lblSearch: TLabel
+              Width = 433
+            end
             inherited edtSearch: TEdit
               OnKeyUp = edtSearchKeyUp
+            end
+          end
+          inherited PnlTitulo: TPanel
+            inherited lblTitulo: TLabel
+              Width = 645
+              Height = 43
             end
           end
         end
       end
       inherited Card2: TCard
-        inherited PnlCentralFormulario: TPanel
+        inherited PnlFormulario: TPanel
           object Label1: TLabel
             Left = 16
             Top = 15
@@ -104,7 +119,6 @@ inherited PagUsuario: TPagUsuario
             Height = 30
             AutoSize = False
             CharCase = ecUpperCase
-            PasswordChar = '*'
             TabOrder = 4
           end
           object edtNivel: TEdit
@@ -293,7 +307,7 @@ inherited PagUsuario: TPagUsuario
             end
           end
         end
-        inherited PnlPieBotonEdicion: TPanel
+        inherited PnlBotonEdicion: TPanel
           inherited btnBorrar: TSpeedButton
             OnClick = btnBorrarClick
           end
@@ -304,24 +318,24 @@ inherited PagUsuario: TPagUsuario
             OnClick = btnGuardarClick
           end
         end
+        inherited PnlSubTitulo: TPanel
+          inherited lblTitulo2: TLabel
+            Width = 1088
+            Height = 73
+          end
+        end
       end
     end
   end
   inherited DataSource1: TDataSource
     OnDataChange = DataSource1DataChange
-    Left = 1055
-    Top = 17
-  end
-  inherited ImageList1: TImageList
-    Left = 1055
-    Top = 249
   end
   object DataSource2: TDataSource
-    Left = 1055
-    Top = 89
+    Left = 1071
+    Top = 129
   end
   object OpenPictureDialog1: TOpenPictureDialog
-    Left = 1054
-    Top = 169
+    Left = 806
+    Top = 97
   end
 end

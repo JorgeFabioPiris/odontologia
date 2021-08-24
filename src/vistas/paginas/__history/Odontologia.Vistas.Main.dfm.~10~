@@ -12,7 +12,9 @@ object PageMain: TPageMain
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
@@ -23,7 +25,6 @@ object PageMain: TPageMain
     Align = alClient
     Caption = 'pnlMain'
     TabOrder = 0
-    ExplicitHeight = 785
     object pnlCentral: TPanel
       Left = 201
       Top = 116
@@ -34,7 +35,6 @@ object PageMain: TPageMain
       Padding.Top = 7
       ParentBackground = False
       TabOrder = 0
-      ExplicitHeight = 668
     end
     object pnlCabecera: TPanel
       Left = 1
@@ -45,7 +45,7 @@ object PageMain: TPageMain
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 1
-      object PnlBotonera: TPanel
+      object pnlBotonera: TPanel
         Left = 0
         Top = 74
         Width = 1348
@@ -55,7 +55,7 @@ object PageMain: TPageMain
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        object SpeedButton1: TSpeedButton
+        object btnOcultarPanelLateral: TSpeedButton
           Left = 0
           Top = 0
           Width = 44
@@ -64,9 +64,9 @@ object PageMain: TPageMain
           ImageIndex = 32
           Images = ImageList1
           Flat = True
-          OnClick = SpeedButton1Click
+          OnClick = btnOcultarPanelLateralClick
         end
-        object PnlSombraBotoneraCaja: TPanel
+        object pnlSombraBotoneraCaja: TPanel
           Tag = 125
           Left = 794
           Top = 0
@@ -78,7 +78,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 1
-          object BtnPnlBotoneraCaja: TSpeedButton
+          object ptnPnlBotoneraCaja: TSpeedButton
             Tag = 25
             Left = 0
             Top = 0
@@ -89,12 +89,12 @@ object PageMain: TPageMain
             ImageIndex = 3
             Images = ImageList1
             Flat = True
-            OnClick = BtnPnlBotoneraCajaClick
+            OnClick = ptnPnlBotoneraCajaClick
             ExplicitLeft = 606
             ExplicitTop = -1
           end
         end
-        object PnlSombraBotoneraServicio: TPanel
+        object pnlSombraBotoneraServicio: TPanel
           Tag = 124
           Left = 644
           Top = 0
@@ -106,7 +106,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 2
-          object BtnPnlBotoneraServicio: TSpeedButton
+          object btnPnlBotoneraServicio: TSpeedButton
             Tag = 24
             Left = 0
             Top = 0
@@ -117,12 +117,12 @@ object PageMain: TPageMain
             ImageIndex = 30
             Images = ImageList1
             Flat = True
-            OnClick = BtnPnlBotoneraServicioClick
+            OnClick = btnPnlBotoneraServicioClick
             ExplicitLeft = 374
             ExplicitTop = -8
           end
         end
-        object PnlSombraBotoneraAgenda: TPanel
+        object pnlSombraBotoneraAgenda: TPanel
           Tag = 123
           Left = 494
           Top = 0
@@ -134,7 +134,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 3
-          object BtnPnlBotoneraAgenda: TSpeedButton
+          object btnPnlBotoneraAgenda: TSpeedButton
             Tag = 23
             Left = 0
             Top = 0
@@ -151,12 +151,12 @@ object PageMain: TPageMain
             Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
-            OnClick = BtnPnlBotoneraAgendaClick
+            OnClick = btnPnlBotoneraAgendaClick
             ExplicitLeft = 6
             ExplicitTop = 2
           end
         end
-        object PnlSombraBotoneraMedico: TPanel
+        object pnlSombraBotoneraMedico: TPanel
           Tag = 122
           Left = 344
           Top = 0
@@ -168,7 +168,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 4
-          object BtnPnlBotoneraMedico: TSpeedButton
+          object btnPnlBotoneraMedico: TSpeedButton
             Tag = 22
             Left = 0
             Top = 0
@@ -179,12 +179,12 @@ object PageMain: TPageMain
             ImageIndex = 19
             Images = ImageList1
             Flat = True
-            OnClick = BtnPnlBotoneraMedicoClick
+            OnClick = btnPnlBotoneraMedicoClick
             ExplicitLeft = 104
             ExplicitTop = -8
           end
         end
-        object PnlSombraBotoneraPaciente: TPanel
+        object pnlSombraBotoneraPaciente: TPanel
           Tag = 121
           Left = 194
           Top = 0
@@ -196,7 +196,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 5
-          object BtnPnlBotoneraPaciente: TSpeedButton
+          object btnPnlBotoneraPaciente: TSpeedButton
             Tag = 21
             Left = 0
             Top = 0
@@ -207,12 +207,12 @@ object PageMain: TPageMain
             ImageIndex = 22
             Images = ImageList1
             Flat = True
-            OnClick = BtnPnlBotoneraPacienteClick
+            OnClick = btnPnlBotoneraPacienteClick
             ExplicitLeft = -6
             ExplicitTop = -16
           end
         end
-        object PnlSombraBotoneraSaldo: TPanel
+        object pnlSombraBotoneraSaldo: TPanel
           Tag = 126
           Left = 944
           Top = 0
@@ -224,7 +224,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 6
-          object BtnPnlBotoneraCajaSaldo: TSpeedButton
+          object btnPnlBotoneraCajaSaldo: TSpeedButton
             Tag = 26
             Left = 0
             Top = 0
@@ -235,11 +235,11 @@ object PageMain: TPageMain
             ImageIndex = 4
             Images = ImageList1
             Flat = True
-            OnClick = BtnPnlBotoneraCajaSaldoClick
+            OnClick = btnPnlBotoneraCajaSaldoClick
             ExplicitLeft = 300
           end
         end
-        object PnlSombraBotoneraInicio: TPanel
+        object pnlSombraBotoneraInicio: TPanel
           Tag = 127
           Left = 44
           Top = 0
@@ -251,7 +251,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
-          object BtnMenLatInicio: TSpeedButton
+          object btnMenLatInicio: TSpeedButton
             Tag = 27
             Left = 0
             Top = 0
@@ -262,12 +262,12 @@ object PageMain: TPageMain
             ImageIndex = 16
             Images = ImageList1
             Flat = True
-            OnClick = BtnMenLatInicioClick
+            OnClick = btnMenLatInicioClick
             ExplicitLeft = 35
             ExplicitTop = -6
           end
         end
-        object PnlBotoneraResaltador: TPanel
+        object pnlBotoneraResaltador: TPanel
           Left = 2
           Top = 38
           Width = 169
@@ -278,7 +278,7 @@ object PageMain: TPageMain
           TabOrder = 0
         end
       end
-      object PnlTitulo: TPanel
+      object pnlTitulo: TPanel
         Left = 0
         Top = 0
         Width = 1348
@@ -287,7 +287,7 @@ object PageMain: TPageMain
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 1
-        object ImgLogo: TImage
+        object imgLogo: TImage
           Left = 0
           Top = 0
           Width = 73
@@ -933,7 +933,7 @@ object PageMain: TPageMain
           ExplicitLeft = -1
           ExplicitTop = -2
         end
-        object PnlNombreEmpresa: TPanel
+        object pnlNombreEmpresa: TPanel
           Left = 73
           Top = 0
           Width = 224
@@ -974,11 +974,10 @@ object PageMain: TPageMain
             Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
-            ExplicitTop = 57
             ExplicitWidth = 140
           end
         end
-        object PnlLogin: TPanel
+        object pnlLogin: TPanel
           Left = 1163
           Top = 0
           Width = 185
@@ -987,9 +986,6 @@ object PageMain: TPageMain
           BevelOuter = bvNone
           ParentBackground = False
           TabOrder = 1
-          ExplicitLeft = 1080
-          ExplicitTop = -1
-          ExplicitHeight = 41
           object UserLoginImg: TImage
             Left = 0
             Top = 0
@@ -998,56 +994,88 @@ object PageMain: TPageMain
             Align = alLeft
             Picture.Data = {
               0954506E67496D61676589504E470D0A1A0A0000000D49484452000000400000
-              00400806000000AA6971DE00000006624B474400FF00FF00FFA0BDA793000005
-              C24944415478DAED9B7B685B5518C0736FFAD884D659AD4EB1436DEB1337759D
-              301F0CA5FF04644FCB9234694371F12DBAE263CC47F13171E8C407EADA4D6AD3
-              2483F8D81CD27F56A80F14BB31C7E6C4417556ACD36A5BED5AB62669EAEFAC19
-              3ED6ACB7C9B92737E0079773D2DE7BEEF7FDEE77BEF39D73CFD56C0AA5A9A949
-              EFE9E9B926914854699A36973F9D9BFC57FFC4C4C42FBAAEEFA9A8A8D8C77909
-              553A692A6EE272B9E6637023063A30B4F4B40A69DA6F00EAE0BC97C2E1F0FE9C
-              06E0F57A2FC69897A92E4DE35E131C1F02EDA140207038E700783C9EE53CC536
-              AA4519367594A33E180C7E903300DC6EB70F576EA19A27A9C9710E3F10DEB63C
-              80DADA5A07C54E0EBBE4A6C781BAACBDBDFD23CB02A8A9A9292D2828F886EA39
-              928D3F2903C4842B8909FD960440BFDF4CBFF79B64FC09A1FD2DA150688DE500
-              389DCE32BBDDFE1DD57C33012071205400A1D75200E8FB8F513C6FB2F1934A6B
-              DA93C48267AC06A09B629122005F01E03ACB0020F89D49F01BA4AAAB00804CD0
-              DD4ADBDADA062C018054F726A2F3A78A8C3F29D5E4059D960040F4AF2330BDA3
-              1880488C5A2C0180FEDF48F1A262008F03E0394B00C0039EC0039E56693DF7DB
-              C050B8DE1200F08047285E500900790A0FC818BA2C0FB89327F2964AEB190A1F
-              64287CC51200F0801514EFAB040070175D609B2500E00197A1D0B72A01241289
-              0532568CA400F0FBFDF92323234771CB4245F6C7A3D1687124123966090042DC
-              6E7727006E55613DF7F98CFE7FB394B66429451C5847B14105009BA411403680
-              AB294C5FC53DA1B4A62DC403F65A0A8010BAC16E94AB32D9F8FD18BF405A7B32
-              956334B88FD1E0359301340260932501F87CBE59B158EC7BAAE79B64FF91FCFC
-              FC4B5A5B5B8F5B1280106281C8CF9F3509C0A304BF8D321B940EC0E170149694
-              941CA05A29B9E9438CFDF319FBA39606208458B08A58F0AECC36C9FC9692F9ED
-              94ADAB69AFC618115A085877486AEE0D5CFF5E33F4340D40434343D1D8D8D897
-              54AFC8B0A903BAAE2F0E0402A339054088D3E9BCC06EB77F41755E9A4DF4E245
-              8B19F68E98A5A3E9FB0318156EA788A4A59CA6D5637C9B99FA990E20B9643E94
-              E6BDCAE8FB3FE534002178C1B06DE6FB04E2185F609BDC2891BB0092C1F00FDB
-              CC5F9AC4FBFAFA66777575C5731A0039C15AB1DF272DE534ED4662C0E7390B40
-              AC15627C388395A2BD5C5F1D0A858672064032155E4E552441D5129A1C1010C9
-              05C278831852A5C60499FB032ECACBCB7B0065EBF9592253C97FC80FB4BF95DC
-              A259D62E918C0178BDDE2AF2F487A9AEB2C9DF17944A8E0BAF00C426407C9D15
-              003CF16B51404C4D65B87926B20B18EB8913DD4A00F87CBE39B1584CEC04117D
-              5CD636B84C2541A00D8F8F8F373263FCD53400CCF06AB8D1AB54E766DBE21422
-              F28D75959595CD46F71B1B02904C66C4BBF8D5D9B6D0A07444A3514F241219CC
-              1880CBE5BA8A21482C6E5C9E6DAB662887890D2B890DFBD206402223363DEDE2
-              28CEB63569CA285DD641FE9072FB4E4A007575759712543EA17A5EB6ADC85006
-              18A697101C0F1A06C01496196C811856A4BD80C8B21C1C1C1C5CD8D1D1316608
-              00AE7F17C59BD9D65AA6D015EEA72BBC6E1480B24D8FAA8480B88780788A4DA9
-              0088F7EEB3B2ADB46439160C06CF3002400380B28F96540A00C4A2CCBF6693FF
-              0398EA448FC7D33FDDD75D3928FD003865484F1503B6532CCBB6C6328507BA9D
-              20B8C210003CE0062EF8D8669DD95EA61267185C32D5FA62CA4C90999F9F8B44
-              2EA06A0BBC5922A6CAF760FCE6A9FE39DD5CE0368AADB6BF3F71CD29497E85BA
-              06D7DF91F29CE91A614E70763C1E5F4B6377F3F3AC6C1B6550FEE468C6F88DCC
-              017E3F2D24A32D8ACD90A3A3A3B7505DC921567DAD3649125F8FEC2076BD3734
-              34D43955DE9F1180FF5E478CA8A0BC9E6311DE21524CF15B5557110B1DE20B35
-              91B2EFD675BDBBBCBCFC503A5F9DCBFE7072766161E13C5CAF8C9F17721403A7
-              2859CEB14DAE2B185939162F42C4FBC4619EA8F8767898EB7FA6FE23C6F6CADC
-              2BF0174ECD285F904841110000000049454E44AE426082}
+              00400806000000AA6971DE00000006624B474400FF00FF00FFA0BDA793000009
+              A14944415478DAE59B096C944514C7BFEDEE16B5550145D48A5AB1805A514184
+              12AD05F1480045130C6DA16E4589478C8A101083E209A2A0316A2C545B7A6BA3
+              113CD068A528A0A0A0026A6C553C403CA02AB640BBDBD6DF2BB375F76BCB7ED7
+              B6455F3299996FE7CDBCF79F37336F8E7569FF737275B5005D4D9D0A80CFE7EB
+              E9F7FB07353737F78B898939BCA9A9E930F94E7A3FE97D6EB7FB47C2D7F9F9F9
+              7FFE2700C8CCCC3C1365C7B85CAED16487138E37C8BA13BEF50053016F456161
+              E157870C0093274F3E412214B88EF82C87AADD4258E6F57A8BB18E5FBA250053
+              A64C39A3B1B171263D96493656F7F31EC28784CF01662B665E85C9EF255DD722
+              84CB15476F1F01FF00D2C97C3A9730827054682594AFA75C11C9C78A8A8ABEEE
+              1600A0F87128F328C92C424C6BC52ED7B744CB506AF9C08103B7CE9B37AFC94C
+              BD13274E74F7E8D12319A5AF222BD6745AC8CF4DD49F47DDB34B4B4B77751900
+              98FB0D08B89064AFE037F2EFD0C30B18B7AB246B17E0A09CCC27328FDC4DB824
+              E47B0D40CCC01AF23A15007A273E363636876446C8E77598E774145FEF90D2ED
+              527A7A7A0AED2CD60E0C911602F482F8F8F89B972C59B237EA006464649C02EA
+              6F68FF4E70C15EC8D79CEBF18312C329A6AAAA2A9B761FD394F591DE1C0804C6
+              959595FD14350014FAAF913C467D7A9B7C16BDFE9B11FE4993269DE8F178C6D3
+              638310B80F711FF5D31FE4BF20AE00C87526E4E90B5F21E152F5E917EA1C5752
+              52B2D17100686C30CAAE26D9537D5ABA63C78E5B2A2B2B0307E353BD958990B7
+              92BDC0409B954C6ED9F4E4F746E49A366D9AB7B6B63687FAB3836022672A9DB2
+              D5310030FB242A5D1BEC31E2D9A0FC68243E26AE93885E22A418055AD14EC27C
+              DA59413B3F18947116202C08F203E2482320460400848FA8ABAB93892DB985C1
+              E57A02339D1E892F2B2B2B0121C49C4F36A97C28F90121870977260ED0FE4885
+              01FC09A23B54F6F386868694F2F2F27DB60000D91782E6853079F4C8542DC264
+              979696E6494848F8400B99A9ED10EDAFD9BD7BF798952B57D6472A8ABCF994CF
+              52F2E622EF8D9601005159E68A55F6A3B8B8B854961A7F2481E1BB8DE8292794
+              0F12CA2C4699BB22956389C66062D7901CA63E4D2A2E2E7ED1340098F0317878
+              5FA9715F433CC4E07874E1205553BEBF930040FBD90B241AD90BE09D2622BBAC
+              04B244FE8A2C6720FB1FA60040895C18C5DC05FD6C2AC83722257C43286F7819
+              324977D29B4F1A29C85098CA50C855D9E7E0BBD9300020980C829BD5EF15308F
+              312A210DDF49C38BA304C00A64B9CA6059719F2B88471150A76930FB862F0C01
+              00A3F8D63E49B3FC0D634DFDC4A88458400E16302D4A007C090086B7D874E470
+              14FF48D21D4D886D0050CBD736925ED9D8C07499190901EF65A26BA204C02E00
+              E86386018BAC5007320DE895886FF0F34101A007E7A0F8C30AB54B01E05D9300
+              AC24BAA2BB00803CD2816F2B7DDA38707A0064DCC83E3E51F6F3383C499AC90D
+              0EFCAF105D1D2500B601C06926795A752254C33F3054A73000D8AC9CC75E7E93
+              CA3E44E1B96625A4B1E789AE8F1200AB9069B40599E613CD56D9C1D4B1A55D00
+              30FFE998C9A2961F5CAEA158C026E3CDB4D631973A1E8886F6C8F43C32DD6096
+              8F79E002785BCE2990ED768641AB9316060048BD4E3496C2BFD3505FCDC2FE9E
+              C664E757140D00A059F4DE42B34CB223ADAEAEFE9D646F4DB794EA01102FAB2F
+              28BD0A4A96C631ABC800665B470E2CF5C4923692B5FC432BBC58E60AF41A4FF2
+              6700486803003E746F7CE8DD92A6E0830070AF958614DA72DA7B98C3FA076A6A
+              6AE20D6C88DA252CF3612C738EA471A97B052F5F5A01D0390D59005068A5A1F4
+              F4F4F1384F2B1C56BE8590EF4A2CE0358B00F8E42459E9371CFD36840180F98B
+              C9BFA20A5C4C81F7AD34443DF9DA81636CC7496DC72DAD300C8134F857A97A26
+              50CFF230002890C50FCB24CD181E82C7F4A945004A88D2A3010054C2F8CDB408
+              40E8266D0AF514850180E07266F7B442680008555B6CA8D5938C02DD8DE00BAC
+              30CAB11E43A04A656FA59E673B048082492C83DF5804602400AC8D86F6CC2D23
+              ACDE3B4404C0A921A0C094D3E354279547F8D5744A9A557E00184A1DC15D6DDB
+              2140816B28203B395B93A0909CFFE352CB6C3DC421FD37D129E3F53B39331471
+              1254971EEB5401CBCB60488317518F65107574213D666B58455C0629D08B0235
+              AAC02314B8C74E8372BB8B6325E70AFD6C2AFF7D5252527FB3B7CB7AA24316A0
+              D72C49373434F42C2F2FFF2B0C0021C6AEF8CBC7DA718575F5DD42F48C9D3AE8
+              949B18FB3976650971857FC59A5A5FAAE80190713B8EF027281D0B4A8D761A55
+              F70332AC8659AC622DBD9F6AB7F795358A9B7F346139004C68170086C10C75E3
+              6A793BAC2775C0BA46356E86C4444722EC977665D039416127CB1D1E88D8D910
+              E909CB920B8DC7CDF0D00177D1018E9C2ED3FEFD44415D3A3E105185E545D620
+              C28F985FA25DF353759ABE290280DB00E069BB6DABDDE97724E55DC366EA3C27
+              AC9D768415A40431DBFE4090428796099A414F2DB2DB76E8FAAFB5E34AB70140
+              5D2BC93EC08DD06F82D8580784B0B23F9883B0F3EDB64D87BE4574B966F4585C
+              095C84C0B2EB6A0684F3ED4E8608219793D79A642B05800C933C61147A16D8D1
+              796247009C0E00321778081F33178CB03217C8DB82DADADA4768FC768B3A2C62
+              399E1BE98EBF3D524B9F283F9410C0CB1DC0466A9B2100147A4B11BC05313397
+              A3AAF1A3695CDE1488E2A75A543E483281C9B2B50C8BD86394493DE15BAAB2E6
+              2E4785CC5E8FABB740A341DA4759B91A3BDCA6E27AAAA35ED9ACE52347A57690
+              136B358FC9B095F74CBFC9A32CD3D7E342461E482847472E1D658C1B7D0C6D97
+              76629D05C4B9FA730BFD0309944F47F9B28E2A32F544464D24A26CB3384D1E8F
+              E77E1A90552226523D512299975E4786FB50F233EDC035D80B9ABAD9B6FD4446
+              48FF488A4AE572F138C0F019E1EF2492E190876C2D8F36D537671E4909311F9C
+              AC5E7C251829DF0D683B2185896F7BA482661F4ACABD81D3939BA38405EC250C
+              77F4A164907C3EDF457EBF5F9E9D78BB5AD10E48BCBD54BC3DC307A7A6C73093
+              CCD9DA813F3FC475B5B6618AB85C7F33078C30BB7DB6FC5CDEEBF5BE4FA3E775
+              B5E28A36303C4763F67566196DCDE25883ECF1E569AABB8B146FA4D71F67A99B
+              6DB502DBCB587676763FE685E508D2A9D680F56D0A0402B68ECA1D0120482C95
+              2978844B002239CABA6F64A2BB09C50D3FDDEB140082C4723988F138871E9A00
+              18473A54AD9C0F96B9DDEE070B0A0A7638296F543D39DCE8510021D7D91702C6
+              49A43D46F8282B7FC2D82EAFC4B1AADCD2D2D2D5D192B1535D59992FEAEBEB2F
+              91FF06A2646F62AF52D8AF2E65B6B091792F2F2FCFD4FF7E0E1900BA23FDEF01
+              F8074E61F97DEF3D00D90000000049454E44AE426082}
+            ExplicitTop = -2
           end
-          object PnlLoginUserDetalle: TPanel
+          object pnlLoginUserDetalle: TPanel
             Left = 70
             Top = 0
             Width = 115
@@ -1055,10 +1083,6 @@ object PageMain: TPageMain
             Align = alClient
             BevelOuter = bvNone
             TabOrder = 0
-            ExplicitLeft = 104
-            ExplicitTop = 40
-            ExplicitWidth = 185
-            ExplicitHeight = 41
             object LblUserLogin: TLabel
               Left = 0
               Top = 0
@@ -1096,7 +1120,7 @@ object PageMain: TPageMain
         end
       end
     end
-    object PnlMenuLateralMain: TPanel
+    object pnlMenuLateralMain: TPanel
       Left = 1
       Top = 116
       Width = 200
@@ -1105,8 +1129,7 @@ object PageMain: TPageMain
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 2
-      ExplicitHeight = 668
-      object PnlMenuLateralIco: TPanel
+      object pnlMenuLateralIco: TPanel
         Left = 0
         Top = 0
         Width = 50
@@ -1116,11 +1139,10 @@ object PageMain: TPageMain
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        ExplicitHeight = 668
-        object PnlIcoConfiguracion: TPanel
+        object pnlIcoConfiguracion: TPanel
           Tag = 4
           Left = 0
-          Top = 594
+          Top = 694
           Width = 50
           Height = 45
           Align = alTop
@@ -1128,8 +1150,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
-          ExplicitTop = 139
-          object PnlIcoConfigDiv: TPanel
+          object pnlIcoConfigDiv: TPanel
             Left = 0
             Top = 45
             Width = 50
@@ -1140,7 +1161,7 @@ object PageMain: TPageMain
             ParentBackground = False
             TabOrder = 0
           end
-          object PnlIcoConfigBt01: TPanel
+          object pnlIcoConfigBt01: TPanel
             Tag = 104
             Left = 0
             Top = 0
@@ -1152,7 +1173,7 @@ object PageMain: TPageMain
             Color = clSilver
             ParentBackground = False
             TabOrder = 1
-            object SpeedButton2: TSpeedButton
+            object btnIcoConfExpand: TSpeedButton
               Tag = 4
               Left = 0
               Top = 0
@@ -1162,12 +1183,12 @@ object PageMain: TPageMain
               ImageIndex = 6
               Images = ImageList1
               Flat = True
-              OnClick = BtnPnelMenuConfExpandirClick
+              OnClick = btnPnelMenuConfExpandirClick
               ExplicitLeft = 16
               ExplicitTop = 176
             end
           end
-          object PnlIcoConfigBt02: TPanel
+          object pnlIcoConfigBt02: TPanel
             Left = 0
             Top = 46
             Width = 50
@@ -1177,7 +1198,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 2
-            object SpeedButton3: TSpeedButton
+            object btnIcoConfBkp: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1190,7 +1211,7 @@ object PageMain: TPageMain
               ExplicitHeight = 45
             end
           end
-          object PnlIcoConfigBt03: TPanel
+          object pnlIcoConfigBt03: TPanel
             Left = 0
             Top = 87
             Width = 50
@@ -1200,7 +1221,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 3
-            object SpeedButton4: TSpeedButton
+            object btnIcoConfOpc: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1213,7 +1234,7 @@ object PageMain: TPageMain
               ExplicitHeight = 45
             end
           end
-          object PnlIcoConfigBt04: TPanel
+          object pnlIcoConfigBt04: TPanel
             Left = 0
             Top = 128
             Width = 50
@@ -1223,7 +1244,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 4
-            object SpeedButton5: TSpeedButton
+            object btnConfImp: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1237,9 +1258,9 @@ object PageMain: TPageMain
             end
           end
         end
-        object PnlIcoDiv03: TPanel
+        object pnlIcoDiv03: TPanel
           Left = 0
-          Top = 547
+          Top = 647
           Width = 50
           Height = 1
           Align = alTop
@@ -1248,11 +1269,10 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 1
-          ExplicitTop = 92
         end
-        object PnlIcoDiv02: TPanel
+        object pnlIcoDiv02: TPanel
           Left = 0
-          Top = 501
+          Top = 601
           Width = 50
           Height = 1
           Align = alTop
@@ -1261,11 +1281,10 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 2
-          ExplicitTop = 46
         end
-        object PnlIcoDiv05: TPanel
+        object pnlIcoDiv05: TPanel
           Left = 0
-          Top = 639
+          Top = 739
           Width = 50
           Height = 1
           Align = alTop
@@ -1273,11 +1292,10 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 3
-          ExplicitTop = 184
         end
-        object PnlIcoDiv04: TPanel
+        object pnlIcoDiv04: TPanel
           Left = 0
-          Top = 593
+          Top = 693
           Width = 50
           Height = 1
           Align = alTop
@@ -1285,9 +1303,8 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 4
-          ExplicitTop = 138
         end
-        object PnlIcoDiv01: TPanel
+        object pnlIcoDiv01: TPanel
           Left = 0
           Top = 0
           Width = 50
@@ -1298,10 +1315,10 @@ object PageMain: TPageMain
           ParentBackground = False
           TabOrder = 5
         end
-        object PnlIcoFinanciero: TPanel
+        object pnlIcoFinanciero: TPanel
           Tag = 2
           Left = 0
-          Top = 502
+          Top = 602
           Width = 50
           Height = 45
           Align = alTop
@@ -1309,8 +1326,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 6
-          ExplicitTop = 47
-          object PnlIcoFinanDiv: TPanel
+          object pnlIcoFinanDiv: TPanel
             Left = 0
             Top = 45
             Width = 50
@@ -1321,7 +1337,7 @@ object PageMain: TPageMain
             ParentBackground = False
             TabOrder = 0
           end
-          object PnlIcoFinanBt01: TPanel
+          object pnlIcoFinanBt01: TPanel
             Tag = 102
             Left = 0
             Top = 0
@@ -1335,7 +1351,7 @@ object PageMain: TPageMain
             Padding.Bottom = 6
             ParentBackground = False
             TabOrder = 1
-            object SpeedButton13: TSpeedButton
+            object btnICoFinExpand: TSpeedButton
               Tag = 2
               Left = 0
               Top = 7
@@ -1345,14 +1361,14 @@ object PageMain: TPageMain
               ImageIndex = 11
               Images = ImageList1
               Flat = True
-              OnClick = BtnPnelMenuFinanExpandirClick
+              OnClick = btnPnelMenuFinanExpandirClick
               ExplicitLeft = 8
               ExplicitTop = 240
               ExplicitWidth = 23
               ExplicitHeight = 22
             end
           end
-          object PnlIcoFinanBt02: TPanel
+          object pnlIcoFinanBt02: TPanel
             Left = 0
             Top = 46
             Width = 50
@@ -1365,7 +1381,7 @@ object PageMain: TPageMain
             Padding.Bottom = 6
             ParentBackground = False
             TabOrder = 2
-            object SpeedButton14: TSpeedButton
+            object btnICoFinSaldo: TSpeedButton
               Left = 15
               Top = 7
               Width = 35
@@ -1380,7 +1396,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoFinanBt04: TPanel
+          object pnlIcoFinanBt04: TPanel
             Left = 0
             Top = 136
             Width = 50
@@ -1393,7 +1409,7 @@ object PageMain: TPageMain
             Padding.Bottom = 6
             ParentBackground = False
             TabOrder = 3
-            object SpeedButton16: TSpeedButton
+            object btnICoFinLanzamiento: TSpeedButton
               Left = 15
               Top = 7
               Width = 35
@@ -1408,7 +1424,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoFinanBt05: TPanel
+          object pnlIcoFinanBt05: TPanel
             Left = 0
             Top = 181
             Width = 50
@@ -1421,7 +1437,7 @@ object PageMain: TPageMain
             Padding.Bottom = 6
             ParentBackground = False
             TabOrder = 4
-            object SpeedButton17: TSpeedButton
+            object btnICoFinListado: TSpeedButton
               Left = 15
               Top = 7
               Width = 35
@@ -1436,7 +1452,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoFinanBt03: TPanel
+          object pnlIcoFinanBt03: TPanel
             Left = 0
             Top = 91
             Width = 50
@@ -1449,7 +1465,7 @@ object PageMain: TPageMain
             Padding.Bottom = 6
             ParentBackground = False
             TabOrder = 5
-            object SpeedButton15: TSpeedButton
+            object btnICoFinHistorial: TSpeedButton
               Left = 15
               Top = 7
               Width = 35
@@ -1465,18 +1481,18 @@ object PageMain: TPageMain
             end
           end
         end
-        object PnlIcoRegistro: TPanel
+        object pnlIcoRegistro: TPanel
           Tag = 1
           Left = 0
           Top = 1
           Width = 50
-          Height = 500
+          Height = 600
           Align = alTop
           BevelOuter = bvNone
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
-          object PnlIcoRegisDiv: TPanel
+          object pnlIcoRegisDiv: TPanel
             Left = 0
             Top = 45
             Width = 50
@@ -1487,7 +1503,7 @@ object PageMain: TPageMain
             ParentBackground = False
             TabOrder = 0
           end
-          object PnlIcoRegisBt01: TPanel
+          object pnlIcoRegisBt01: TPanel
             Tag = 101
             Left = 0
             Top = 0
@@ -1499,7 +1515,7 @@ object PageMain: TPageMain
             Color = clSilver
             ParentBackground = False
             TabOrder = 1
-            object SpeedButton18: TSpeedButton
+            object btnICoRegExpand: TSpeedButton
               Tag = 1
               Left = 0
               Top = 0
@@ -1509,14 +1525,14 @@ object PageMain: TPageMain
               ImageIndex = 25
               Images = ImageList1
               Flat = True
-              OnClick = BtnPnelMenuRegExpandirClick
+              OnClick = btnPnelMenuRegExpandirClick
               ExplicitLeft = 16
               ExplicitTop = 208
               ExplicitWidth = 23
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt02: TPanel
+          object pnlIcoRegisBt02: TPanel
             Left = 0
             Top = 46
             Width = 50
@@ -1526,7 +1542,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 2
-            object SpeedButton19: TSpeedButton
+            object btnICoRegEmp: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1541,7 +1557,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt03: TPanel
+          object pnlIcoRegisBt03: TPanel
             Left = 0
             Top = 91
             Width = 50
@@ -1551,7 +1567,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 3
-            object SpeedButton20: TSpeedButton
+            object btnICoRegMed: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1566,7 +1582,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt05: TPanel
+          object pnlIcoRegisBt05: TPanel
             Left = 0
             Top = 181
             Width = 50
@@ -1576,7 +1592,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 4
-            object SpeedButton22: TSpeedButton
+            object btnICoRegAgen: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1591,7 +1607,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt06: TPanel
+          object pnlIcoRegisBt06: TPanel
             Left = 0
             Top = 226
             Width = 50
@@ -1601,7 +1617,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 5
-            object SpeedButton23: TSpeedButton
+            object btnICoRegProv: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1616,7 +1632,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt07: TPanel
+          object pnlIcoRegisBt07: TPanel
             Left = 0
             Top = 271
             Width = 50
@@ -1626,7 +1642,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 6
-            object SpeedButton24: TSpeedButton
+            object btnICoRegSeg: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1641,7 +1657,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt08: TPanel
+          object pnlIcoRegisBt08: TPanel
             Left = 0
             Top = 316
             Width = 50
@@ -1651,7 +1667,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 7
-            object SpeedButton25: TSpeedButton
+            object btnICoRegFun: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1666,7 +1682,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt09: TPanel
+          object pnlIcoRegisBt09: TPanel
             Left = 0
             Top = 361
             Width = 50
@@ -1676,7 +1692,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 8
-            object SpeedButton26: TSpeedButton
+            object btnICoRegDir: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1685,14 +1701,14 @@ object PageMain: TPageMain
               ImageIndex = 8
               Images = ImageList1
               Flat = True
-              OnClick = BtnPnelMenuRegDireccionClick
+              OnClick = btnPnelMenuRegDireccionClick
               ExplicitLeft = 32
               ExplicitTop = 464
               ExplicitWidth = 23
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt011: TPanel
+          object pnlIcoRegisBt11: TPanel
             Left = 0
             Top = 451
             Width = 50
@@ -1702,7 +1718,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 9
-            object SpeedButton28: TSpeedButton
+            object btnICoRegUsu: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1717,7 +1733,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoRegisBt10: TPanel
+          object pnlIcoRegisBt10: TPanel
             Left = 0
             Top = 406
             Width = 50
@@ -1727,7 +1743,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 10
-            object SpeedButton27: TSpeedButton
+            object btnICoRegProd: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1736,14 +1752,12 @@ object PageMain: TPageMain
               ImageIndex = 23
               Images = ImageList1
               Flat = True
-              OnClick = BtnPnelMenuRegProductoClick
-              ExplicitLeft = 48
-              ExplicitTop = 496
-              ExplicitWidth = 23
-              ExplicitHeight = 22
+              OnClick = btnPnelMenuRegProductoClick
+              ExplicitLeft = -6
+              ExplicitTop = 6
             end
           end
-          object PnlIcoRegisBt04: TPanel
+          object pnlIcoRegisBt04: TPanel
             Left = 0
             Top = 136
             Width = 50
@@ -1753,7 +1767,7 @@ object PageMain: TPageMain
             Color = clWhite
             ParentBackground = False
             TabOrder = 11
-            object SpeedButton21: TSpeedButton
+            object btnICoRegPac: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1769,10 +1783,10 @@ object PageMain: TPageMain
             end
           end
         end
-        object PnlIcoConsulta: TPanel
+        object pnlIcoConsulta: TPanel
           Tag = 3
           Left = 0
-          Top = 548
+          Top = 648
           Width = 50
           Height = 45
           Align = alTop
@@ -1780,8 +1794,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 8
-          ExplicitTop = 93
-          object PnlIcoConsDiv: TPanel
+          object pnlIcoConsDiv: TPanel
             Left = 0
             Top = 45
             Width = 50
@@ -1792,7 +1805,7 @@ object PageMain: TPageMain
             ParentBackground = False
             TabOrder = 0
           end
-          object PnlIcoConsBt01: TPanel
+          object pnlIcoConsBt01: TPanel
             Tag = 103
             Left = 0
             Top = 0
@@ -1806,7 +1819,7 @@ object PageMain: TPageMain
             ParentBiDiMode = False
             ParentBackground = False
             TabOrder = 1
-            object SpeedButton6: TSpeedButton
+            object btnIcoConsExp: TSpeedButton
               Tag = 3
               Left = 0
               Top = 0
@@ -1816,13 +1829,13 @@ object PageMain: TPageMain
               ImageIndex = 7
               Images = ImageList1
               Flat = True
-              OnClick = BtnPnelMenuConsExpandirClick
+              OnClick = btnPnelMenuConsExpandirClick
               ExplicitLeft = 16
               ExplicitTop = 328
               ExplicitWidth = 23
             end
           end
-          object PnlIcoConsBt02: TPanel
+          object pnlIcoConsBt02: TPanel
             Left = 0
             Top = 46
             Width = 50
@@ -1834,7 +1847,7 @@ object PageMain: TPageMain
             ParentBiDiMode = False
             ParentBackground = False
             TabOrder = 2
-            object SpeedButton7: TSpeedButton
+            object btnIcoConsEmp: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1847,7 +1860,7 @@ object PageMain: TPageMain
               ExplicitWidth = 23
             end
           end
-          object PnlIcoConsBt03: TPanel
+          object pnlIcoConsBt03: TPanel
             Left = 0
             Top = 91
             Width = 50
@@ -1859,7 +1872,7 @@ object PageMain: TPageMain
             ParentBiDiMode = False
             ParentBackground = False
             TabOrder = 3
-            object SpeedButton8: TSpeedButton
+            object btnIcoConsMedico: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1872,7 +1885,7 @@ object PageMain: TPageMain
               ExplicitWidth = 23
             end
           end
-          object PnlIcoConsBt04: TPanel
+          object pnlIcoConsBt04: TPanel
             Left = 0
             Top = 136
             Width = 50
@@ -1884,7 +1897,7 @@ object PageMain: TPageMain
             ParentBiDiMode = False
             ParentBackground = False
             TabOrder = 4
-            object SpeedButton9: TSpeedButton
+            object btnIcoConsPac: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1897,7 +1910,7 @@ object PageMain: TPageMain
               ExplicitWidth = 23
             end
           end
-          object PnlIcoConsBt05: TPanel
+          object pnlIcoConsBt05: TPanel
             Left = 0
             Top = 181
             Width = 50
@@ -1909,7 +1922,7 @@ object PageMain: TPageMain
             ParentBiDiMode = False
             ParentBackground = False
             TabOrder = 5
-            object SpeedButton10: TSpeedButton
+            object btnIcoConsAgenda: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1924,7 +1937,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoConsBt06: TPanel
+          object pnlIcoConsBt06: TPanel
             Left = 0
             Top = 226
             Width = 50
@@ -1936,7 +1949,7 @@ object PageMain: TPageMain
             ParentBiDiMode = False
             ParentBackground = False
             TabOrder = 6
-            object SpeedButton11: TSpeedButton
+            object btnIcoConsProv: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1951,7 +1964,7 @@ object PageMain: TPageMain
               ExplicitHeight = 22
             end
           end
-          object PnlIcoConsBt07: TPanel
+          object pnlIcoConsBt07: TPanel
             Left = 0
             Top = 271
             Width = 50
@@ -1963,7 +1976,7 @@ object PageMain: TPageMain
             ParentBiDiMode = False
             ParentBackground = False
             TabOrder = 7
-            object SpeedButton12: TSpeedButton
+            object btnIcoConsSeg: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -1979,7 +1992,7 @@ object PageMain: TPageMain
             end
           end
         end
-        object PnlIcoSalir: TPanel
+        object pnlIcoSalir: TPanel
           Tag = 105
           Left = 0
           Top = 527
@@ -1990,8 +2003,7 @@ object PageMain: TPageMain
           Color = clSilver
           ParentBackground = False
           TabOrder = 9
-          ExplicitTop = 623
-          object PnlIcoSalirBt01: TPanel
+          object pnlIcoSalirBt01: TPanel
             Tag = 105
             Left = 0
             Top = 0
@@ -2003,8 +2015,7 @@ object PageMain: TPageMain
             Color = clSilver
             ParentBackground = False
             TabOrder = 0
-            ExplicitHeight = 30
-            object SpeedButton29: TSpeedButton
+            object btnIcoSalir: TSpeedButton
               Left = 0
               Top = 0
               Width = 50
@@ -2013,15 +2024,13 @@ object PageMain: TPageMain
               ImageIndex = 28
               Images = ImageList1
               Flat = True
-              ExplicitLeft = 16
-              ExplicitTop = 4
-              ExplicitWidth = 23
-              ExplicitHeight = 22
+              OnClick = btnMenLatSalirClick
+              ExplicitLeft = -6
             end
           end
         end
       end
-      object PnlMenuLateralBtn: TPanel
+      object pnlMenuLateralBtn: TPanel
         Left = 50
         Top = 0
         Width = 150
@@ -2031,8 +2040,7 @@ object PageMain: TPageMain
         Color = clSilver
         ParentBackground = False
         TabOrder = 1
-        ExplicitHeight = 668
-        object PnlMenuLateralConfiguracion: TPanel
+        object pnlMenuLateralConfiguracion: TPanel
           Tag = 4
           Left = 0
           Top = 594
@@ -2043,8 +2051,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
-          ExplicitTop = 139
-          object BtnPnelMenuConfImpresora: TSpeedButton
+          object btnPnelMenuConfImpresora: TSpeedButton
             Left = 0
             Top = 136
             Width = 150
@@ -2056,7 +2063,7 @@ object PageMain: TPageMain
             ExplicitTop = 119
             ExplicitWidth = 183
           end
-          object BtnPnelMenuConfBKP: TSpeedButton
+          object btnPnelMenuConfBKP: TSpeedButton
             Left = 0
             Top = 46
             Width = 150
@@ -2067,7 +2074,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuConfOpciones: TSpeedButton
+          object btnPnelMenuConfOpciones: TSpeedButton
             Left = 0
             Top = 91
             Width = 150
@@ -2078,7 +2085,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object PnlMenLatConfDiv01: TPanel
+          object pnlMenLatConfDiv01: TPanel
             Left = 0
             Top = 45
             Width = 150
@@ -2089,7 +2096,7 @@ object PageMain: TPageMain
             ParentBackground = False
             TabOrder = 0
           end
-          object PnlMenLatConfBtn01: TPanel
+          object pnlMenLatConfBtn01: TPanel
             Tag = 104
             Left = 0
             Top = 0
@@ -2101,7 +2108,7 @@ object PageMain: TPageMain
             Color = clSilver
             ParentBackground = False
             TabOrder = 1
-            object BtnPnelMenuConfExpandir: TSpeedButton
+            object btnPnelMenuConfExpandir: TSpeedButton
               Tag = 4
               Left = 0
               Top = 0
@@ -2111,14 +2118,14 @@ object PageMain: TPageMain
               Caption = 'Configuraci'#243'n'
               ImageIndex = 6
               Flat = True
-              OnClick = BtnPnelMenuConfExpandirClick
+              OnClick = btnPnelMenuConfExpandirClick
               ExplicitLeft = -6
               ExplicitTop = -6
               ExplicitWidth = 185
             end
           end
         end
-        object PnlMenuLateralConsulta: TPanel
+        object pnlMenuLateralConsulta: TPanel
           Tag = 3
           Left = 0
           Top = 548
@@ -2129,8 +2136,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 1
-          ExplicitTop = 93
-          object BtnPnelMenuConsPaciente: TSpeedButton
+          object btnPnelMenuConsPaciente: TSpeedButton
             Left = 0
             Top = 136
             Width = 150
@@ -2144,7 +2150,7 @@ object PageMain: TPageMain
             ExplicitTop = 119
             ExplicitWidth = 183
           end
-          object BtnPnelMenuConsConsSeguro: TSpeedButton
+          object btnPnelMenuConsConsSeguro: TSpeedButton
             Left = 0
             Top = 271
             Width = 150
@@ -2157,7 +2163,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuConsAgenda: TSpeedButton
+          object btnPnelMenuConsAgenda: TSpeedButton
             Left = 0
             Top = 181
             Width = 150
@@ -2171,7 +2177,7 @@ object PageMain: TPageMain
             ExplicitTop = 120
             ExplicitWidth = 183
           end
-          object BtnPnelMenuConsEmpresa: TSpeedButton
+          object btnPnelMenuConsEmpresa: TSpeedButton
             Left = 0
             Top = 46
             Width = 150
@@ -2184,7 +2190,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuConsMedico: TSpeedButton
+          object btnPnelMenuConsMedico: TSpeedButton
             Left = 0
             Top = 91
             Width = 150
@@ -2197,7 +2203,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuConsProveedor: TSpeedButton
+          object btnPnelMenuConsProveedor: TSpeedButton
             Left = 0
             Top = 226
             Width = 150
@@ -2211,7 +2217,7 @@ object PageMain: TPageMain
             ExplicitTop = 242
             ExplicitWidth = 197
           end
-          object PnlMenLatConsDiv01: TPanel
+          object pnlMenLatConsDiv01: TPanel
             Left = 0
             Top = 45
             Width = 150
@@ -2222,7 +2228,7 @@ object PageMain: TPageMain
             ParentBackground = False
             TabOrder = 0
           end
-          object PnlMenLatConsBtn01: TPanel
+          object pnlMenLatConsBtn01: TPanel
             Tag = 103
             Left = 0
             Top = 0
@@ -2234,7 +2240,7 @@ object PageMain: TPageMain
             Color = clSilver
             ParentBackground = False
             TabOrder = 1
-            object BtnPnelMenuConsExpandir: TSpeedButton
+            object btnPnelMenuConsExpandir: TSpeedButton
               Tag = 3
               Left = 0
               Top = 0
@@ -2244,14 +2250,14 @@ object PageMain: TPageMain
               Caption = 'Consultas'
               ImageIndex = 18
               Flat = True
-              OnClick = BtnPnelMenuConsExpandirClick
+              OnClick = btnPnelMenuConsExpandirClick
               ExplicitLeft = 2
               ExplicitTop = -6
               ExplicitWidth = 185
             end
           end
         end
-        object PnlMenuLateralDiv01: TPanel
+        object pnlMenuLateralDiv01: TPanel
           Left = 0
           Top = 0
           Width = 150
@@ -2262,7 +2268,7 @@ object PageMain: TPageMain
           ParentBackground = False
           TabOrder = 2
         end
-        object PnlMenuLateralDiv02: TPanel
+        object pnlMenuLateralDiv02: TPanel
           Left = 0
           Top = 501
           Width = 150
@@ -2273,7 +2279,7 @@ object PageMain: TPageMain
           ParentBackground = False
           TabOrder = 3
         end
-        object PnlMenuLateralDiv03: TPanel
+        object pnlMenuLateralDiv03: TPanel
           Left = 0
           Top = 547
           Width = 150
@@ -2284,7 +2290,7 @@ object PageMain: TPageMain
           ParentBackground = False
           TabOrder = 4
         end
-        object PnlMenuLateralDiv04: TPanel
+        object pnlMenuLateralDiv04: TPanel
           Left = 0
           Top = 593
           Width = 150
@@ -2295,7 +2301,7 @@ object PageMain: TPageMain
           ParentBackground = False
           TabOrder = 5
         end
-        object PnlMenuLateralDiv05: TPanel
+        object pnlMenuLateralDiv05: TPanel
           Left = 0
           Top = 639
           Width = 150
@@ -2306,7 +2312,7 @@ object PageMain: TPageMain
           ParentBackground = False
           TabOrder = 6
         end
-        object PnlMenuLateralFinanciero: TPanel
+        object pnlMenuLateralFinanciero: TPanel
           Tag = 2
           Left = 0
           Top = 502
@@ -2317,8 +2323,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
-          ExplicitTop = 47
-          object BtnPnelMenuFinanLanzamiento: TSpeedButton
+          object btnPnelMenuFinanLanzamiento: TSpeedButton
             Left = 0
             Top = 136
             Width = 150
@@ -2330,7 +2335,7 @@ object PageMain: TPageMain
             ExplicitTop = 119
             ExplicitWidth = 183
           end
-          object BtnPnelMenuFinanListadoCaja: TSpeedButton
+          object btnPnelMenuFinanListadoCaja: TSpeedButton
             Left = 0
             Top = 181
             Width = 150
@@ -2342,7 +2347,7 @@ object PageMain: TPageMain
             ExplicitTop = 120
             ExplicitWidth = 183
           end
-          object BtnPnelMenuFinanSaldoCaja: TSpeedButton
+          object btnPnelMenuFinanSaldoCaja: TSpeedButton
             Left = 0
             Top = 46
             Width = 150
@@ -2353,7 +2358,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuFinanHistorial: TSpeedButton
+          object btnPnelMenuFinanHistorial: TSpeedButton
             Left = 0
             Top = 91
             Width = 150
@@ -2364,7 +2369,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object PnlMenLatFinDiv01: TPanel
+          object pnlMenLatFinDiv01: TPanel
             Left = 0
             Top = 45
             Width = 150
@@ -2375,7 +2380,7 @@ object PageMain: TPageMain
             ParentBackground = False
             TabOrder = 0
           end
-          object PnlMenLatFinBtn01: TPanel
+          object pnlMenLatFinBtn01: TPanel
             Tag = 102
             Left = 0
             Top = 0
@@ -2387,7 +2392,7 @@ object PageMain: TPageMain
             Color = clSilver
             ParentBackground = False
             TabOrder = 1
-            object BtnPnelMenuFinanExpandir: TSpeedButton
+            object btnPnelMenuFinanExpandir: TSpeedButton
               Tag = 2
               Left = 0
               Top = 0
@@ -2397,14 +2402,14 @@ object PageMain: TPageMain
               Caption = 'Financiero'
               ImageIndex = 17
               Flat = True
-              OnClick = BtnPnelMenuFinanExpandirClick
+              OnClick = btnPnelMenuFinanExpandirClick
               ExplicitLeft = -6
               ExplicitTop = -5
               ExplicitWidth = 185
             end
           end
         end
-        object PnlMenuLateralRegistro: TPanel
+        object pnlMenuLateralRegistro: TPanel
           Tag = 1
           Left = 0
           Top = 1
@@ -2415,7 +2420,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 8
-          object BtnPnelMenuRegPaciente: TSpeedButton
+          object btnPnelMenuRegPaciente: TSpeedButton
             Left = 0
             Top = 136
             Width = 150
@@ -2430,7 +2435,7 @@ object PageMain: TPageMain
             ExplicitTop = 119
             ExplicitWidth = 183
           end
-          object BtnPnelMenuRegSeguro: TSpeedButton
+          object btnPnelMenuRegSeguro: TSpeedButton
             Left = 0
             Top = 271
             Width = 150
@@ -2444,7 +2449,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuRegFuncionario: TSpeedButton
+          object btnPnelMenuRegFuncionario: TSpeedButton
             Left = 0
             Top = 316
             Width = 150
@@ -2458,7 +2463,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuRegDireccion: TSpeedButton
+          object btnPnelMenuRegDireccion: TSpeedButton
             Left = 0
             Top = 361
             Width = 150
@@ -2467,11 +2472,11 @@ object PageMain: TPageMain
             Caption = 'Direccion'
             ImageIndex = 8
             Flat = True
-            OnClick = BtnPnelMenuRegDireccionClick
+            OnClick = btnPnelMenuRegDireccionClick
             ExplicitTop = 355
             ExplicitWidth = 185
           end
-          object BtnPnelMenuRegProducto: TSpeedButton
+          object btnPnelMenuRegProducto: TSpeedButton
             Left = 0
             Top = 406
             Width = 150
@@ -2480,12 +2485,12 @@ object PageMain: TPageMain
             Caption = 'Producto'
             ImageIndex = 23
             Flat = True
-            OnClick = BtnPnelMenuRegProductoClick
+            OnClick = btnPnelMenuRegProductoClick
             ExplicitLeft = -4
             ExplicitTop = 417
             ExplicitWidth = 183
           end
-          object BtnPnelMenuRegUsuario: TSpeedButton
+          object btnPnelMenuRegUsuario: TSpeedButton
             Left = 0
             Top = 451
             Width = 150
@@ -2494,10 +2499,11 @@ object PageMain: TPageMain
             Caption = 'Usuario'
             ImageIndex = 31
             Flat = True
+            OnClick = btnPnelMenuRegUsuarioClick
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuRegAgenda: TSpeedButton
+          object btnPnelMenuRegAgenda: TSpeedButton
             Left = 0
             Top = 181
             Width = 150
@@ -2512,7 +2518,7 @@ object PageMain: TPageMain
             ExplicitTop = 120
             ExplicitWidth = 183
           end
-          object BtnPnelMenuRegEmpresa: TSpeedButton
+          object btnPnelMenuRegEmpresa: TSpeedButton
             Left = 0
             Top = 46
             Width = 150
@@ -2523,10 +2529,11 @@ object PageMain: TPageMain
             ImageIndex = 10
             Flat = True
             ParentBiDiMode = False
+            OnClick = btnPnelMenuRegEmpresaClick
             ExplicitTop = 51
             ExplicitWidth = 185
           end
-          object BtnPnelMenuRegMedico: TSpeedButton
+          object btnPnelMenuRegMedico: TSpeedButton
             Left = 0
             Top = 91
             Width = 150
@@ -2540,7 +2547,7 @@ object PageMain: TPageMain
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
-          object BtnPnelMenuRegProveedor: TSpeedButton
+          object btnPnelMenuRegProveedor: TSpeedButton
             Left = 0
             Top = 226
             Width = 150
@@ -2555,7 +2562,7 @@ object PageMain: TPageMain
             ExplicitTop = 136
             ExplicitWidth = 183
           end
-          object PnlMenLatRegDiv01: TPanel
+          object pnlMenLatRegDiv01: TPanel
             Left = 0
             Top = 45
             Width = 150
@@ -2566,7 +2573,7 @@ object PageMain: TPageMain
             ParentBackground = False
             TabOrder = 0
           end
-          object PnlMenLatRegBtn01: TPanel
+          object pnlMenLatRegBtn01: TPanel
             Tag = 101
             Left = 0
             Top = 0
@@ -2578,7 +2585,7 @@ object PageMain: TPageMain
             Color = clSilver
             ParentBackground = False
             TabOrder = 1
-            object BtnPnelMenuRegExpandir: TSpeedButton
+            object btnPnelMenuRegExpandir: TSpeedButton
               Tag = 1
               Left = 0
               Top = 0
@@ -2588,12 +2595,12 @@ object PageMain: TPageMain
               Caption = 'Registro'
               ImageIndex = 25
               Flat = True
-              OnClick = BtnPnelMenuRegExpandirClick
+              OnClick = btnPnelMenuRegExpandirClick
               ExplicitWidth = 185
             end
           end
         end
-        object PnlMenuLateralSalir: TPanel
+        object pnlMenuLateralSalir: TPanel
           Tag = 5
           Left = 0
           Top = 527
@@ -2604,8 +2611,7 @@ object PageMain: TPageMain
           Color = clSilver
           ParentBackground = False
           TabOrder = 9
-          ExplicitTop = 623
-          object BtnMenLatSalir: TSpeedButton
+          object btnMenLatSalir: TSpeedButton
             Tag = 5
             Left = 0
             Top = 0
@@ -2614,9 +2620,8 @@ object PageMain: TPageMain
             Align = alBottom
             Caption = 'Salir'
             Flat = True
-            ExplicitLeft = 1
-            ExplicitTop = 181
-            ExplicitWidth = 183
+            OnClick = btnMenLatSalirClick
+            ExplicitLeft = 6
           end
         end
       end

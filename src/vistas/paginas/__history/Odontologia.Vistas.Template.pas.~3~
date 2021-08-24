@@ -20,8 +20,7 @@ uses
   Vcl.DBGrids,
   Vcl.WinXPanels,
   Vcl.ExtCtrls,
-  Vcl.ImgList,
-  Odontologia.Vista.Estilos;
+  Vcl.ImgList;
 
 type
   TPagTemplate = class(TForm)
@@ -33,17 +32,17 @@ type
     DBGrid1: TDBGrid;
 
     PnlPrincipal: TPanel;
-    PnlCentralGrid: TPanel;
-    PnlCentralGridLinea: TPanel;
-    PnlPieBotonAccion: TPanel;
+    PnlGrid: TPanel;
+    PnlGridLinea: TPanel;
+    PnlBotonAccion: TPanel;
     PnlPagina: TPanel;
     PnlSubTitulo: TPanel;
     PnlCabecera: TPanel;
-    PnlCabeceraBusqueda: TPanel;
-    PnlCentralFormulario: TPanel;
-    PnlPieBotonEdicion: TPanel;
-    PnlCabeceraBusquedaLinea: TPanel;
-    PnlCabeceraTitulo: TPanel;
+    PnlBusqueda: TPanel;
+    PnlFormulario: TPanel;
+    PnlBotonEdicion: TPanel;
+    PnlBusquedaLinea: TPanel;
+    PnlTitulo: TPanel;
 
     btnActualizar: TSpeedButton;
     btnNuevo: TSpeedButton;
@@ -79,17 +78,13 @@ implementation
 
 procedure TPagTemplate.btnCerrarClick(Sender: TObject);
 begin
-  if MessageDlg('Estï¿½ seguro de cerrar la ventana?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
+  if MessageDlg('Está seguro de cerrar la ventana?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
     close;
 end;
 
 procedure TPagTemplate.FormCreate(Sender: TObject);
 begin
   CardPanel1.ActiveCard := Card1;
-
-  PnlPrincipal.Color    := COLOR_BACKGROUND;
-  PnlGrid.Color         := COLOR_BACKGROUND;
-  PnlBotonAccion.color  := color_background;
 end;
 
 end.

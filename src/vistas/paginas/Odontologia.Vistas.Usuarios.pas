@@ -247,7 +247,6 @@ procedure TPagUsuario.prc_estado_inicial;
 begin
   ImgMod                := false;
   imagenURL := path + 'fotos\noimage.jpg';
-  ShowMessage('la ruta de la imagen es ' + imagenURL);
   if FileExists(imagenURL) then
     begin
       Image1.Picture.LoadFromFile(imagenURL);
