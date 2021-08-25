@@ -216,12 +216,6 @@ inherited PagEmpresa: TPagEmpresa
             OnClick = btnGuardarClick
           end
         end
-        inherited PnlSubTitulo: TPanel
-          inherited lblTitulo2: TLabel
-            Width = 1088
-            Height = 73
-          end
-        end
       end
     end
   end

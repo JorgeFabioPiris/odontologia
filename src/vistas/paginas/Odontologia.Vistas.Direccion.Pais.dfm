@@ -17,25 +17,11 @@ inherited PagPais: TPagPais
           inherited btnNuevo: TSpeedButton
             OnClick = btnNuevoClick
           end
-          inherited PnlPieBotonPagina: TPanel
-            inherited lblPagina: TLabel
-              Height = 73
-            end
-          end
         end
         inherited PnlCabecera: TPanel
           inherited PnlCabeceraBusqueda: TPanel
-            inherited lblSearch: TLabel
-              Width = 433
-            end
             inherited edtSearch: TEdit
               OnKeyDown = edtSearchKeyDown
-            end
-          end
-          inherited PnlCabeceraTitulo: TPanel
-            inherited lblTitulo: TLabel
-              Width = 645
-              Height = 43
             end
           end
         end
@@ -85,12 +71,6 @@ inherited PagPais: TPagPais
           end
           inherited btnGuardar: TSpeedButton
             OnClick = btnGuardarClick
-          end
-        end
-        inherited PnlSubTitulo: TPanel
-          inherited lblTitulo2: TLabel
-            Width = 1088
-            Height = 73
           end
         end
       end

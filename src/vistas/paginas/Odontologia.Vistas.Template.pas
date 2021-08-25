@@ -77,6 +77,8 @@ implementation
 
 {$R *.dfm}
 
+uses Odontologia.Vistas.Main;
+
 procedure TPagTemplate.btnCerrarClick(Sender: TObject);
 begin
   if MessageDlg('Está seguro de cerrar la ventana?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
@@ -87,25 +89,25 @@ procedure TPagTemplate.FormCreate(Sender: TObject);
 begin
   CardPanel1.ActiveCard := Card1;
 
-  PnlPrincipal.Color              := COLOR_BACKGROUND;
-  PnlCabeceraBusqueda.color       := COLOR_BACKGROUND;
-  PnlCabeceraTitulo.Color         := COLOR_BACKGROUND;
-  PnlCabeceraBusquedaLinea.Color  := COLOR_BACKGROUND_DESTAK;
-  PnlCentralGridLinea.Color       := COLOR_BACKGROUND_DESTAK;
-  PnlCentralGrid.Color            := COLOR_BACKGROUND;
-  PnlPieBotonAccion.color         := COLOR_BACKGROUND;
-  PnlPieBotonPagina.color         := COLOR_BACKGROUND;
-  PnlCentralFormulario.color      := COLOR_BACKGROUND;
-  PnlPieBotonEdicion.color        := COLOR_BACKGROUND;
-  PnlSubTitulo.Color              := COLOR_BACKGROUND;
+  PnlPrincipal.Color := COLOR_BACKGROUND;
+  PnlCabeceraBusqueda.Color := COLOR_BACKGROUND;
+  PnlCabeceraTitulo.Color := COLOR_BACKGROUND;
+  PnlCabeceraBusquedaLinea.Color := COLOR_BACKGROUND_DESTAK;
+  PnlCentralGridLinea.Color := COLOR_BACKGROUND_DESTAK;
+  PnlCentralGrid.Color := COLOR_BACKGROUND;
+  PnlPieBotonAccion.Color := COLOR_BACKGROUND;
+  PnlPieBotonPagina.Color := COLOR_BACKGROUND;
+  PnlCentralFormulario.Color := COLOR_BACKGROUND;
+  PnlPieBotonEdicion.Color := COLOR_BACKGROUND;
+  PnlSubTitulo.Color := COLOR_BACKGROUND;
 
-  lblTitulo.Font.Color      := FONT_COLOR4;
-  lblTitulo.Font.Size       := FONT_H5;
-  lblTitulo2.font.Color     := FONT_COLOR2;
-  lblTitulo2.Font.Size      := FONT_H5;
+  lblTitulo.Font.Color := FONT_COLOR4;
+  lblTitulo.Font.Size := FONT_H5;
+  lblTitulo2.Font.Color := FONT_COLOR2;
+  lblTitulo2.Font.Size := FONT_H5;
 
-  Self.font.Color           := FONT_COLOR;
-  Self.font.Size            := FONT_H7;
+  Self.Font.Color := FONT_COLOR;
+  Self.Font.Size := FONT_H7;
 
 end;
 

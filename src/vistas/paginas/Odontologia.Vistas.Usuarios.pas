@@ -83,13 +83,14 @@ var
 implementation
 
 uses
-  System.SysUtils;
+  System.SysUtils, Odontologia.Vistas.Main;
 
 {$R *.dfm}
 
 procedure TPagUsuario.btnActualizarClick(Sender: TObject);
 begin
   inherited;
+  edicion := true;
   FUsuario.Buscar;
   prc_estado_inicial;
 end;
@@ -169,6 +170,7 @@ end;
 procedure TPagUsuario.btnNuevoClick(Sender: TObject);
 begin
   inherited;
+  edicion               := true;
   CardPanel1.ActiveCard := Card2;
   lblTitulo2.Caption    := 'Agregar nuevo registro';
   edtCodigo.Enabled     := False;
@@ -187,7 +189,8 @@ end;
 procedure TPagUsuario.DBGrid1DblClick(Sender: TObject);
 begin
   inherited;
-  Insercion := False;
+  Insercion               := False;
+  edicion                 := true;
   CardPanel1.ActiveCard   := Card2;
   lblTitulo2.Caption      := 'Modificar registro';
   edtCodigo.Text          := DataSource1.DataSet.FieldByName('CODIGO').AsString;
@@ -245,6 +248,7 @@ end;
 
 procedure TPagUsuario.prc_estado_inicial;
 begin
+  edicion               := false;
   ImgMod                := false;
   imagenURL := path + 'fotos\noimage.jpg';
   if FileExists(imagenURL) then

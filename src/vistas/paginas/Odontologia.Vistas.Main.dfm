@@ -1086,9 +1086,9 @@ object PageMain: TPageMain
             TabOrder = 0
             object LblUserLogin: TLabel
               Left = 0
-              Top = 0
+              Top = 13
               Width = 115
-              Height = 49
+              Height = 36
               Align = alClient
               Alignment = taCenter
               Caption = 'User Login'
@@ -1098,6 +1098,7 @@ object PageMain: TPageMain
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              ExplicitTop = 0
               ExplicitWidth = 90
               ExplicitHeight = 25
             end
@@ -1116,6 +1117,16 @@ object PageMain: TPageMain
               Font.Style = []
               ParentFont = False
               ExplicitWidth = 94
+            end
+            object LblUserLoginTitle: TLabel
+              Left = 0
+              Top = 0
+              Width = 115
+              Height = 13
+              Align = alTop
+              Alignment = taCenter
+              Caption = 'Usuario:'
+              ExplicitWidth = 40
             end
           end
         end
@@ -2502,8 +2513,8 @@ object PageMain: TPageMain
             ImageIndex = 31
             Flat = True
             OnClick = btnPnelMenuRegUsuarioClick
-            ExplicitLeft = 1
-            ExplicitWidth = 183
+            ExplicitLeft = -6
+            ExplicitTop = 450
           end
           object btnPnelMenuRegAgenda: TSpeedButton
             Left = 0

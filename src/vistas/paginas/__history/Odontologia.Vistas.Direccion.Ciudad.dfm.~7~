@@ -1,9 +1,10 @@
-inherited PagTemplate1: TPagTemplate1
-  Caption = 'PagTemplate1'
+inherited PagCiudad: TPagCiudad
+  Caption = 'PagCiudad'
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
+      ActiveCard = Card2
       inherited Card1: TCard
         inherited PnlGrid: TPanel
           inherited DBGrid1: TDBGrid
@@ -13,6 +14,8 @@ inherited PagTemplate1: TPagTemplate1
         inherited PnlBotonAccion: TPanel
           inherited btnActualizar: TSpeedButton
             OnClick = btnActualizarClick
+            ExplicitLeft = 149
+            ExplicitTop = 6
           end
           inherited btnNuevo: TSpeedButton
             OnClick = btnNuevoClick
@@ -70,6 +73,7 @@ inherited PagTemplate1: TPagTemplate1
             Height = 21
             KeyField = 'CODIGO'
             ListField = 'NOMBRE'
+            ListSource = DataSource2
             TabOrder = 0
           end
           object edtCodigo: TEdit
@@ -99,6 +103,8 @@ inherited PagTemplate1: TPagTemplate1
           end
           inherited btnGuardar: TSpeedButton
             OnClick = btnGuardarClick
+            ExplicitLeft = 808
+            ExplicitTop = 6
           end
         end
         inherited PnlSubTitulo: TPanel
@@ -112,5 +118,9 @@ inherited PagTemplate1: TPagTemplate1
   end
   inherited DataSource1: TDataSource
     OnDataChange = DataSource1DataChange
+  end
+  object DataSource2: TDataSource
+    Left = 1047
+    Top = 153
   end
 end

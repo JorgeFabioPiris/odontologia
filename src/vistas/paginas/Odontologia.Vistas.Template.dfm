@@ -33,7 +33,7 @@ object PagTemplate: TPagTemplate
       Width = 1118
       Height = 668
       Align = alClient
-      ActiveCard = Card2
+      ActiveCard = Card1
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 0
