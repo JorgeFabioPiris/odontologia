@@ -46,7 +46,7 @@ var
 implementation
 
 uses
-  Odontologia.Vistas.Direccion.Ciudad, Odontologia.Vista.Estilos;
+  Odontologia.Vistas.Direccion.Ciudad;
 
 {$R *.dfm}
 
@@ -72,9 +72,6 @@ end;
 procedure TPagDireccion.FormCreate(Sender: TObject);
 begin
   CardPanel1.ActiveCard := Card1;
-  Self.Font.Name := FONT_NAME;
-  self.Font.Size := FONT_H7;
-  self.Font.Color := FONT_COLOR;
 end;
 
 procedure TPagDireccion.pcr_abrir_sub_ventana(TPage : TForm);

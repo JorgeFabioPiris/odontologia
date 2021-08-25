@@ -137,7 +137,7 @@ object PagTemplate: TPagTemplate
             OnClick = btnCerrarClick
             ExplicitLeft = 485
           end
-          object PnlPagina: TPanel
+          object PnlPieBotonPagina: TPanel
             Left = 886
             Top = 0
             Width = 217

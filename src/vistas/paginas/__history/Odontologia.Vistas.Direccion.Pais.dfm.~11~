@@ -5,43 +5,29 @@ inherited PagPais: TPagPais
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
       inherited Card1: TCard
-        inherited PnlCentralGrid: TPanel
+        inherited PnlGrid: TPanel
           inherited DBGrid1: TDBGrid
             OnDblClick = DBGrid1DblClick
           end
         end
-        inherited PnlPieBotonAccion: TPanel
+        inherited PnlBotonAccion: TPanel
           inherited btnActualizar: TSpeedButton
             OnClick = btnActualizarClick
           end
           inherited btnNuevo: TSpeedButton
             OnClick = btnNuevoClick
           end
-          inherited PnlPieBotonPagina: TPanel
-            inherited lblPagina: TLabel
-              Height = 73
-            end
-          end
         end
         inherited PnlCabecera: TPanel
-          inherited PnlCabeceraBusqueda: TPanel
-            inherited lblSearch: TLabel
-              Width = 433
-            end
+          inherited PnlBusqueda: TPanel
             inherited edtSearch: TEdit
               OnKeyDown = edtSearchKeyDown
-            end
-          end
-          inherited PnlCabeceraTitulo: TPanel
-            inherited lblTitulo: TLabel
-              Width = 645
-              Height = 43
             end
           end
         end
       end
       inherited Card2: TCard
-        inherited PnlCentralFormulario: TPanel
+        inherited PnlFormulario: TPanel
           object Label1: TLabel
             Left = 15
             Top = 15
@@ -74,7 +60,7 @@ inherited PagPais: TPagPais
             TabOrder = 1
           end
         end
-        inherited PnlPieBotonEdicion: TPanel
+        inherited PnlBotonEdicion: TPanel
           inherited btnBorrar: TSpeedButton
             OnClick = btnBorrarClick
           end
@@ -85,12 +71,6 @@ inherited PagPais: TPagPais
           end
           inherited btnGuardar: TSpeedButton
             OnClick = btnGuardarClick
-          end
-        end
-        inherited PnlSubTitulo: TPanel
-          inherited lblTitulo2: TLabel
-            Width = 1088
-            Height = 73
           end
         end
       end
