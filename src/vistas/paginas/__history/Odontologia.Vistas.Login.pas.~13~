@@ -59,26 +59,10 @@ procedure TPagLogin.btnIngresarClick(Sender: TObject);
 var
   PagMain: TPageMain;
 begin
-
-  FUsuario.Buscar(edtLogin.Text, edtPassword.Text, DataSource2.DataSet.FieldByName('CODIGO').AsInteger);
-
-  if FUsuario.Entidad.USU_LOGIN = '' then
-  begin
-     ShowMessage('El usuario está inactivo');
-  end;
-  {
-  if FUsuario.Entidad.USU_COD_ESTADO = 2 then
-  begin
-    ShowMessage('El usuario está inactivo');
-    edtLogin.SetFocus;
-  end else
-  begin
-    log                     := 1;
-    vGlb_usuario_nombre     := 'ADMIN';
-    vGlb_avatar_usuario_url := 'D:\SGOdontologia\fotos\avatar_ADMIN.jpg';
-    close;
-  end;
-  }
+  log                     := 1;
+  vGlb_usuario_nombre     := 'ADMIN';
+  vGlb_avatar_usuario_url := 'D:\SGOdontologia\fotos\avatar_ADMIN.jpg';
+  close;
 end;
 
 procedure TPagLogin.btnSalirClick(Sender: TObject);

@@ -28,7 +28,7 @@ type
     class function New    : iControllerUsuario;
     function DataSource (aDataSource : TDataSource) : iControllerUsuario;
     function Buscar (aLogin : String)               : iControllerUsuario; overload;
-    function Buscar (aLogin, aPassword : String ; aEmpresa : Integer)  : iControllerUsuario; overload;
+    function Buscar (aLogin, aPassword : String ; aEmpresa, aEstado : Integer)  : iControllerUsuario; overload;
     function Buscar       : iControllerUsuario; overload;
     function Insertar     : iControllerUsuario;
     function Modificar    : iControllerUsuario;
@@ -97,7 +97,8 @@ begin
   FDataSource.dataset.FieldByName('LOGIN').DisplayWidth :=50;
 end;
 
-function TControllerUsuario.Buscar(aLogin, aPassword: String; aEmpresa: Integer): iControllerUsuario;
+function TControllerUsuario.Buscar(aLogin, aPassword: String; aEmpresa,
+  aEstado: Integer): iControllerUsuario;
 begin
   Result := Self;
   FDataSource.dataset.DisableControls;
@@ -111,8 +112,10 @@ begin
     .Fields('DUSUARIO.USU_COD_EMPRESA AS CODEMPRESA,')
     .Fields('DUSUARIO.USU_COD_ESTADO AS CODESTADO')
     .Where('DUSUARIO.USU_LOGIN = '  + QuotedStr(aLogin)
-          + ' AND DUSUARIO.USU_CLAVE = ' + QuotedStr(aPassword)
-          + ' AND DUSUARIO.USU_COD_EMPRESA = ' + intToStr(aEmpresa))
+                                    + ' AND DUSUARIO.USU_CLAVE = ' + QuotedStr(aPassword)
+                                    + ' AND DUSUARIO.USU_COD_EMPRESA = ' + intToStr(aEmpresa)
+                                    + ' AND DUSUARIO.USU_COD_ESTADO = ' + intToStr(aEstado))
+  .OrderBy('LOGIN')
   .&End.Find;
 end;
 
