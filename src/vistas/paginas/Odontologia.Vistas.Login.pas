@@ -60,25 +60,37 @@ var
   PagMain: TPageMain;
 begin
 
-  FUsuario.Buscar(edtLogin.Text, edtPassword.Text, DataSource2.DataSet.FieldByName('CODIGO').AsInteger);
-
-  if FUsuario.Entidad.USU_LOGIN = '' then
+  if edtLogin.Text = '' then
   begin
-     ShowMessage('El usuario est· inactivo');
-  end;
-  {
-  if FUsuario.Entidad.USU_COD_ESTADO = 2 then
-  begin
-    ShowMessage('El usuario est· inactivo');
+    ShowMessage('Debe ingresar un usuario');
     edtLogin.SetFocus;
   end else
+  if edtPassword.Text = '' then
   begin
-    log                     := 1;
-    vGlb_usuario_nombre     := 'ADMIN';
-    vGlb_avatar_usuario_url := 'D:\SGOdontologia\fotos\avatar_ADMIN.jpg';
-    close;
+    ShowMessage('Debe ingresar una clave');
+    edtPassword.SetFocus;
+  end else
+  begin
+    FUsuario.Buscar(edtLogin.Text, edtPassword.Text, DataSource2.DataSet.FieldByName('CODIGO').AsInteger);
+    if DataSource1.DataSet.FieldByName('USU_LOGIN').AsString = '' then
+    begin
+       ShowMessage('No se encontro el usuario, verifique sus credenciales');
+    end else
+    begin
+      if DataSource1.DataSet.FieldByName('USU_COD_ESTADO').AsInteger = 2 then
+      begin
+        ShowMessage('El usuario est√° inactivo');
+        edtLogin.SetFocus;
+      end else
+      begin
+        log                     := 1;
+        vGlb_usuario_nombre     := DataSource1.DataSet.FieldByName('USU_LOGIN').AsString;
+        vGlb_avatar_usuario_url := DataSource1.DataSet.FieldByName('USU_FOTO').AsString;
+        close;
+      end;
+    end;
+
   end;
-  }
 end;
 
 procedure TPagLogin.btnSalirClick(Sender: TObject);
@@ -95,6 +107,8 @@ begin
   FEmpresa.buscar;
   cmbEmpresa.KeyValue := 1;
   Self.Font.Name      := FONT_NAME;
+  self.Font.Size      := FONT_H6;
+  Self.Font.Color     := FONT_COLOR;
 end;
 
 end.

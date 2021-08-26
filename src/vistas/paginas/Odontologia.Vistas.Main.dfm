@@ -945,8 +945,8 @@ object PageMain: TPageMain
           object LblNombre1: TLabel
             Left = 0
             Top = 0
-            Width = 224
-            Height = 49
+            Width = 178
+            Height = 57
             Align = alClient
             Alignment = taCenter
             Caption = 'System'
@@ -957,13 +957,11 @@ object PageMain: TPageMain
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
-            ExplicitWidth = 178
-            ExplicitHeight = 57
           end
           object LblNombre2: TLabel
             Left = 0
             Top = 49
-            Width = 224
+            Width = 140
             Height = 21
             Align = alBottom
             Alignment = taCenter
@@ -974,7 +972,6 @@ object PageMain: TPageMain
             Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
-            ExplicitWidth = 140
           end
         end
         object pnlCabeceraTituloLogin: TPanel
@@ -1087,8 +1084,8 @@ object PageMain: TPageMain
             object LblUserLogin: TLabel
               Left = 0
               Top = 13
-              Width = 115
-              Height = 36
+              Width = 90
+              Height = 25
               Align = alClient
               Alignment = taCenter
               Caption = 'User Login'
@@ -1098,13 +1095,11 @@ object PageMain: TPageMain
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
-              ExplicitWidth = 90
-              ExplicitHeight = 25
             end
             object LblCerrarSesion: TLabel
               Left = 0
               Top = 49
-              Width = 115
+              Width = 94
               Height = 21
               Align = alBottom
               Alignment = taCenter
@@ -1115,17 +1110,15 @@ object PageMain: TPageMain
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
-              ExplicitWidth = 94
             end
             object Label1: TLabel
               Left = 0
               Top = 0
-              Width = 115
+              Width = 40
               Height = 13
               Align = alTop
               Alignment = taCenter
               Caption = 'Usuario:'
-              ExplicitWidth = 40
             end
           end
         end

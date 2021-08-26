@@ -4,36 +4,29 @@ inherited PagUsuario: TPagUsuario
   TextHeight = 13
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
-      ActiveCard = Card2
       inherited Card1: TCard
-        inherited PnlGrid: TPanel
+        inherited PnlCentralGrid: TPanel
           inherited DBGrid1: TDBGrid
             OnDblClick = DBGrid1DblClick
           end
         end
-        inherited PnlBotonAccion: TPanel
-          inherited btnActualizar: TSpeedButton
-            OnClick = btnActualizarClick
-          end
-          inherited btnNuevo: TSpeedButton
-            OnClick = btnNuevoClick
-          end
-          inherited PnlPagina: TPanel
+        inherited PnlPieBotonAccion: TPanel
+          inherited PnlPieBotonPagina: TPanel
             inherited lblPagina: TLabel
               Height = 73
             end
           end
         end
         inherited PnlCabecera: TPanel
-          inherited PnlBusqueda: TPanel
+          inherited PnlCabeceraBusqueda: TPanel
             inherited lblSearch: TLabel
               Width = 433
             end
             inherited edtSearch: TEdit
-              OnKeyPress = edtSearchKeyPress
+              OnKeyUp = edtSearchKeyUp
             end
           end
-          inherited PnlTitulo: TPanel
+          inherited PnlCabeceraTitulo: TPanel
             inherited lblTitulo: TLabel
               Width = 645
               Height = 43
@@ -42,7 +35,7 @@ inherited PagUsuario: TPagUsuario
         end
       end
       inherited Card2: TCard
-        inherited PnlFormulario: TPanel
+        inherited PnlCentralFormulario: TPanel
           object Label1: TLabel
             Left = 16
             Top = 15
@@ -52,35 +45,35 @@ inherited PagUsuario: TPagUsuario
           end
           object Label11: TLabel
             Left = 14
-            Top = 173
+            Top = 205
             Width = 28
             Height = 13
             Caption = 'NIVEL'
           end
           object Label2: TLabel
-            Left = 15
-            Top = 117
+            Left = 13
+            Top = 141
             Width = 40
             Height = 13
             Caption = 'ESTADO'
           end
           object Label3: TLabel
-            Left = 16
-            Top = 288
+            Left = 14
+            Top = 328
             Width = 46
             Height = 13
             Caption = 'EMPRESA'
           end
           object Label5: TLabel
             Left = 14
-            Top = 233
+            Top = 265
             Width = 31
             Height = 13
             Caption = 'CLAVE'
           end
           object Label8: TLabel
             Left = 15
-            Top = 62
+            Top = 78
             Width = 31
             Height = 13
             Caption = 'LOGIN'
@@ -91,17 +84,18 @@ inherited PagUsuario: TPagUsuario
             Width = 169
             Height = 52
             Caption = 'Guardar Imagen'
+            Enabled = False
             OnClick = btnGuardarImagenClick
           end
           object cmbEmpresa: TDBLookupComboBox
             Left = 15
-            Top = 307
+            Top = 347
             Width = 201
             Height = 21
             KeyField = 'CODIGO'
             ListField = 'FANTASIA'
             ListSource = DataSource2
-            TabOrder = 5
+            TabOrder = 4
           end
           object edtCodigo: TEdit
             Left = 15
@@ -113,41 +107,31 @@ inherited PagUsuario: TPagUsuario
           end
           object edtClave: TEdit
             Left = 14
-            Top = 252
+            Top = 284
             Width = 450
             Height = 30
             AutoSize = False
             CharCase = ecUpperCase
-            TabOrder = 4
+            PasswordChar = '*'
+            TabOrder = 3
           end
           object edtNivel: TEdit
             Left = 14
-            Top = 192
+            Top = 224
             Width = 450
             Height = 30
             AutoSize = False
             CharCase = ecUpperCase
-            TabOrder = 3
+            TabOrder = 2
           end
           object edtLogin: TEdit
             Left = 15
-            Top = 81
+            Top = 97
             Width = 202
             Height = 30
             AutoSize = False
             CharCase = ecUpperCase
             TabOrder = 1
-          end
-          object cmbEstado: TComboBox
-            Left = 14
-            Top = 136
-            Width = 267
-            Height = 21
-            TabOrder = 2
-            Text = 'cmbEstado'
-            Items.Strings = (
-              'Activo'
-              'Inactivo')
           end
           object Panel1: TPanel
             Left = 480
@@ -156,7 +140,7 @@ inherited PagUsuario: TPagUsuario
             Height = 200
             BevelKind = bkFlat
             BevelOuter = bvNone
-            TabOrder = 6
+            TabOrder = 5
             object Image1: TImage
               AlignWithMargins = True
               Left = 3
@@ -305,16 +289,20 @@ inherited PagUsuario: TPagUsuario
               ExplicitHeight = 203
             end
           end
+          object cmbEstado: TDBLookupComboBox
+            Left = 14
+            Top = 160
+            Width = 202
+            Height = 21
+            KeyField = 'SIT_CODIGO'
+            ListField = 'SIT_SITUACION'
+            ListSource = DataSource3
+            TabOrder = 6
+          end
         end
-        inherited PnlBotonEdicion: TPanel
+        inherited PnlPieBotonEdicion: TPanel
           inherited btnBorrar: TSpeedButton
             OnClick = btnBorrarClick
-          end
-          inherited btnCancelar: TSpeedButton
-            OnClick = btnCancelarClick
-          end
-          inherited btnGuardar: TSpeedButton
-            OnClick = btnGuardarClick
           end
         end
         inherited PnlSubTitulo: TPanel
@@ -328,13 +316,23 @@ inherited PagUsuario: TPagUsuario
   end
   inherited DataSource1: TDataSource
     OnDataChange = DataSource1DataChange
+    Left = 1055
+    Top = 17
+  end
+  inherited ImageList1: TImageList
+    Left = 1055
+    Top = 337
   end
   object DataSource2: TDataSource
-    Left = 1071
-    Top = 129
+    Left = 1055
+    Top = 89
   end
   object OpenPictureDialog1: TOpenPictureDialog
-    Left = 806
-    Top = 97
+    Left = 1054
+    Top = 257
+  end
+  object DataSource3: TDataSource
+    Left = 1062
+    Top = 161
   end
 end

@@ -21,8 +21,7 @@ uses
   Vcl.WinXPanels,
   Vcl.ExtCtrls,
   Vcl.ImgList,
-  Odontologia.Vista.Estilos,
-  Odontologia.Vistas.Main;
+  Odontologia.Vista.Estilos;
 
 type
   TPagTemplate = class(TForm)
@@ -65,6 +64,10 @@ type
 
     procedure FormCreate(Sender: TObject);
     procedure btnCerrarClick(Sender: TObject);
+    procedure btnNuevoClick(Sender: TObject);
+    procedure btnActualizarClick(Sender: TObject);
+    procedure btnGuardarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,44 +79,60 @@ var
 
 implementation
 
+uses
+  Odontologia.Vistas.Main;
+
 {$R *.dfm}
 
-uses Odontologia.Vistas.Main;
+procedure TPagTemplate.btnActualizarClick(Sender: TObject);
+begin
+  modoEdicion := False;
+end;
+
+procedure TPagTemplate.btnCancelarClick(Sender: TObject);
+begin
+  modoEdicion := False;
+end;
 
 procedure TPagTemplate.btnCerrarClick(Sender: TObject);
 begin
   if MessageDlg('Está seguro de cerrar la ventana?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
     close;
+end;
 
-  pagactiva := TpageHome;
-  pagactiva.Parent := pnlCentral;
-  pagactiva.Show;
+procedure TPagTemplate.btnGuardarClick(Sender: TObject);
+begin
+  modoEdicion := False;
+end;
 
+procedure TPagTemplate.btnNuevoClick(Sender: TObject);
+begin
+  modoEdicion := True;
 end;
 
 procedure TPagTemplate.FormCreate(Sender: TObject);
 begin
   CardPanel1.ActiveCard := Card1;
 
-  PnlPrincipal.Color := COLOR_BACKGROUND;
-  PnlCabeceraBusqueda.Color := COLOR_BACKGROUND;
-  PnlCabeceraTitulo.Color := COLOR_BACKGROUND;
-  PnlCabeceraBusquedaLinea.Color := COLOR_BACKGROUND_DESTAK;
-  PnlCentralGridLinea.Color := COLOR_BACKGROUND_DESTAK;
-  PnlCentralGrid.Color := COLOR_BACKGROUND;
-  PnlPieBotonAccion.Color := COLOR_BACKGROUND;
-  PnlPieBotonPagina.Color := COLOR_BACKGROUND;
-  PnlCentralFormulario.Color := COLOR_BACKGROUND;
-  PnlPieBotonEdicion.Color := COLOR_BACKGROUND;
-  PnlSubTitulo.Color := COLOR_BACKGROUND;
+  PnlPrincipal.Color              := COLOR_BACKGROUND;
+  PnlCabeceraBusqueda.color       := COLOR_BACKGROUND;
+  PnlCabeceraTitulo.Color         := COLOR_BACKGROUND;
+  PnlCabeceraBusquedaLinea.Color  := COLOR_BACKGROUND_DESTAK;
+  PnlCentralGridLinea.Color       := COLOR_BACKGROUND_DESTAK;
+  PnlCentralGrid.Color            := COLOR_BACKGROUND;
+  PnlPieBotonAccion.color         := COLOR_BACKGROUND;
+  PnlPieBotonPagina.color         := COLOR_BACKGROUND;
+  PnlCentralFormulario.color      := COLOR_BACKGROUND;
+  PnlPieBotonEdicion.color        := COLOR_BACKGROUND;
+  PnlSubTitulo.Color              := COLOR_BACKGROUND;
 
-  lblTitulo.Font.Color := FONT_COLOR4;
-  lblTitulo.Font.Size := FONT_H5;
-  lblTitulo2.Font.Color := FONT_COLOR2;
-  lblTitulo2.Font.Size := FONT_H5;
+  lblTitulo.Font.Color            := FONT_COLOR4;
+  lblTitulo.Font.Size             := FONT_H5;
+  lblTitulo2.font.Color           := FONT_COLOR2;
+  lblTitulo2.Font.Size            := FONT_H5;
 
-  Self.Font.Color := FONT_COLOR;
-  Self.Font.Size := FONT_H7;
+  Self.font.Color                 := FONT_COLOR;
+  Self.font.Size                  := FONT_H7;
 
 end;
 

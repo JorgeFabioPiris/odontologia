@@ -18,11 +18,14 @@ uses
   Vcl.Buttons,
   Vcl.ExtCtrls,
   Vcl.Imaging.pngimage,
-  Odontologia.Vistas.Home,
+  Odontologia.Vistas.Empresa,
   Odontologia.Vistas.Direccion.Pais,
   Odontologia.Vistas.Direccion,
+  Odontologia.Vistas.Home,
   Odontologia.Vistas.Producto,
-  Odontologia.Vistas.Pedido;
+  Odontologia.Vistas.Pedido,
+  Odontologia.Vistas.Usuarios,
+  Odontologia.Vista.Estilos;
 
 type
   TPageMain = class(TForm)
@@ -36,7 +39,7 @@ type
     pnlMain: TPanel;
     pnlCentral: TPanel;
     pnlCabecera: TPanel;
-    pnlBotonera: TPanel;
+    pnlCabeceraBotonera: TPanel;
     pnlSombraBotoneraCaja: TPanel;
     pnlSombraBotoneraServicio: TPanel;
     pnlSombraBotoneraAgenda: TPanel;
@@ -45,7 +48,7 @@ type
     pnlSombraBotoneraSaldo: TPanel;
     pnlSombraBotoneraInicio: TPanel;
     pnlBotoneraResaltador: TPanel;
-    pnlTitulo: TPanel;
+    pnlCabeceraTitulo: TPanel;
     pnlMenuLateralMain: TPanel;
     pnlMenuLateralIco: TPanel;
     pnlIcoConfiguracion: TPanel;
@@ -108,9 +111,9 @@ type
     pnlMenLatRegDiv01: TPanel;
     pnlMenLatRegBtn01: TPanel;
     pnlMenuLateralSalir: TPanel;
-    pnlLogin: TPanel;
+    pnlCabeceraTituloLogin: TPanel;
     pnlLoginUserDetalle: TPanel;
-    pnlNombreEmpresa: TPanel;
+    pnlCabeceraTituloNombreEmpresa: TPanel;
     pnlMenuLateralRegistro: TPanel;
     btnOcultarPanelLateral: TSpeedButton;
     ptnPnlBotoneraCaja: TSpeedButton;
@@ -176,6 +179,7 @@ type
     btnICoRegProd: TSpeedButton;
     btnICoRegUsu: TSpeedButton;
     btnIcoSalir: TSpeedButton;
+    Label1: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure btnPnelMenuRegDireccionClick(Sender: TObject);
@@ -196,6 +200,8 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnMenLatSalirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnPnelMenuRegUsuarioClick(Sender: TObject);
+    procedure btnPnelMenuRegAgendaClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -206,16 +212,17 @@ type
 
   public
     { Public declarations }
-  end;
+   end;
 
 var
-  PageMain      : TPageMain;
-  PagHome       : TPagHome;
-  PagDireccion  : TPagDireccion;
-  PagProducto   : TPagProducto;
-  PagPedido     : TPagPedido;
-  nombre_comp   : String;
-  log           : Integer;
+  PageMain                : TPageMain;
+  PagNueva                : TForm;
+  PagActual               : TForm;
+  log                     : Integer;
+  nombre_comp             : String;
+  vGlb_usuario_usuario     : String;
+  vGlb_avatar_usuario_url : String;
+  modoEdicion             : Boolean;
 
 implementation
 
@@ -225,6 +232,8 @@ uses Odontologia.Vistas.Login;
 
 procedure TPageMain.btnMenLatInicioClick(Sender: TObject);
 begin
+  PagActual := TPagHome.Create(Self);
+  prc_abrir_ventana(Sender , PagActual);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraInicio);
 
@@ -248,16 +257,21 @@ begin
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
 end;
 
-procedure TPageMain.btnPnelMenuRegDireccionClick(Sender: TObject);
+pprocedure TPageMain.btnPnelMenuRegAgendaClick(Sender: TObject);
 begin
-  PagDireccion := TPagDireccion.Create(Self);
-  prc_abrir_ventana(Sender , PagDireccion);
+
+end;
+
+rocedure TPageMain.btnPnelMenuRegDireccionClick(Sender: TObject);
+begin
+  PagNueva := TPagDireccion.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
 end;
 
 procedure TPageMain.btnPnelMenuRegEmpresaClick(Sender: TObject);
 begin
-  PagPedido := TPagPedido.Create(Self);
-  prc_abrir_ventana(Sender , PagPedido);
+  PagNueva := TPagEmpresa.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
 end;
 
 procedure TPageMain.btnPnelMenuRegExpandirClick(Sender: TObject);
@@ -270,8 +284,14 @@ end;
 
 procedure TPageMain.btnPnelMenuRegProductoClick(Sender: TObject);
 begin
-  Pagproducto := TPagProducto.Create(Self);
-  prc_abrir_ventana(Sender , PagProducto);
+  PagNueva := TPagProducto.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
+end;
+
+procedure TPageMain.btnPnelMenuRegUsuarioClick(Sender: TObject);
+begin
+  PagNueva := TPagUsuario.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
 end;
 
 procedure TPageMain.btnPnlBotoneraAgendaClick(Sender: TObject);
@@ -314,37 +334,48 @@ procedure TPageMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if MessageDlg('Está seguro de cerrar la aplicación?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
     begin
-    CanClose := True;
+      CanClose := True;
     end else
     begin
-    CanClose := False;
+      CanClose := False;
     end;
 end;
 
 procedure TPageMain.FormCreate(Sender: TObject);
 begin
-  PagHome         := TPagHome.Create(Self);
-  PagHome.Parent  := pnlCentral;
-  PagHome.Show;
+
+  pnlCentral.Color                      := COLOR_BACKGROUND;
+  pnlCabecera.Color                     := COLOR_BACKGROUND_TOP;
+  pnlCabeceraTitulo.Color               := COLOR_BACKGROUND_TOP;
+  pnlCabeceraTituloLogin.Color          := COLOR_BACKGROUND_TOP;
+  pnlCabeceraTituloNombreEmpresa.Color  := COLOR_BACKGROUND_TOP;
+
+  Self.font.Color                       := FONT_COLOR;
+  Self.font.Size                        := FONT_H7;
+
   nombre_comp     := '';
   prc_expandir_menu(45, BtnPnlBotoneraPaciente);
   prc_marcar_boton_activo(BtnMenLatInicio, false);
   BtnMenLatInicio.Click;
+  modoEdicion     := False;
 end;
 
 procedure TPageMain.FormShow(Sender: TObject);
 begin
   PagLogin := TpagLogin.Create(Self);
   paglogin.ShowModal;
-  log := paglogin.log;
+  log := paglogin.log;;
   if log=0 then
     begin
       Application.Terminate;
     end;
+  vGlb_usuario_usuario     := PagLogin.vGlb_usuario_nombre;
+  vGlb_avatar_usuario_url := Paglogin.vGlb_avatar_usuario_url;
+  LblUserLogin.Caption := vGlb_usuario_usuario;
+  UserLoginImg.Picture.LoadFromFile(vGlb_avatar_usuario_url);
 end;
 
-procedure TPageMain.prc_expandir_menu(largo_panel: Integer;
-  boton: TSpeedButton);
+procedure TPageMain.prc_expandir_menu(largo_panel: Integer; boton: TSpeedButton);
 var
   i: Integer;
   expandir: Boolean;
@@ -397,8 +428,7 @@ begin
   end;
 end;
 
-procedure TPageMain.prc_marcar_boton_activo(boton: TSpeedButton;
-  marcar: Boolean);
+procedure TPageMain.prc_marcar_boton_activo(boton: TSpeedButton; marcar: Boolean);
 var
   i: Integer;
 begin
@@ -442,9 +472,17 @@ end;
 
 procedure TPageMain.prc_abrir_ventana(Sender: TObject ; TPage : TForm);
 begin
-  TPage.Parent := pnlCentral;
-  TPage.Show;
-  prc_expandir_menu(45, TComponent(Sender) as TSpeedButton);
+  if modoEdicion then
+  begin
+    ShowMessage('Antes de cerrar esta ventana debe guardar o descartar los cambios');
+  end else
+  begin
+    PagActual.Close;
+    PagActual := TPage;
+    PagActual.Parent := pnlCentral;
+    PagActual.Show;
+    prc_expandir_menu(45, TComponent(Sender) as TSpeedButton);
+  end;
 end;
 
 procedure TPageMain.prc_mover_resaltador(panel: TPanel);
@@ -466,17 +504,6 @@ procedure TPageMain.btnOcultarPanelLateralClick(Sender: TObject);
 var
   i: Integer;
 begin
-{    if PnlMenuLateralMain.Width = 50 then
-    begin
-    for i := 50 to 200 do
-    PnlMenuLateralMain.Width := i;
-    end
-    else
-    begin
-    for i := 200 downto 50 do
-    PnlMenuLateralMain.Width := i;
-    end;
-}
   if PnlMenuLateralMain.Width = 50 then
   begin
     PnlMenuLateralMain.Width := 200;

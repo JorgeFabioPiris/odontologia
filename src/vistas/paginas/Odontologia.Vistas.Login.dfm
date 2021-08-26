@@ -48,6 +48,7 @@ object PagLogin: TPagLogin
       Width = 200
       Height = 30
       AutoSize = False
+      CharCase = ecUpperCase
       TabOrder = 0
     end
     object edtPassword: TEdit
@@ -56,6 +57,8 @@ object PagLogin: TPagLogin
       Width = 200
       Height = 30
       AutoSize = False
+      CharCase = ecUpperCase
+      PasswordChar = '*'
       TabOrder = 1
     end
     object cmbEmpresa: TDBLookupComboBox

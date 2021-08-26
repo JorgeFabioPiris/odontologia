@@ -1,7 +1,5 @@
 program Odontologia;
-
 {$R *.dres}
-
 uses
   Vcl.Forms,
   Odontologia.Modelo.Interfaces in 'src\modelo\Odontologia.Modelo.Interfaces.pas',
@@ -69,15 +67,16 @@ uses
   Odontologia.Modelo.Estado in 'src\modelo\estado\Odontologia.Modelo.Estado.pas',
   Odontologia.Modelo.Estado.Interfaces in 'src\modelo\estado\Odontologia.Modelo.Estado.Interfaces.pas',
   Odontologia.Controlador.Estado in 'src\controlador\estado\Odontologia.Controlador.Estado.pas',
-  Odontologia.Controlador.Estado.Interfaces in 'src\controlador\estado\Odontologia.Controlador.Estado.Interfaces.pas';
+  Odontologia.Controlador.Estado.Interfaces in 'src\controlador\estado\Odontologia.Controlador.Estado.Interfaces.pas',
+  Odontologia.Vistas.Agenda in 'src\vistas\paginas\Odontologia.Vistas.Agenda.pas' {PagTemplate1};
 
 {$R *.res}
-
 begin
   Application.Initialize;
   ReportMemoryLeaksOnShutdown := True;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TModelConexion, ModelConexion);
   Application.CreateForm(TPageMain, PageMain);
+  Application.CreateForm(TPagTemplate1, PagTemplate1);
   Application.Run;
 end.

@@ -100,20 +100,11 @@ end;
 function TControllerUsuario.Buscar(aLogin, aPassword: String; aEmpresa: Integer): iControllerUsuario;
 begin
   Result := Self;
-  FDataSource.dataset.DisableControls;
-  FModel.DAO.SQL.Fields('DUSUARIO.USU_CODIGO AS CODIGO,')
-    .Fields('DUSUARIO.USU_LOGIN AS LOGIN,')
-    .Fields('DUSUARIO.USU_NIVEL AS NIVEL,')
-    .Fields('DUSUARIO.USU_FECHA_INC AS INCLUIDO,')
-    .Fields('DUSUARIO.USU_FECHA_MOD AS MODIFICADO,')
-    .Fields('DUSUARIO.USU_CLAVE AS CLAVE,')
-    .Fields('DUSUARIO.USU_FOTO AS FOTO,')
-    .Fields('DUSUARIO.USU_COD_EMPRESA AS CODEMPRESA,')
-    .Fields('DUSUARIO.USU_COD_ESTADO AS CODESTADO')
-    .Where('DUSUARIO.USU_LOGIN = '  + QuotedStr(aLogin)
-          + ' AND DUSUARIO.USU_CLAVE = ' + QuotedStr(aPassword)
-          + ' AND DUSUARIO.USU_COD_EMPRESA = ' + intToStr(aEmpresa))
-  .&End.Find;
+  FModel.DAO
+    .SQL
+      .Where('USU_LOGIN = ' +QuotedStr(aLogin) + ' AND USU_CLAVE = ' + QuotedStr(aPassword) + ' AND USU_COD_EMPRESA = ' + intToStr(aEmpresa))
+    .&End
+  .Find;
 end;
 
 constructor TControllerUsuario.Create;

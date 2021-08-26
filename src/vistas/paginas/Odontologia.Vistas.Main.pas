@@ -1,7 +1,5 @@
 ﻿unit Odontologia.Vistas.Main;
-
 interface
-
 uses
   Winapi.Windows,
   Winapi.Messages,
@@ -26,7 +24,6 @@ uses
   Odontologia.Vistas.Pedido,
   Odontologia.Vistas.Usuarios,
   Odontologia.Vista.Estilos;
-
 type
   TPageMain = class(TForm)
     ImageList1: TImageList;
@@ -180,7 +177,6 @@ type
     btnICoRegUsu: TSpeedButton;
     btnIcoSalir: TSpeedButton;
     Label1: TLabel;
-
     procedure FormCreate(Sender: TObject);
     procedure btnPnelMenuRegDireccionClick(Sender: TObject);
     procedure btnMenLatInicioClick(Sender: TObject);
@@ -201,18 +197,15 @@ type
     procedure btnMenLatSalirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnPnelMenuRegUsuarioClick(Sender: TObject);
-
   private
     { Private declarations }
     procedure prc_expandir_menu(largo_panel: Integer; boton: TSpeedButton);
     procedure prc_mover_resaltador(panel: TPanel);
     procedure prc_marcar_boton_activo(boton: TSpeedButton; marcar: Boolean);
     procedure prc_abrir_ventana(Sender: TObject ; Tpage : TForm);
-
   public
     { Public declarations }
    end;
-
 var
   PageMain                : TPageMain;
   PagNueva                : TForm;
@@ -222,52 +215,41 @@ var
   vGlb_usuario_usuario     : String;
   vGlb_avatar_usuario_url : String;
   modoEdicion             : Boolean;
-
 implementation
-
 {$R *.dfm}
-
 uses Odontologia.Vistas.Login;
-
 procedure TPageMain.btnMenLatInicioClick(Sender: TObject);
 begin
   PagActual := TPagHome.Create(Self);
   prc_abrir_ventana(Sender , PagActual);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraInicio);
-
 end;
-
 procedure TPageMain.btnPnelMenuConfExpandirClick(Sender: TObject);
 begin
   prc_expandir_menu(180, TComponent(Sender) as TSpeedButton);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
 end;
-
 procedure TPageMain.btnPnelMenuConsExpandirClick(Sender: TObject);
 begin
   prc_expandir_menu(315, TComponent(Sender) as TSpeedButton);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
 end;
-
 procedure TPageMain.btnPnelMenuFinanExpandirClick(Sender: TObject);
 begin
   prc_expandir_menu(225, TComponent(Sender) as TSpeedButton);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
 end;
-
 procedure TPageMain.btnPnelMenuRegDireccionClick(Sender: TObject);
 begin
   PagNueva := TPagDireccion.Create(Self);
   prc_abrir_ventana(Sender , PagNueva);
 end;
-
 procedure TPageMain.btnPnelMenuRegEmpresaClick(Sender: TObject);
 begin
   PagNueva := TPagEmpresa.Create(Self);
   prc_abrir_ventana(Sender , PagNueva);
 end;
-
 procedure TPageMain.btnPnelMenuRegExpandirClick(Sender: TObject);
 var
   largo: Integer;
@@ -275,55 +257,46 @@ begin
   prc_expandir_menu(495, TComponent(Sender) as TSpeedButton);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
 end;
-
 procedure TPageMain.btnPnelMenuRegProductoClick(Sender: TObject);
 begin
   PagNueva := TPagProducto.Create(Self);
   prc_abrir_ventana(Sender , PagNueva);
 end;
-
 procedure TPageMain.btnPnelMenuRegUsuarioClick(Sender: TObject);
 begin
   PagNueva := TPagUsuario.Create(Self);
   prc_abrir_ventana(Sender , PagNueva);
 end;
-
 procedure TPageMain.btnPnlBotoneraAgendaClick(Sender: TObject);
 begin
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraAgenda);
 end;
-
 procedure TPageMain.ptnPnlBotoneraCajaClick(Sender: TObject);
 begin
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraCaja);
 end;
-
 procedure TPageMain.btnPnlBotoneraCajaSaldoClick(Sender: TObject);
 begin
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraSaldo);
 end;
-
 procedure TPageMain.btnPnlBotoneraMedicoClick(Sender: TObject);
 begin
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraMedico);
 end;
-
 procedure TPageMain.btnPnlBotoneraPacienteClick(Sender: TObject);
 begin
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraPaciente);
 end;
-
 procedure TPageMain.btnPnlBotoneraServicioClick(Sender: TObject);
 begin
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraServicio);
 end;
-
 procedure TPageMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if MessageDlg('Está seguro de cerrar la aplicación?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
@@ -334,25 +307,21 @@ begin
       CanClose := False;
     end;
 end;
-
 procedure TPageMain.FormCreate(Sender: TObject);
 begin
-
   pnlCentral.Color                      := COLOR_BACKGROUND;
   pnlCabecera.Color                     := COLOR_BACKGROUND_TOP;
   pnlCabeceraTitulo.Color               := COLOR_BACKGROUND_TOP;
   pnlCabeceraTituloLogin.Color          := COLOR_BACKGROUND_TOP;
   pnlCabeceraTituloNombreEmpresa.Color  := COLOR_BACKGROUND_TOP;
-
   Self.font.Color                       := FONT_COLOR;
   Self.font.Size                        := FONT_H7;
-
   nombre_comp     := '';
   prc_expandir_menu(45, BtnPnlBotoneraPaciente);
   prc_marcar_boton_activo(BtnMenLatInicio, false);
   BtnMenLatInicio.Click;
+  modoEdicion     := False;
 end;
-
 procedure TPageMain.FormShow(Sender: TObject);
 begin
   PagLogin := TpagLogin.Create(Self);
@@ -367,13 +336,11 @@ begin
   LblUserLogin.Caption := vGlb_usuario_usuario;
   UserLoginImg.Picture.LoadFromFile(vGlb_avatar_usuario_url);
 end;
-
 procedure TPageMain.prc_expandir_menu(largo_panel: Integer; boton: TSpeedButton);
 var
   i: Integer;
   expandir: Boolean;
 begin
-
   if nombre_comp <> (boton).GetNamePath then
   begin
     expandir := true;
@@ -382,7 +349,6 @@ begin
   begin
     expandir := false;
   end;
-
   if expandir then
   begin
     // Recorrer los componentes del formulario
@@ -401,7 +367,6 @@ begin
         else
           (PageMain.Components[i] as TPanel).Height := 45;
       end;
-
     end;
     nombre_comp := boton.GetNamePath
   end
@@ -420,7 +385,6 @@ begin
     nombre_comp := ''
   end;
 end;
-
 procedure TPageMain.prc_marcar_boton_activo(boton: TSpeedButton; marcar: Boolean);
 var
   i: Integer;
@@ -444,9 +408,7 @@ begin
         else
           (PageMain.Components[i] as TPanel).Color := clSilver;
       end;
-
     end;
-
   end
   else // En caso del parametro ser falso
   // Recorrer los componentes del formulario
@@ -462,7 +424,6 @@ begin
     end;
   end;
 end;
-
 procedure TPageMain.prc_abrir_ventana(Sender: TObject ; TPage : TForm);
 begin
   if modoEdicion then
@@ -477,7 +438,6 @@ begin
     prc_expandir_menu(45, TComponent(Sender) as TSpeedButton);
   end;
 end;
-
 procedure TPageMain.prc_mover_resaltador(panel: TPanel);
 begin
   PnlBotoneraResaltador.Visible := true;
@@ -486,13 +446,11 @@ begin
   PnlBotoneraResaltador.Left := panel.Left;
   PnlBotoneraResaltador.Width := panel.Width;
 end;
-
 procedure TPageMain.btnMenLatSalirClick(Sender: TObject);
 begin
   if MessageDlg('Está seguro de cerrar la aplicación?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
     Application.Terminate;
 end;
-
 procedure TPageMain.btnOcultarPanelLateralClick(Sender: TObject);
 var
   i: Integer;
@@ -505,8 +463,6 @@ begin
   begin
     PnlMenuLateralMain.Width := 50;
   end;
-
 end;
-
 
 end.
