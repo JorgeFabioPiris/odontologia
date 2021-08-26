@@ -52,7 +52,6 @@ begin
     .OrderBy('NOMBRE')
   .&End.Find;
   FDataSource.dataset.EnableControls;
-  FDataSource.dataset.FieldByName('CODIGO').Visible := false;
   FDataSource.dataset.FieldByName('COD_DPTO').Visible := false;
   FDataSource.dataset.FieldByName('NOMBRE').DisplayWidth :=50;
 end;
@@ -70,7 +69,6 @@ begin
     .OrderBy('NOMBRE')
     .&End.Find;
   FDataSource.dataset.EnableControls;
-  FDataSource.dataset.FieldByName('CODIGO').Visible := false;
   FDataSource.dataset.FieldByName('COD_DPTO').Visible := false;
   FDataSource.dataset.FieldByName('NOMBRE').DisplayWidth :=50;
 end;

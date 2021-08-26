@@ -39,8 +39,9 @@ type
   end;
 
 var
-  PagDireccion  : TPagDireccion;
-  PagActiva     : TForm;
+  PagDireccion: TPagDireccion;
+  PagDepartamento : TPagDepartamento;
+  PagPais : TPagPais;
 
 implementation
 
@@ -51,20 +52,20 @@ uses
 
 procedure TPagDireccion.btnPaisClick(Sender: TObject);
 begin
-  PagActiva := TPagPais.Create(Self);
-  pcr_abrir_sub_ventana(PagActiva);
+  PagPais := TPagPais.Create(Self);
+  pcr_abrir_sub_ventana(PagPais);
 end;
 
 procedure TPagDireccion.btnCiudadClick(Sender: TObject);
 begin
-  PagActiva := TPagCiudad.Create(Self);
-  pcr_abrir_sub_ventana(PagActiva);
+  PagCiudad := TPagCiudad.Create(Self);
+  pcr_abrir_sub_ventana(PagCiudad);
 end;
 
 procedure TPagDireccion.btnDepartamentoClick(Sender: TObject);
 begin
-  PagActiva := TPagDepartamento.Create(Self);
-  pcr_abrir_sub_ventana(PagActiva);
+  PagDepartamento := TPagDepartamento.Create(Self);
+  pcr_abrir_sub_ventana(PagDepartamento);
 end;
 
 procedure TPagDireccion.FormCreate(Sender: TObject);

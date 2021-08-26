@@ -12,9 +12,10 @@ uses
 type
   iControllerUsuario = interface
     ['{629DE02A-1733-4F78-9202-94F3AFABF159}']
-    function DataSource (aDataSource : TDataSource) : iControllerUsuario;
+    function DataSource (aDataSource : TDataSource)         : iControllerUsuario;
+    function Buscar (aLogin : String)                       : iControllerUsuario; overload;
+    function Buscar (aLogin, aPassword : String ; aEmpresa, aEstado : Integer)  : iControllerUsuario; overload;
     function Buscar       : iControllerUsuario; overload;
-    function Buscar (aDepartamento : String)        : iControllerUsuario; overload;
     function Insertar     : iControllerUsuario;
     function Modificar    : iControllerUsuario;
     function Eliminar     : iControllerUsuario;

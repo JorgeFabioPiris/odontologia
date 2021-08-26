@@ -179,7 +179,7 @@ type
     btnICoRegProd: TSpeedButton;
     btnICoRegUsu: TSpeedButton;
     btnIcoSalir: TSpeedButton;
-    LblUserLoginTitle: TLabel;
+    Label1: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure btnPnelMenuRegDireccionClick(Sender: TObject);
@@ -215,13 +215,13 @@ type
 
 var
   PageMain                : TPageMain;
-  PagActual               : Tform;
-  PagNueva                : Tform;
+  PagNueva                : TForm;
+  PagActual               : TForm;
   log                     : Integer;
   nombre_comp             : String;
-  vGlb_nombre_usuario     : String;
+  vGlb_usuario_usuario     : String;
   vGlb_avatar_usuario_url : String;
-  edicion                 : boolean;
+  modoEdicion             : Boolean;
 
 implementation
 
@@ -231,7 +231,7 @@ uses Odontologia.Vistas.Login;
 
 procedure TPageMain.btnMenLatInicioClick(Sender: TObject);
 begin
-  PagActual                             := TPagHome.Create(Self);
+  PagActual := TPagHome.Create(Self);
   prc_abrir_ventana(Sender , PagActual);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraInicio);
@@ -278,7 +278,6 @@ end;
 
 procedure TPageMain.btnPnelMenuRegProductoClick(Sender: TObject);
 begin
-  PagNueva.Close;
   PagNueva := TPagProducto.Create(Self);
   prc_abrir_ventana(Sender , PagNueva);
 end;
@@ -329,15 +328,16 @@ procedure TPageMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if MessageDlg('Está seguro de cerrar la aplicación?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
     begin
-    CanClose := True;
+      CanClose := True;
     end else
     begin
-    CanClose := False;
+      CanClose := False;
     end;
 end;
 
 procedure TPageMain.FormCreate(Sender: TObject);
 begin
+
   pnlCentral.Color                      := COLOR_BACKGROUND;
   pnlCabecera.Color                     := COLOR_BACKGROUND_TOP;
   pnlCabeceraTitulo.Color               := COLOR_BACKGROUND_TOP;
@@ -347,8 +347,7 @@ begin
   Self.font.Color                       := FONT_COLOR;
   Self.font.Size                        := FONT_H7;
 
-  nombre_comp                           := '';
-
+  nombre_comp     := '';
   prc_expandir_menu(45, BtnPnlBotoneraPaciente);
   prc_marcar_boton_activo(BtnMenLatInicio, false);
   BtnMenLatInicio.Click;
@@ -363,14 +362,13 @@ begin
     begin
       Application.Terminate;
     end;
-  vGlb_nombre_usuario     := PagLogin.vGlb_nombre_usuario;
+  vGlb_usuario_usuario     := PagLogin.vGlb_usuario_nombre;
   vGlb_avatar_usuario_url := Paglogin.vGlb_avatar_usuario_url;
-  LblUserLogin.Caption    := vGlb_nombre_usuario;
+  LblUserLogin.Caption := vGlb_usuario_usuario;
   UserLoginImg.Picture.LoadFromFile(vGlb_avatar_usuario_url);
 end;
 
-procedure TPageMain.prc_expandir_menu(largo_panel: Integer;
-  boton: TSpeedButton);
+procedure TPageMain.prc_expandir_menu(largo_panel: Integer; boton: TSpeedButton);
 var
   i: Integer;
   expandir: Boolean;
@@ -423,8 +421,7 @@ begin
   end;
 end;
 
-procedure TPageMain.prc_marcar_boton_activo(boton: TSpeedButton;
-  marcar: Boolean);
+procedure TPageMain.prc_marcar_boton_activo(boton: TSpeedButton; marcar: Boolean);
 var
   i: Integer;
 begin
@@ -468,27 +465,26 @@ end;
 
 procedure TPageMain.prc_abrir_ventana(Sender: TObject ; TPage : TForm);
 begin
-   if edicion then
+  if modoEdicion then
   begin
-    ShowMessage('Antes de cerrar debe o cambiar de ventana debe guardar los cambios')  ;
+    ShowMessage('Antes de cerrar esta ventana debe guardar o descartar los cambios');
   end else
   begin
     PagActual.Close;
-    TPage.Parent := pnlCentral;
-    TPage.Show;
-    prc_expandir_menu(45, TComponent(Sender) as TSpeedButton);
     PagActual := TPage;
-    pagNueva.Free;
+    PagActual.Parent := pnlCentral;
+    PagActual.Show;
+    prc_expandir_menu(45, TComponent(Sender) as TSpeedButton);
   end;
 end;
 
 procedure TPageMain.prc_mover_resaltador(panel: TPanel);
 begin
   PnlBotoneraResaltador.Visible := true;
-  nombre_comp                   := '';
+  nombre_comp := '';
   prc_expandir_menu(45, BtnPnlBotoneraPaciente);
-  PnlBotoneraResaltador.Left    := panel.Left;
-  PnlBotoneraResaltador.Width   := panel.Width;
+  PnlBotoneraResaltador.Left := panel.Left;
+  PnlBotoneraResaltador.Width := panel.Width;
 end;
 
 procedure TPageMain.btnMenLatSalirClick(Sender: TObject);

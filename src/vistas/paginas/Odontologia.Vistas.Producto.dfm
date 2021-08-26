@@ -4,6 +4,28 @@ inherited PagProducto: TPagProducto
   TextHeight = 13
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
+      inherited Card1: TCard
+        inherited PnlPieBotonAccion: TPanel
+          inherited PnlPieBotonPagina: TPanel
+            inherited lblPagina: TLabel
+              Height = 13
+            end
+          end
+        end
+        inherited PnlCabecera: TPanel
+          inherited PnlCabeceraBusqueda: TPanel
+            inherited lblSearch: TLabel
+              Width = 32
+            end
+          end
+          inherited PnlCabeceraTitulo: TPanel
+            inherited lblTitulo: TLabel
+              Width = 74
+              Height = 25
+            end
+          end
+        end
+      end
       inherited Card2: TCard
         inherited PnlCentralFormulario: TPanel
           object Label1: TLabel
@@ -52,12 +74,6 @@ inherited PagProducto: TPagProducto
             AutoSize = False
             CharCase = ecUpperCase
             TabOrder = 2
-          end
-        end
-        inherited PnlSubTitulo: TPanel
-          inherited lblTitulo2: TLabel
-            Width = 1088
-            Height = 73
           end
         end
       end

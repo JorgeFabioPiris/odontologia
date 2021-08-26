@@ -21,11 +21,14 @@ uses
   Vcl.WinXPanels,
   Vcl.ExtCtrls,
   Vcl.DBCtrls,
+  Vcl.ExtDlgs,
+  Vcl.Imaging.jpeg,
   Odontologia.Controlador,
   Odontologia.Controlador.Interfaces,
   Odontologia.Controlador.Empresa.Interfaces,
+  Odontologia.Controlador.Estado.Interfaces,
   Odontologia.Controlador.Usuario.Interfaces,
-  Odontologia.Vistas.Template, Vcl.ExtDlgs, Vcl.Imaging.jpeg;
+  Odontologia.Vistas.Template;
 
 type
   TPagUsuario = class(TPagTemplate)
@@ -41,11 +44,12 @@ type
     Label3: TLabel;
     Label5: TLabel;
     Label8: TLabel;
-    cmbEstado: TComboBox;
     Image1: TImage;
     Panel1: TPanel;
     btnGuardarImagen: TSpeedButton;
     OpenPictureDialog1: TOpenPictureDialog;
+    cmbEstado: TDBLookupComboBox;
+    DataSource3: TDataSource;
     procedure FormCreate(Sender: TObject);
     procedure btnBorrarClick(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);
@@ -62,6 +66,7 @@ type
     { Private declarations }
     FController   : iController;
     FEmpresa      : iControllerEmpresa;
+    FEstado       : iControllerEstado;
     FUsuario      : iControllerUsuario;
     imagenURL     : String;
     imagenModif   : Boolean;
@@ -83,14 +88,13 @@ var
 implementation
 
 uses
-  System.SysUtils, Odontologia.Vistas.Main;
+  System.SysUtils;
 
 {$R *.dfm}
 
 procedure TPagUsuario.btnActualizarClick(Sender: TObject);
 begin
   inherited;
-  edicion := true;
   FUsuario.Buscar;
   prc_estado_inicial;
 end;
@@ -124,7 +128,7 @@ begin
   if Insercion then
   begin
     FUsuario.Entidad.USU_LOGIN         := edtLogin.Text;
-    FUsuario.Entidad.USU_ESTADO        := cmbEstado.ItemIndex.ToString ;
+    FUsuario.Entidad.USU_COD_ESTADO    := DataSource3.DataSet.FieldByName('SIT_CODIGO').AsInteger;
     FUsuario.Entidad.USU_NIVEL         := StrToInt(edtNivel.Text);
     FUsuario.Entidad.USU_CLAVE         := edtClave.Text;
     FUsuario.Entidad.USU_COD_EMPRESA   := DataSource2.DataSet.FieldByName('CODIGO').AsInteger;
@@ -141,7 +145,7 @@ begin
   begin
     FUsuario.Entidad.USU_CODIGO        := StrToInt(edtCodigo.Text);
     FUsuario.Entidad.USU_LOGIN         := edtLogin.Text;
-    FUsuario.Entidad.USU_ESTADO        := cmbEstado.ItemIndex.ToString ;
+    FUsuario.Entidad.USU_COD_ESTADO    := DataSource3.DataSet.FieldByName('SIT_CODIGO').AsInteger;
     FUsuario.Entidad.USU_NIVEL         := StrToInt(edtNivel.Text);
     FUsuario.Entidad.USU_CLAVE         := edtClave.Text;
     FUsuario.Entidad.USU_COD_EMPRESA   := DataSource2.DataSet.FieldByName('CODIGO').AsInteger;
@@ -170,12 +174,11 @@ end;
 procedure TPagUsuario.btnNuevoClick(Sender: TObject);
 begin
   inherited;
-  edicion               := true;
   CardPanel1.ActiveCard := Card2;
   lblTitulo2.Caption    := 'Agregar nuevo registro';
   edtCodigo.Enabled     := False;
   edtLogin.SetFocus;
-  cmbEstado.ItemIndex   := 1;
+  cmbEstado.KeyValue    := 1;
   cmbEmpresa.KeyValue   := 1;
 end;
 
@@ -189,13 +192,12 @@ end;
 procedure TPagUsuario.DBGrid1DblClick(Sender: TObject);
 begin
   inherited;
-  Insercion               := False;
-  edicion                 := true;
+  Insercion := False;
   CardPanel1.ActiveCard   := Card2;
   lblTitulo2.Caption      := 'Modificar registro';
   edtCodigo.Text          := DataSource1.DataSet.FieldByName('CODIGO').AsString;
   edtLogin.Text           := DataSource1.DataSet.FieldByName('LOGIN').AsString;
-  cmbEstado.ItemIndex     := DataSource1.DataSet.FieldByName('ESTADO').AsInteger;
+  cmbEstado.KeyValue      := DataSource1.DataSet.FieldByName('CODESTADO').AsInteger;
   edtnivel.Text           := DataSource1.DataSet.FieldByName('NIVEL').AsString;
   edtClave.Text           := DataSource1.DataSet.FieldByName('CLAVE').AsString;
   edtClave.Enabled        := false;
@@ -223,6 +225,7 @@ begin
   FController       := TController.New;
   FUsuario          := FController.Usuario.DataSource(DataSource1);
   FEmpresa          := FController.Empresa.DataSource(DataSource2);
+  FEstado           := FController.Estado.DataSource(DataSource3);
   prc_estado_inicial;
 end;
 
@@ -248,7 +251,6 @@ end;
 
 procedure TPagUsuario.prc_estado_inicial;
 begin
-  edicion               := false;
   ImgMod                := false;
   imagenURL := path + 'fotos\noimage.jpg';
   if FileExists(imagenURL) then
@@ -263,11 +265,12 @@ begin
   edtSearch.Text        := '';
   edtCodigo.Text        := '';
   edtlogin.Text         := '';
-  cmbEstado.ItemIndex   := 0;
+  cmbEstado.KeyValue    := 1;
   edtNivel.Text         := '';
   edtClave.Text         := '';
   cmbEmpresa.KeyValue   := 1;
   FEmpresa.Buscar;
+  FEstado.Buscar;
   FUsuario.Buscar;
 end;
 

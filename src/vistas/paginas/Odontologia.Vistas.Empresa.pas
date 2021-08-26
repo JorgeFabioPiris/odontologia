@@ -43,34 +43,36 @@ type
     Label8: TLabel;
     Label9: TLabel;
 
-    edtCodigo: TEdit;
-    edtRazSocial: TEdit;
-    edtDireccion: TEdit;
-    edtBarrio: TEdit;
-    edtMail: TEdit;
-    edtRuc: TEdit;
-    edtTelefono: TEdit;
-    edtNroCasa: TEdit;
-    edtFantasia: TEdit;
-    cmbCiudad: TDBLookupComboBox;
-    cmbEmpresaTipo: TDBLookupComboBox;
+    edtCodigo       : TEdit;
+    edtRazSocial    : TEdit;
+    edtDireccion    : TEdit;
+    edtBarrio       : TEdit;
+    edtMail         : TEdit;
+    edtRuc          : TEdit;
+    edtTelefono     : TEdit;
+    edtNroCasa      : TEdit;
+    edtFantasia     : TEdit;
+
+    cmbCiudad       : TDBLookupComboBox;
+    cmbEmpresaTipo  : TDBLookupComboBox;
 
     DataSource2: TDataSource;
     DataSource3: TDataSource;
+
     procedure btnBorrarClick(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
-    procedure edtSearchKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure edtSearchKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure btnNuevoClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);
     procedure btnCerrarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+
   private
     { Private declarations }
-    FController: iController;
+    FController   : iController;
     FCiudad       : iControllerCiudad;
     FEmpresa      : iControllerEmpresa;
     FEmpresaTipo  : iControllerEmpresaTipo;
@@ -161,18 +163,19 @@ end;
 procedure TPagEmpresa.btnNuevoClick(Sender: TObject);
 begin
   inherited;
-  CardPanel1.ActiveCard := Card2;
-  lblTitulo2.Caption := 'Agregar nuevo registro';
-  edtCodigo.Enabled := False;
+  CardPanel1.ActiveCard   := Card2;
+  lblTitulo2.Caption      := 'Agregar nuevo registro';
+  edtCodigo.Enabled       := False;
   edtRUC.SetFocus;
-  cmbCiudad.KeyValue := 224;
+  cmbCiudad.KeyValue      := 223;
+  cmbEmpresaTipo.KeyValue := 1;
 end;
 
 procedure TPagEmpresa.DataSource1DataChange(Sender: TObject; Field: TField);
 begin
   inherited;
-  edtCodigo.Text    := DataSource1.DataSet.FieldByName('EMP_CODIGO').AsString;
-  edtRazSocial.Text := DataSource1.DataSet.FieldByName('EMP_NOMBRE').AsString;
+  edtCodigo.Text          := DataSource1.DataSet.FieldByName('EMP_CODIGO').AsString;
+  edtRazSocial.Text       := DataSource1.DataSet.FieldByName('EMP_NOMBRE').AsString;
 end;
 
 procedure TPagEmpresa.DBGrid1DblClick(Sender: TObject);

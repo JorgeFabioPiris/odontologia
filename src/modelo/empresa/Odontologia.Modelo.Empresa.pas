@@ -30,9 +30,9 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    class function New  : iModelempresa;
+    class function New    : iModelempresa;
     function Entidad      : TDEMPRESA; overload;
-    function Entidad(aEntidad: TDEMPRESA)    : iModelEmpresa; overload;
+    function Entidad(aEntidad: TDEMPRESA) : iModelEmpresa; overload;
     function DAO          : iSimpleDAO<TDEMPRESA>;
     function DataSource(aDataSource: TDataSource) : iModelEmpresa;
     function Ciudad       : iModelCiudad;
@@ -45,15 +45,14 @@ implementation
 
 constructor TModelEmpresa.Create;
 begin
-  FEntidad    := TDEMPREsa.Create;
-  FDAO        := TSimpleDAO<TDEMPREsa>
-                .New(TSimpleQueryRestDW<TDEMPREsa>
+  FEntidad      := TDEMPREsa.Create;
+  FDAO          := TSimpleDAO<TDEMPREsa>.New(TSimpleQueryRestDW<TDEMPREsa>
                 .New(ModelConexion.RESTDWDataBase1));
   FCiudad       := TModelCiudad.New;
   FEmpresaTipo  := TModelEmpresaTipo.New;
 end;
 
-function TModelEmpresa.DAO: iSimpleDao<TDEMPREsa>;
+function TModelEmpresa.DAO: iSimpleDao<TDEMPRESA>;
 begin
   Result := FDAO;
 end;

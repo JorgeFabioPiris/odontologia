@@ -33,7 +33,7 @@ object PagTemplate: TPagTemplate
       Width = 1118
       Height = 668
       Align = alClient
-      ActiveCard = Card1
+      ActiveCard = Card2
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 0
@@ -106,6 +106,7 @@ object PagTemplate: TPagTemplate
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnActualizarClick
             ExplicitLeft = 111
             ExplicitTop = -8
           end
@@ -120,6 +121,7 @@ object PagTemplate: TPagTemplate
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnNuevoClick
             ExplicitLeft = 484
             ExplicitTop = -8
           end
@@ -173,12 +175,11 @@ object PagTemplate: TPagTemplate
               Left = 145
               Top = 0
               Width = 32
-              Height = 73
+              Height = 13
               Align = alRight
               Alignment = taCenter
               Caption = 'Pagina'
               Layout = tlCenter
-              ExplicitHeight = 13
             end
           end
         end
@@ -206,11 +207,10 @@ object PagTemplate: TPagTemplate
             object lblSearch: TLabel
               Left = 15
               Top = 10
-              Width = 433
+              Width = 32
               Height = 13
               Align = alTop
               Caption = 'Buscar'
-              ExplicitWidth = 32
             end
             object edtSearch: TEdit
               Left = 15
@@ -248,8 +248,8 @@ object PagTemplate: TPagTemplate
             object lblTitulo: TLabel
               Left = 15
               Top = 15
-              Width = 645
-              Height = 43
+              Width = 74
+              Height = 25
               Align = alClient
               Caption = 'lblTitulo'
               Font.Charset = DEFAULT_CHARSET
@@ -259,8 +259,6 @@ object PagTemplate: TPagTemplate
               Font.Style = [fsBold]
               ParentFont = False
               Layout = tlCenter
-              ExplicitWidth = 74
-              ExplicitHeight = 25
             end
           end
         end
@@ -319,6 +317,7 @@ object PagTemplate: TPagTemplate
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnCancelarClick
             ExplicitLeft = 1017
           end
           object btnGuardar: TSpeedButton
@@ -332,6 +331,7 @@ object PagTemplate: TPagTemplate
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnGuardarClick
             ExplicitLeft = 934
           end
         end

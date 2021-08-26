@@ -21,7 +21,7 @@ object PagDireccion: TPagDireccion
     Width = 1148
     Height = 668
     Align = alClient
-    ActiveCard = Card2
+    ActiveCard = Card1
     BevelOuter = bvNone
     Caption = 'CardPanel1'
     ParentBackground = False
@@ -74,7 +74,6 @@ object PagDireccion: TPagDireccion
         Height = 668
         Align = alClient
         BevelOuter = bvNone
-        Color = clHighlight
         ParentBackground = False
         TabOrder = 0
       end

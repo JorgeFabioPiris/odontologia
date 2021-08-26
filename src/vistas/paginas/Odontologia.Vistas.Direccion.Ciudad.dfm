@@ -12,18 +12,28 @@ inherited PagCiudad: TPagCiudad
         end
         inherited PnlPieBotonAccion: TPanel
           inherited btnActualizar: TSpeedButton
-            OnClick = btnActualizarClick
             ExplicitLeft = 149
             ExplicitTop = 6
           end
-          inherited btnNuevo: TSpeedButton
-            OnClick = btnNuevoClick
+          inherited PnlPieBotonPagina: TPanel
+            inherited lblPagina: TLabel
+              Height = 13
+            end
           end
         end
         inherited PnlCabecera: TPanel
           inherited PnlCabeceraBusqueda: TPanel
+            inherited lblSearch: TLabel
+              Width = 32
+            end
             inherited edtSearch: TEdit
               OnKeyDown = edtSearchKeyDown
+            end
+          end
+          inherited PnlCabeceraTitulo: TPanel
+            inherited lblTitulo: TLabel
+              Width = 74
+              Height = 25
             end
           end
         end
@@ -83,11 +93,7 @@ inherited PagCiudad: TPagCiudad
           inherited btnBorrar: TSpeedButton
             OnClick = btnBorrarClick
           end
-          inherited btnCancelar: TSpeedButton
-            OnClick = btnCancelarClick
-          end
           inherited btnGuardar: TSpeedButton
-            OnClick = btnGuardarClick
             ExplicitLeft = 808
             ExplicitTop = 6
           end

@@ -199,6 +199,11 @@
             <Form>PagUsuario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\modelo\entidades\Odontologia.Modelo.Entidades.Estado.pas"/>
+        <DCCReference Include="src\modelo\estado\Odontologia.Modelo.Estado.pas"/>
+        <DCCReference Include="src\modelo\estado\Odontologia.Modelo.Estado.Interfaces.pas"/>
+        <DCCReference Include="src\controlador\estado\Odontologia.Controlador.Estado.pas"/>
+        <DCCReference Include="src\controlador\estado\Odontologia.Controlador.Estado.Interfaces.pas"/>
         <RcItem Include="src\Iconos\ico_actualizar.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>ico_actualizar</ResourceId>

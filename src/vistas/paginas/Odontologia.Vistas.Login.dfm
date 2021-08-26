@@ -12,6 +12,7 @@ object PagLogin: TPagLogin
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object PagLogin: TPanel
@@ -57,13 +58,23 @@ object PagLogin: TPagLogin
       AutoSize = False
       TabOrder = 1
     end
-    object edtEmpresa: TEdit
+    object cmbEmpresa: TDBLookupComboBox
       Left = 96
       Top = 208
       Width = 200
-      Height = 30
-      AutoSize = False
+      Height = 21
+      KeyField = 'CODIGO'
+      ListField = 'RAZON'
+      ListSource = DataSource2
       TabOrder = 2
     end
+  end
+  object DataSource1: TDataSource
+    Left = 648
+    Top = 16
+  end
+  object DataSource2: TDataSource
+    Left = 640
+    Top = 88
   end
 end

@@ -957,8 +957,8 @@ object PageMain: TPageMain
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
-            ExplicitWidth = 178
-            ExplicitHeight = 57
+            ExplicitWidth = 159
+            ExplicitHeight = 55
           end
           object LblNombre2: TLabel
             Left = 0

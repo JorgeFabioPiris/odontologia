@@ -7,6 +7,7 @@ uses
   Odontologia.Modelo.Departamento.Interfaces,
   Odontologia.Modelo.Empresa.Interfaces,
   Odontologia.Modelo.EmpresaTipo.Interfaces,
+  Odontologia.Modelo.Estado.Interfaces,
   Odontologia.Modelo.Pais.Interfaces,
   Odontologia.Modelo.Pedido.Interfaces,
   Odontologia.Modelo.Producto.Interfaces,
@@ -19,6 +20,7 @@ type
     function Departamento : iModelDepartamento;
     function Empresa      : iModelEmpresa;
     function EmpresaTipo  : iModelEmpresaTipo;
+    function Estado       : iModelEstado;
     function Pais         : iModelPais;
     function Pedido       : iModelPedido;
     function PedidoItem   : iModelPedidoItem;
