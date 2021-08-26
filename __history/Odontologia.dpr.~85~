@@ -58,7 +58,13 @@ uses
   Odontologia.Controlador.EmpresaTipo.Interfaces in 'src\controlador\empresaTipo\Odontologia.Controlador.EmpresaTipo.Interfaces.pas',
   Odontologia.Controlador.EmpresaTipo in 'src\controlador\empresaTipo\Odontologia.Controlador.EmpresaTipo.pas',
   Odontologia.Controlador.Empresa.Interfaces in 'src\controlador\empresa\Odontologia.Controlador.Empresa.Interfaces.pas',
-  Odontologia.Controlador.Empresa in 'src\controlador\empresa\Odontologia.Controlador.Empresa.pas';
+  Odontologia.Controlador.Empresa in 'src\controlador\empresa\Odontologia.Controlador.Empresa.pas',
+  Odontologia.Modelo.Entidades.Usuario in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Usuario.pas',
+  Odontologia.Modelo.Usuario.Interfaces in 'src\modelo\usuario\Odontologia.Modelo.Usuario.Interfaces.pas',
+  Odontologia.Modelo.Usuario in 'src\modelo\usuario\Odontologia.Modelo.Usuario.pas',
+  Odontologia.Controlador.Usuario in 'src\controlador\usuario\Odontologia.Controlador.Usuario.pas',
+  Odontologia.Controlador.Usuario.Interfaces in 'src\controlador\usuario\Odontologia.Controlador.Usuario.Interfaces.pas',
+  Odontologia.Vistas.Usuarios in 'src\vistas\paginas\Odontologia.Vistas.Usuarios.pas' {PagUsuario};
 
 {$R *.res}
 
@@ -68,6 +74,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TModelConexion, ModelConexion);
   Application.CreateForm(TPageMain, PageMain);
-  Application.CreateForm(TPagEmpresa, PagEmpresa);
   Application.Run;
 end.

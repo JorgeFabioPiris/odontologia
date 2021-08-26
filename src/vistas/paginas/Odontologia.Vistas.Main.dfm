@@ -35,6 +35,7 @@ object PageMain: TPageMain
       Padding.Top = 7
       ParentBackground = False
       TabOrder = 0
+      ExplicitTop = 122
     end
     object pnlCabecera: TPanel
       Left = 1
@@ -957,8 +958,8 @@ object PageMain: TPageMain
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
-            ExplicitWidth = 178
-            ExplicitHeight = 57
+            ExplicitWidth = 159
+            ExplicitHeight = 55
           end
           object LblNombre2: TLabel
             Left = 0
@@ -1086,9 +1087,9 @@ object PageMain: TPageMain
             TabOrder = 0
             object LblUserLogin: TLabel
               Left = 0
-              Top = 0
+              Top = 13
               Width = 115
-              Height = 49
+              Height = 36
               Align = alClient
               Alignment = taCenter
               Caption = 'User Login'
@@ -1098,6 +1099,7 @@ object PageMain: TPageMain
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              ExplicitTop = 0
               ExplicitWidth = 90
               ExplicitHeight = 25
             end
@@ -1116,6 +1118,16 @@ object PageMain: TPageMain
               Font.Style = []
               ParentFont = False
               ExplicitWidth = 94
+            end
+            object Label1: TLabel
+              Left = 0
+              Top = 0
+              Width = 115
+              Height = 13
+              Align = alTop
+              Alignment = taCenter
+              Caption = 'Usuario:'
+              ExplicitWidth = 40
             end
           end
         end
@@ -1143,7 +1155,7 @@ object PageMain: TPageMain
         object pnlIcoConfiguracion: TPanel
           Tag = 4
           Left = 0
-          Top = 694
+          Top = 594
           Width = 50
           Height = 45
           Align = alTop
@@ -1151,6 +1163,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
+          ExplicitTop = 694
           object pnlIcoConfigDiv: TPanel
             Left = 0
             Top = 45
@@ -1261,7 +1274,7 @@ object PageMain: TPageMain
         end
         object pnlIcoDiv03: TPanel
           Left = 0
-          Top = 647
+          Top = 547
           Width = 50
           Height = 1
           Align = alTop
@@ -1270,10 +1283,11 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 1
+          ExplicitTop = 647
         end
         object pnlIcoDiv02: TPanel
           Left = 0
-          Top = 601
+          Top = 501
           Width = 50
           Height = 1
           Align = alTop
@@ -1282,10 +1296,11 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 2
+          ExplicitTop = 601
         end
         object pnlIcoDiv05: TPanel
           Left = 0
-          Top = 739
+          Top = 639
           Width = 50
           Height = 1
           Align = alTop
@@ -1293,10 +1308,11 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 3
+          ExplicitTop = 739
         end
         object pnlIcoDiv04: TPanel
           Left = 0
-          Top = 693
+          Top = 593
           Width = 50
           Height = 1
           Align = alTop
@@ -1304,6 +1320,7 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 4
+          ExplicitTop = 693
         end
         object pnlIcoDiv01: TPanel
           Left = 0
@@ -1319,7 +1336,7 @@ object PageMain: TPageMain
         object pnlIcoFinanciero: TPanel
           Tag = 2
           Left = 0
-          Top = 602
+          Top = 502
           Width = 50
           Height = 45
           Align = alTop
@@ -1327,6 +1344,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 6
+          ExplicitTop = 602
           object pnlIcoFinanDiv: TPanel
             Left = 0
             Top = 45
@@ -1487,7 +1505,7 @@ object PageMain: TPageMain
           Left = 0
           Top = 1
           Width = 50
-          Height = 600
+          Height = 500
           Align = alTop
           BevelOuter = bvNone
           Color = clWhite
@@ -1788,7 +1806,7 @@ object PageMain: TPageMain
         object pnlIcoConsulta: TPanel
           Tag = 3
           Left = 0
-          Top = 648
+          Top = 548
           Width = 50
           Height = 45
           Align = alTop
@@ -1796,6 +1814,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 8
+          ExplicitTop = 648
           object pnlIcoConsDiv: TPanel
             Left = 0
             Top = 45
@@ -2488,9 +2507,8 @@ object PageMain: TPageMain
             ImageIndex = 23
             Flat = True
             OnClick = btnPnelMenuRegProductoClick
-            ExplicitLeft = -4
-            ExplicitTop = 417
-            ExplicitWidth = 183
+            ExplicitLeft = 6
+            ExplicitTop = 400
           end
           object btnPnelMenuRegUsuario: TSpeedButton
             Left = 0

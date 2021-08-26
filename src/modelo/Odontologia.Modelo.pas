@@ -11,6 +11,8 @@ uses
   Odontologia.Modelo.Empresa.Interfaces,
   Odontologia.Modelo.EmpresaTipo,
   Odontologia.Modelo.EmpresaTipo.Interfaces,
+  Odontologia.Modelo.Estado,
+  Odontologia.Modelo.Estado.Interfaces,
   Odontologia.Modelo.Entidades.Empresa,
   Odontologia.Modelo.Entidades.EmpresaTipo,
   Odontologia.Modelo.Interfaces,
@@ -37,6 +39,7 @@ type
     function Departamento : iModelDepartamento;
     function Empresa      : iModelEmpresa;
     function EmpresaTipo  : iModelEmpresaTipo;
+    function Estado       : iModelEstado;
     function Pais         : iModelPais;
     function Pedido       : iModelPedido;
     function PedidoItem   : iModelPedidoItem;
@@ -77,6 +80,11 @@ end;
 function TModel.EmpresaTipo: iModelEmpresaTipo;
 begin
   Result := TModelEmpresaTipo.New;
+end;
+
+function TModel.Estado: iModelEstado;
+begin
+  Result := TModelEstado.New;
 end;
 
 class function TModel.New: iModel;

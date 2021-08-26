@@ -106,6 +106,7 @@ object PagTemplate: TPagTemplate
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnActualizarClick
             ExplicitLeft = 111
             ExplicitTop = -8
           end
@@ -120,6 +121,7 @@ object PagTemplate: TPagTemplate
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnNuevoClick
             ExplicitLeft = 484
             ExplicitTop = -8
           end
@@ -319,6 +321,7 @@ object PagTemplate: TPagTemplate
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnCancelarClick
             ExplicitLeft = 1017
           end
           object btnGuardar: TSpeedButton
@@ -332,6 +335,7 @@ object PagTemplate: TPagTemplate
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnGuardarClick
             ExplicitLeft = 934
           end
         end

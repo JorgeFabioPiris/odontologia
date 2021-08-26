@@ -7,6 +7,7 @@ uses
   Odontologia.Controlador.Departamento.Interfaces,
   Odontologia.Controlador.Empresa.Interfaces,
   Odontologia.Controlador.EmpresaTipo.Interfaces,
+  Odontologia.Controlador.Estado.Interfaces,
   Odontologia.Controlador.Pais.Interfaces,
   Odontologia.Controlador.Pedido.Interfaces,
   Odontologia.Controlador.Producto.Interfaces,
@@ -19,6 +20,7 @@ type
      function Departamento  : iControllerDepartamento;
      function Empresa       : iControllerEmpresa;
      function EmpresaTipo   : iControllerEmpresaTipo;
+     function Estado        : iControllerEstado;
      function Pais          : iControllerPais;
      function pedido        : icontrollerpedido;
      function pedidoItem    : icontrollerpedidoitem;

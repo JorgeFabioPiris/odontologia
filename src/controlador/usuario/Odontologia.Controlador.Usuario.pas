@@ -46,13 +46,15 @@ begin
   FDataSource.dataset.DisableControls;
   FModel.DAO.SQL.Fields('DUSUARIO.USU_CODIGO AS CODIGO,')
     .Fields('DUSUARIO.USU_LOGIN AS LOGIN,')
-    .Fields('DUSUARIO.USU_ESTADO AS ESTADO,')
     .Fields('DUSUARIO.USU_NIVEL AS NIVEL,')
     .Fields('DUSUARIO.USU_CLAVE AS CLAVE,')
     .Fields('DUSUARIO.USU_FOTO AS FOTO,')
     .Fields('DUSUARIO.USU_COD_EMPRESA AS CODEMPRESA,')
+    .Fields('DUSUARIO.USU_COD_ESTADO AS CODESTADO,')
+    .Fields('FSITUACION.SIT_SITUACION AS ESTADO,')
     .Fields('DEMPRESA.EMP_FANTASIA AS EMPRESA')
     .Join('INNER JOIN DEMPRESA ON DEMPRESA.EMP_CODIGO = DUSUARIO.USU_COD_EMPRESA')
+    .Join('INNER JOIN FSITUACION ON FSITUACION.SIT_CODIGO = DUSUARIO.USU_COD_ESTADO')
     .Where('')
   .OrderBy('LOGIN')
   .&End.Find;
@@ -61,6 +63,7 @@ begin
   FDataSource.dataset.FieldByName('CLAVE').Visible := False;
   FDataSource.dataset.FieldByName('NIVEL').Visible := False;
   FDataSource.dataset.FieldByName('CODEMPRESA').Visible := False;
+  FDataSource.dataset.FieldByName('CODESTADO').Visible := False;
   FDataSource.dataset.FieldByName('FOTO').Visible := False;
   FDataSource.dataset.FieldByName('LOGIN').DisplayWidth :=50;
 end;
@@ -71,13 +74,15 @@ begin
   FDataSource.dataset.DisableControls;
   FModel.DAO.SQL.Fields('DUSUARIO.USU_CODIGO AS CODIGO,')
     .Fields('DUSUARIO.USU_LOGIN AS LOGIN,')
-    .Fields('DUSUARIO.USU_ESTADO AS ESTADO,')
     .Fields('DUSUARIO.USU_NIVEL AS NIVEL,')
     .Fields('DUSUARIO.USU_CLAVE AS CLAVE,')
     .Fields('DUSUARIO.USU_FOTO AS FOTO,')
     .Fields('DUSUARIO.USU_COD_EMPRESA AS CODEMPRESA,')
+    .Fields('DUSUARIO.USU_COD_ESTADO AS CODESTADO,')
+    .Fields('FSITUACION.SIT_SITUACION AS ESTADO,')
     .Fields('DEMPRESA.EMP_FANTASIA AS EMPRESA')
     .Join('INNER JOIN DEMPRESA ON DEMPRESA.EMP_CODIGO = DUSUARIO.USU_COD_EMPRESA')
+    .Join('INNER JOIN FSITUACION ON FSITUACION.SIT_CODIGO = DUSUARIO.USU_COD_ESTADO')
     .Where('DUSUARIO.USU_LOGIN LIKE ' +QuotedStr(aDepartamento) + '')
   .OrderBy('LOGIN')
   .&End.Find;
@@ -86,6 +91,7 @@ begin
   FDataSource.dataset.FieldByName('CLAVE').Visible := False;
   FDataSource.dataset.FieldByName('NIVEL').Visible := False;
   FDataSource.dataset.FieldByName('CODEMPRESA').Visible := False;
+  FDataSource.dataset.FieldByName('CODESTADO').Visible := False;
   FDataSource.dataset.FieldByName('FOTO').Visible := False;
   FDataSource.dataset.FieldByName('LOGIN').DisplayWidth :=50;
 end;

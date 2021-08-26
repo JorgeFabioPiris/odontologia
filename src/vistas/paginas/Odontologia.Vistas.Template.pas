@@ -64,6 +64,10 @@ type
 
     procedure FormCreate(Sender: TObject);
     procedure btnCerrarClick(Sender: TObject);
+    procedure btnNuevoClick(Sender: TObject);
+    procedure btnActualizarClick(Sender: TObject);
+    procedure btnGuardarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -75,12 +79,35 @@ var
 
 implementation
 
+uses
+  Odontologia.Vistas.Main;
+
 {$R *.dfm}
+
+procedure TPagTemplate.btnActualizarClick(Sender: TObject);
+begin
+  modoEdicion := False;
+end;
+
+procedure TPagTemplate.btnCancelarClick(Sender: TObject);
+begin
+  modoEdicion := False;
+end;
 
 procedure TPagTemplate.btnCerrarClick(Sender: TObject);
 begin
   if MessageDlg('Está seguro de cerrar la ventana?', mtConfirmation, [mbOk, mbCancel], 0) = mrOk then
     close;
+end;
+
+procedure TPagTemplate.btnGuardarClick(Sender: TObject);
+begin
+  modoEdicion := False;
+end;
+
+procedure TPagTemplate.btnNuevoClick(Sender: TObject);
+begin
+  modoEdicion := True;
 end;
 
 procedure TPagTemplate.FormCreate(Sender: TObject);

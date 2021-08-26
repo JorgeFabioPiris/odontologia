@@ -64,7 +64,12 @@ uses
   Odontologia.Modelo.Usuario in 'src\modelo\usuario\Odontologia.Modelo.Usuario.pas',
   Odontologia.Controlador.Usuario in 'src\controlador\usuario\Odontologia.Controlador.Usuario.pas',
   Odontologia.Controlador.Usuario.Interfaces in 'src\controlador\usuario\Odontologia.Controlador.Usuario.Interfaces.pas',
-  Odontologia.Vistas.Usuarios in 'src\vistas\paginas\Odontologia.Vistas.Usuarios.pas' {PagUsuario};
+  Odontologia.Vistas.Usuarios in 'src\vistas\paginas\Odontologia.Vistas.Usuarios.pas' {PagUsuario},
+  Odontologia.Modelo.Entidades.Estado in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Estado.pas',
+  Odontologia.Modelo.Estado in 'src\modelo\estado\Odontologia.Modelo.Estado.pas',
+  Odontologia.Modelo.Estado.Interfaces in 'src\modelo\estado\Odontologia.Modelo.Estado.Interfaces.pas',
+  Odontologia.Controlador.Estado in 'src\controlador\estado\Odontologia.Controlador.Estado.pas',
+  Odontologia.Controlador.Estado.Interfaces in 'src\controlador\estado\Odontologia.Controlador.Estado.Interfaces.pas';
 
 {$R *.res}
 

@@ -4,47 +4,42 @@ inherited PagCiudad: TPagCiudad
   TextHeight = 13
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
-      ActiveCard = Card2
       inherited Card1: TCard
-        inherited PnlGrid: TPanel
+        inherited PnlCentralGrid: TPanel
           inherited DBGrid1: TDBGrid
             OnDblClick = DBGrid1DblClick
           end
         end
-        inherited PnlBotonAccion: TPanel
+        inherited PnlPieBotonAccion: TPanel
           inherited btnActualizar: TSpeedButton
-            OnClick = btnActualizarClick
             ExplicitLeft = 149
             ExplicitTop = 6
           end
-          inherited btnNuevo: TSpeedButton
-            OnClick = btnNuevoClick
-          end
-          inherited PnlPagina: TPanel
+          inherited PnlPieBotonPagina: TPanel
             inherited lblPagina: TLabel
-              Height = 73
+              Height = 13
             end
           end
         end
         inherited PnlCabecera: TPanel
-          inherited PnlBusqueda: TPanel
+          inherited PnlCabeceraBusqueda: TPanel
             inherited lblSearch: TLabel
-              Width = 433
+              Width = 32
             end
             inherited edtSearch: TEdit
               OnKeyDown = edtSearchKeyDown
             end
           end
-          inherited PnlTitulo: TPanel
+          inherited PnlCabeceraTitulo: TPanel
             inherited lblTitulo: TLabel
-              Width = 645
-              Height = 43
+              Width = 74
+              Height = 25
             end
           end
         end
       end
       inherited Card2: TCard
-        inherited PnlFormulario: TPanel
+        inherited PnlCentralFormulario: TPanel
           object Label1: TLabel
             Left = 16
             Top = 15
@@ -94,23 +89,13 @@ inherited PagCiudad: TPagCiudad
             TabOrder = 2
           end
         end
-        inherited PnlBotonEdicion: TPanel
+        inherited PnlPieBotonEdicion: TPanel
           inherited btnBorrar: TSpeedButton
             OnClick = btnBorrarClick
           end
-          inherited btnCancelar: TSpeedButton
-            OnClick = btnCancelarClick
-          end
           inherited btnGuardar: TSpeedButton
-            OnClick = btnGuardarClick
             ExplicitLeft = 808
             ExplicitTop = 6
-          end
-        end
-        inherited PnlSubTitulo: TPanel
-          inherited lblTitulo2: TLabel
-            Width = 1088
-            Height = 73
           end
         end
       end

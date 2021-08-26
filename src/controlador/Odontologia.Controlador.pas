@@ -11,6 +11,8 @@ uses
   Odontologia.Controlador.Empresa.Interfaces,
   Odontologia.Controlador.EmpresaTipo,
   Odontologia.Controlador.EmpresaTipo.Interfaces,
+  Odontologia.Controlador.Estado,
+  Odontologia.Controlador.Estado.Interfaces,
   Odontologia.Controlador.Interfaces,
   Odontologia.Controlador.Pais,
   Odontologia.Controlador.Pais.Interfaces,
@@ -35,6 +37,7 @@ type
      function Departamento  : iControllerDepartamento;
      function Empresa       : iControllerEmpresa;
      function EmpresaTipo   : iControllerEmpresaTipo;
+     function Estado        : iControllerEstado;
      function Pais          : iControllerPais;
      function pedido        : icontrollerpedido;
      function pedidoItem    : icontrollerpedidoitem;
@@ -75,6 +78,11 @@ end;
 function TController.EmpresaTipo: iControllerEmpresaTipo;
 begin
    Result := TControllerEmpresaTipo.new;
+end;
+
+function TController.Estado: iControllerEstado;
+begin
+   Result := TControllerEstado.New;
 end;
 
 class function TController.New: iController;

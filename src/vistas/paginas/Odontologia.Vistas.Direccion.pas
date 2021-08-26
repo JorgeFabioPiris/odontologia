@@ -52,7 +52,6 @@ uses
 
 procedure TPagDireccion.btnPaisClick(Sender: TObject);
 begin
-
   PagPais := TPagPais.Create(Self);
   pcr_abrir_sub_ventana(PagPais);
 end;
