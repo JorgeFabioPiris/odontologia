@@ -5,18 +5,9 @@ inherited PagDepartamento: TPagDepartamento
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
       inherited Card1: TCard
-        inherited PnlCentralGrid: TPanel
-          inherited DBGrid1: TDBGrid
-            OnDblClick = DBGrid1DblClick
-          end
-        end
         inherited PnlPieBotonAccion: TPanel
-          inherited btnActualizar: TSpeedButton
-            OnClick = btnActualizarClick
-          end
           inherited btnNuevo: TSpeedButton
             ImageIndex = 5
-            OnClick = btnNuevoClick
           end
           inherited btnCerrar: TSpeedButton
             ImageIndex = 1
@@ -93,13 +84,6 @@ inherited PagDepartamento: TPagDepartamento
           end
           inherited btnGuardar: TSpeedButton
             ImageIndex = 4
-            OnClick = btnGuardarClick
-          end
-        end
-        inherited PnlSubTitulo: TPanel
-          inherited lblTitulo2: TLabel
-            Width = 1088
-            Height = 73
           end
         end
       end

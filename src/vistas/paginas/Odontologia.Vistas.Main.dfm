@@ -58,7 +58,7 @@ object PageMain: TPageMain
         object btnOcultarPanelLateral: TSpeedButton
           Left = 0
           Top = 0
-          Width = 44
+          Width = 50
           Height = 41
           Align = alLeft
           ImageIndex = 32
@@ -68,7 +68,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraCaja: TPanel
           Tag = 125
-          Left = 794
+          Left = 800
           Top = 0
           Width = 150
           Height = 41
@@ -78,6 +78,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 1
+          ExplicitLeft = 794
           object ptnPnlBotoneraCaja: TSpeedButton
             Tag = 25
             Left = 0
@@ -96,7 +97,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraServicio: TPanel
           Tag = 124
-          Left = 644
+          Left = 650
           Top = 0
           Width = 150
           Height = 41
@@ -106,6 +107,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 2
+          ExplicitLeft = 644
           object btnPnlBotoneraServicio: TSpeedButton
             Tag = 24
             Left = 0
@@ -124,7 +126,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraAgenda: TPanel
           Tag = 123
-          Left = 494
+          Left = 500
           Top = 0
           Width = 150
           Height = 41
@@ -134,6 +136,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 3
+          ExplicitLeft = 494
           object btnPnlBotoneraAgenda: TSpeedButton
             Tag = 23
             Left = 0
@@ -158,7 +161,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraMedico: TPanel
           Tag = 122
-          Left = 344
+          Left = 350
           Top = 0
           Width = 150
           Height = 41
@@ -168,6 +171,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 4
+          ExplicitLeft = 344
           object btnPnlBotoneraMedico: TSpeedButton
             Tag = 22
             Left = 0
@@ -186,7 +190,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraPaciente: TPanel
           Tag = 121
-          Left = 194
+          Left = 200
           Top = 0
           Width = 150
           Height = 41
@@ -196,6 +200,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 5
+          ExplicitLeft = 194
           object btnPnlBotoneraPaciente: TSpeedButton
             Tag = 21
             Left = 0
@@ -214,7 +219,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraSaldo: TPanel
           Tag = 126
-          Left = 944
+          Left = 950
           Top = 0
           Width = 150
           Height = 41
@@ -224,6 +229,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 6
+          ExplicitLeft = 944
           object btnPnlBotoneraCajaSaldo: TSpeedButton
             Tag = 26
             Left = 0
@@ -241,7 +247,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraInicio: TPanel
           Tag = 127
-          Left = 44
+          Left = 50
           Top = 0
           Width = 150
           Height = 41
@@ -251,6 +257,7 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
+          ExplicitLeft = 44
           object btnMenLatInicio: TSpeedButton
             Tag = 27
             Left = 0
@@ -945,8 +952,8 @@ object PageMain: TPageMain
           object LblNombre1: TLabel
             Left = 0
             Top = 0
-            Width = 178
-            Height = 57
+            Width = 224
+            Height = 49
             Align = alClient
             Alignment = taCenter
             Caption = 'System'
@@ -957,11 +964,13 @@ object PageMain: TPageMain
             Font.Style = []
             ParentFont = False
             Layout = tlCenter
+            ExplicitWidth = 159
+            ExplicitHeight = 55
           end
           object LblNombre2: TLabel
             Left = 0
             Top = 49
-            Width = 140
+            Width = 224
             Height = 21
             Align = alBottom
             Alignment = taCenter
@@ -972,6 +981,7 @@ object PageMain: TPageMain
             Font.Name = 'Segoe UI'
             Font.Style = []
             ParentFont = False
+            ExplicitWidth = 140
           end
         end
         object pnlCabeceraTituloLogin: TPanel
@@ -1084,8 +1094,8 @@ object PageMain: TPageMain
             object LblUserLogin: TLabel
               Left = 0
               Top = 13
-              Width = 90
-              Height = 25
+              Width = 115
+              Height = 36
               Align = alClient
               Alignment = taCenter
               Caption = 'User Login'
@@ -1095,12 +1105,15 @@ object PageMain: TPageMain
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              ExplicitWidth = 90
+              ExplicitHeight = 25
             end
             object LblCerrarSesion: TLabel
               Left = 0
               Top = 49
-              Width = 94
+              Width = 115
               Height = 21
+              Cursor = crHandPoint
               Align = alBottom
               Alignment = taCenter
               Caption = 'Cerrar Sesion'
@@ -1110,15 +1123,20 @@ object PageMain: TPageMain
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              OnClick = LblCerrarSesionClick
+              OnMouseEnter = LblCerrarSesionMouseEnter
+              OnMouseLeave = LblCerrarSesionMouseLeave
+              ExplicitWidth = 94
             end
             object Label1: TLabel
               Left = 0
               Top = 0
-              Width = 40
+              Width = 115
               Height = 13
               Align = alTop
               Alignment = taCenter
               Caption = 'Usuario:'
+              ExplicitWidth = 40
             end
           end
         end
@@ -1555,6 +1573,7 @@ object PageMain: TPageMain
               ImageIndex = 10
               Images = ImageList1
               Flat = True
+              OnClick = btnPnelMenuRegEmpresaClick
               ExplicitLeft = 16
               ExplicitTop = 240
               ExplicitWidth = 23
@@ -1605,10 +1624,9 @@ object PageMain: TPageMain
               ImageIndex = 1
               Images = ImageList1
               Flat = True
-              ExplicitLeft = 24
-              ExplicitTop = 336
-              ExplicitWidth = 23
-              ExplicitHeight = 22
+              OnClick = btnPnelMenuRegAgendaClick
+              ExplicitLeft = -6
+              ExplicitTop = -6
             end
           end
           object pnlIcoRegisBt06: TPanel
@@ -2518,6 +2536,7 @@ object PageMain: TPageMain
             ImageIndex = 1
             Flat = True
             ParentBiDiMode = False
+            OnClick = btnPnelMenuRegAgendaClick
             ExplicitLeft = 17
             ExplicitTop = 120
             ExplicitWidth = 183

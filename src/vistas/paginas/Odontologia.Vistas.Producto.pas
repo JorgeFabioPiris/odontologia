@@ -16,6 +16,7 @@ type
     edtNombre: TEdit;
     Label3: TLabel;
     Edit1: TEdit;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,5 +29,12 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TPagProducto.FormCreate(Sender: TObject);
+begin
+  inherited;
+  lblTitulo.Caption := 'Registro de productos';
+
+end;
 
 end.

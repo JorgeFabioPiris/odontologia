@@ -6,31 +6,10 @@ inherited PagEmpresa: TPagEmpresa
     inherited CardPanel1: TCardPanel
       ActiveCard = Card1
       inherited Card1: TCard
-        inherited PnlCentralGrid: TPanel
-          inherited DBGrid1: TDBGrid
-            OnDblClick = DBGrid1DblClick
-          end
-        end
-        inherited PnlPieBotonAccion: TPanel
-          inherited PnlPieBotonPagina: TPanel
-            inherited lblPagina: TLabel
-              Height = 73
-            end
-          end
-        end
         inherited PnlCabecera: TPanel
           inherited PnlCabeceraBusqueda: TPanel
-            inherited lblSearch: TLabel
-              Width = 433
-            end
             inherited edtSearch: TEdit
               OnKeyDown = edtSearchKeyDown
-            end
-          end
-          inherited PnlCabeceraTitulo: TPanel
-            inherited lblTitulo: TLabel
-              Width = 645
-              Height = 43
             end
           end
         end
@@ -217,6 +196,12 @@ inherited PagEmpresa: TPagEmpresa
         inherited PnlPieBotonEdicion: TPanel
           inherited btnBorrar: TSpeedButton
             OnClick = btnBorrarClick
+          end
+        end
+        inherited PnlSubTitulo: TPanel
+          inherited lblTitulo2: TLabel
+            Width = 31
+            Height = 13
           end
         end
       end

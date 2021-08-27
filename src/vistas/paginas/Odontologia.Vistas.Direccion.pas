@@ -26,7 +26,8 @@ type
     btnDepartamento: TSpeedButton;
     btnCiudad: TSpeedButton;
     Card2: TCard;
-    PnlCentral: TPanel;
+    PnlCentral2: TPanel;
+    PnlCentral1: TPanel;
     procedure btnPaisClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnDepartamentoClick(Sender: TObject);
@@ -71,15 +72,16 @@ end;
 procedure TPagDireccion.FormCreate(Sender: TObject);
 begin
   CardPanel1.ActiveCard := Card1;
-  Self.Font.Name := FONT_NAME;
-  self.Font.Size := FONT_H7;
-  self.Font.Color := FONT_COLOR;
+  PnlCentral1.Color     := COLOR_BACKGROUND;
+  Self.Font.Name        := FONT_NAME;
+  self.Font.Size        := FONT_H7;
+  self.Font.Color       := FONT_COLOR;
 end;
 
 procedure TPagDireccion.pcr_abrir_sub_ventana(TPage : TForm);
 begin
   CardPanel1.ActiveCard := Card2;
-  Tpage.Parent := PnlCentral;
+  Tpage.Parent          := PnlCentral2;
   Tpage.Show;
 end;
 

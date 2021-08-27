@@ -47,9 +47,9 @@ object PagTemplate: TPagTemplate
         TabOrder = 0
         object PnlCentralGrid: TPanel
           Left = 0
-          Top = 73
+          Top = 62
           Width = 1118
-          Height = 522
+          Height = 533
           Align = alClient
           BevelOuter = bvNone
           Padding.Left = 15
@@ -57,11 +57,13 @@ object PagTemplate: TPagTemplate
           Padding.Right = 15
           ParentBackground = False
           TabOrder = 0
+          ExplicitTop = 73
+          ExplicitHeight = 522
           object DBGrid1: TDBGrid
             Left = 15
             Top = 17
             Width = 1088
-            Height = 505
+            Height = 516
             Align = alClient
             BorderStyle = bsNone
             DataSource = DataSource1
@@ -189,7 +191,7 @@ object PagTemplate: TPagTemplate
           Left = 0
           Top = 0
           Width = 1118
-          Height = 73
+          Height = 62
           Align = alTop
           BevelOuter = bvNone
           ParentBackground = False
@@ -198,7 +200,7 @@ object PagTemplate: TPagTemplate
             Left = 660
             Top = 0
             Width = 458
-            Height = 73
+            Height = 62
             Align = alClient
             BevelOuter = bvNone
             Padding.Left = 15
@@ -206,6 +208,7 @@ object PagTemplate: TPagTemplate
             Padding.Right = 10
             ParentBackground = False
             TabOrder = 0
+            ExplicitHeight = 73
             object lblSearch: TLabel
               Left = 15
               Top = 10
@@ -227,20 +230,21 @@ object PagTemplate: TPagTemplate
             end
             object PnlCabeceraBusquedaLinea: TPanel
               Left = 15
-              Top = 72
+              Top = 61
               Width = 433
               Height = 1
               Align = alBottom
               BevelOuter = bvNone
               ParentBackground = False
               TabOrder = 1
+              ExplicitTop = 72
             end
           end
           object PnlCabeceraTitulo: TPanel
             Left = 0
             Top = 0
             Width = 660
-            Height = 73
+            Height = 62
             Align = alLeft
             BevelOuter = bvNone
             Padding.Left = 15
@@ -248,21 +252,22 @@ object PagTemplate: TPagTemplate
             Padding.Bottom = 15
             ParentBackground = False
             TabOrder = 1
+            ExplicitHeight = 73
             object lblTitulo: TLabel
               Left = 15
               Top = 15
               Width = 645
-              Height = 43
+              Height = 32
               Align = alClient
               Caption = 'lblTitulo'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clBlue
               Font.Height = -19
               Font.Name = 'Segoe UI'
-              Font.Style = [fsBold]
+              Font.Style = []
               ParentFont = False
               Layout = tlCenter
-              ExplicitWidth = 74
+              ExplicitWidth = 69
               ExplicitHeight = 25
             end
           end
@@ -352,11 +357,13 @@ object PagTemplate: TPagTemplate
           object lblTitulo2: TLabel
             Left = 0
             Top = 0
-            Width = 31
-            Height = 13
+            Width = 1088
+            Height = 73
             Align = alClient
             Caption = 'Label2'
             Layout = tlCenter
+            ExplicitWidth = 31
+            ExplicitHeight = 13
           end
         end
       end

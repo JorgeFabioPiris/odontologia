@@ -68,7 +68,10 @@ uses
   Odontologia.Modelo.Estado.Interfaces in 'src\modelo\estado\Odontologia.Modelo.Estado.Interfaces.pas',
   Odontologia.Controlador.Estado in 'src\controlador\estado\Odontologia.Controlador.Estado.pas',
   Odontologia.Controlador.Estado.Interfaces in 'src\controlador\estado\Odontologia.Controlador.Estado.Interfaces.pas',
-  Odontologia.Vistas.Agenda in 'src\vistas\paginas\Odontologia.Vistas.Agenda.pas' {PagTemplate1};
+  Odontologia.Vistas.Agenda in 'src\vistas\paginas\Odontologia.Vistas.Agenda.pas' {PagAgenda},
+  Odontologia.Modelo.Entidades.Agenda in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Agenda.pas',
+  Odontologia.Modelo.Entidades.Medico in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Medico.pas',
+  Odontologia.Modelo.Entidades.Paciente in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Paciente.pas';
 
 {$R *.res}
 begin
@@ -77,6 +80,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TModelConexion, ModelConexion);
   Application.CreateForm(TPageMain, PageMain);
-  Application.CreateForm(TPagTemplate1, PagTemplate1);
+  Application.CreateForm(TPagAgenda, PagAgenda);
   Application.Run;
 end.

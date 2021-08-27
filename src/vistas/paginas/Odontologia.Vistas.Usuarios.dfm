@@ -5,15 +5,26 @@ inherited PagUsuario: TPagUsuario
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
       inherited Card1: TCard
-        inherited PnlCentralGrid: TPanel
-          inherited DBGrid1: TDBGrid
-            OnDblClick = DBGrid1DblClick
+        inherited PnlPieBotonAccion: TPanel
+          inherited PnlPieBotonPagina: TPanel
+            inherited lblPagina: TLabel
+              Height = 13
+            end
           end
         end
         inherited PnlCabecera: TPanel
           inherited PnlCabeceraBusqueda: TPanel
+            inherited lblSearch: TLabel
+              Width = 32
+            end
             inherited edtSearch: TEdit
               OnKeyUp = edtSearchKeyUp
+            end
+          end
+          inherited PnlCabeceraTitulo: TPanel
+            inherited lblTitulo: TLabel
+              Width = 69
+              Height = 25
             end
           end
         end

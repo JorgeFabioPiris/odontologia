@@ -20,7 +20,7 @@ inherited PagProducto: TPagProducto
           end
           inherited PnlCabeceraTitulo: TPanel
             inherited lblTitulo: TLabel
-              Width = 74
+              Width = 69
               Height = 25
             end
           end

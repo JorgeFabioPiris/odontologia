@@ -1,4 +1,4 @@
-unit Odontologia.Vistas.Login;
+﻿unit Odontologia.Vistas.Login;
 
 interface
 
@@ -21,7 +21,7 @@ uses
   Odontologia.Controlador.Empresa.Interfaces,
   Odontologia.Controlador.Usuario.Interfaces,
   Odontologia.Controlador,
-  Odontologia.Controlador.Interfaces;
+  Odontologia.Controlador.Interfaces, Vcl.WinXPanels, Vcl.Imaging.pngimage;
 
 type
   TPagLogin = class(TForm)
@@ -33,9 +33,21 @@ type
     cmbEmpresa: TDBLookupComboBox;
     DataSource1: TDataSource;
     DataSource2: TDataSource;
+    PnlLogo: TPanel;
+    PnlFormulario: TPanel;
+    PnlBotones: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    StackPanel1: TStackPanel;
+    imgLogo: TImage;
+    PnlLogoNombreEmpresa: TPanel;
+    LblNombre1: TLabel;
+    LblNombre2: TLabel;
     procedure btnIngresarClick(Sender: TObject);
     procedure btnSalirClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FController : iController;
@@ -101,14 +113,29 @@ end;
 
 procedure TPagLogin.FormCreate(Sender: TObject);
 begin
-  FController         := TController.New;
-  FEmpresa            := FController.Empresa.DataSource(DataSource2);
-  FUsuario            := FController.Usuario.DataSource(DataSource1);
+  Self.Font.Name              := FONT_NAME;
+  self.Font.Size              := FONT_H6;
+  Self.Font.Color             := FONT_COLOR;
+  FController                 := TController.New;
+  FEmpresa                    := FController.Empresa.DataSource(DataSource2);
+  FUsuario                    := FController.Usuario.DataSource(DataSource1);
   FEmpresa.buscar;
-  cmbEmpresa.KeyValue := 1;
-  Self.Font.Name      := FONT_NAME;
-  self.Font.Size      := FONT_H6;
-  Self.Font.Color     := FONT_COLOR;
+  cmbEmpresa.KeyValue         := 1;
+
+  PnlLogo.Color               := COLOR_BACKGROUND_TOP;
+  PnlLogoNombreEmpresa.Color  := COLOR_BACKGROUND_TOP;
+  PnlFormulario.Color         := COLOR_BACKGROUND;
+  StackPanel1.Color           := COLOR_BACKGROUND;
+  PnlBotones.Color            := COLOR_BACKGROUND_DESTAK;
+
+  edtLogin.Font.Size          := FONT_H5;
+  edtPassword.Font.Size       := FONT_H5;
+  cmbEmpresa.Font.Size        := FONT_H5;
+end;
+
+procedure TPagLogin.FormShow(Sender: TObject);
+begin
+  edtLogin.SetFocus;
 end;
 
 end.

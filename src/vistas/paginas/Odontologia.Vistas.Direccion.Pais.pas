@@ -124,6 +124,7 @@ end;
 procedure TPagPais.FormCreate(Sender: TObject);
 begin
   inherited;
+  lblTitulo.Caption := 'Registro de paises';
   edtCodigo.Enabled := false;
   FController := TController.New;
   FPais := FController.Pais.DataSource(DataSource1);

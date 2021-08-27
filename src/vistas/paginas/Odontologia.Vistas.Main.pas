@@ -197,12 +197,19 @@ type
     procedure btnMenLatSalirClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnPnelMenuRegUsuarioClick(Sender: TObject);
+    procedure btnPnelMenuRegAgendaClick(Sender: TObject);
+    procedure LblCerrarSesionClick(Sender: TObject);
+    procedure LblCerrarSesionMouseLeave(Sender: TObject);
+    procedure LblCerrarSesionMouseEnter(Sender: TObject);
+
   private
     { Private declarations }
     procedure prc_expandir_menu(largo_panel: Integer; boton: TSpeedButton);
     procedure prc_mover_resaltador(panel: TPanel);
     procedure prc_marcar_boton_activo(boton: TSpeedButton; marcar: Boolean);
     procedure prc_abrir_ventana(Sender: TObject ; Tpage : TForm);
+    procedure prc_mostrar_login;
+
   public
     { Public declarations }
    end;
@@ -212,12 +219,15 @@ var
   PagActual               : TForm;
   log                     : Integer;
   nombre_comp             : String;
-  vGlb_usuario_usuario     : String;
-  vGlb_avatar_usuario_url : String;
+  vGlb_usuario_id         : integer;
+  vGlb_usuario_login      : String;
+  vGlb_usuario_avatar_url : String;
+  vGlb_empresa_id         : Integer;
+  vGlb_empresa_login      : String;
   modoEdicion             : Boolean;
 implementation
 {$R *.dfm}
-uses Odontologia.Vistas.Login;
+uses Odontologia.Vistas.Login, Odontologia.Vistas.Agenda;
 procedure TPageMain.btnMenLatInicioClick(Sender: TObject);
 begin
   PagActual := TPagHome.Create(Self);
@@ -240,6 +250,12 @@ begin
   prc_expandir_menu(225, TComponent(Sender) as TSpeedButton);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
 end;
+procedure TPageMain.btnPnelMenuRegAgendaClick(Sender: TObject);
+begin
+  PagNueva := TPagAgenda.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
+end;
+
 procedure TPageMain.btnPnelMenuRegDireccionClick(Sender: TObject);
 begin
   PagNueva := TPagDireccion.Create(Self);
@@ -269,6 +285,8 @@ begin
 end;
 procedure TPageMain.btnPnlBotoneraAgendaClick(Sender: TObject);
 begin
+  PagNueva := TPagAgenda.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraAgenda);
 end;
@@ -316,26 +334,31 @@ begin
   pnlCabeceraTituloNombreEmpresa.Color  := COLOR_BACKGROUND_TOP;
   Self.font.Color                       := FONT_COLOR;
   Self.font.Size                        := FONT_H7;
-  nombre_comp     := '';
+  nombre_comp                           := '';
+  modoEdicion                           := False;
   prc_expandir_menu(45, BtnPnlBotoneraPaciente);
   prc_marcar_boton_activo(BtnMenLatInicio, false);
   BtnMenLatInicio.Click;
-  modoEdicion     := False;
 end;
 procedure TPageMain.FormShow(Sender: TObject);
 begin
-  PagLogin := TpagLogin.Create(Self);
-  paglogin.ShowModal;
-  log := paglogin.log;;
-  if log=0 then
-    begin
-      Application.Terminate;
-    end;
-  vGlb_usuario_usuario     := PagLogin.vGlb_usuario_nombre;
-  vGlb_avatar_usuario_url := Paglogin.vGlb_avatar_usuario_url;
-  LblUserLogin.Caption := vGlb_usuario_usuario;
-  UserLoginImg.Picture.LoadFromFile(vGlb_avatar_usuario_url);
+  prc_mostrar_login;
 end;
+procedure TPageMain.LblCerrarSesionClick(Sender: TObject);
+begin
+  prc_mostrar_login;
+end;
+
+procedure TPageMain.LblCerrarSesionMouseEnter(Sender: TObject);
+begin
+  LblCerrarSesion.font.Color := FONT_COLOR2;
+end;
+
+procedure TPageMain.LblCerrarSesionMouseLeave(Sender: TObject);
+begin
+  LblCerrarSesion.font.Color := FONT_COLOR;
+end;
+
 procedure TPageMain.prc_expandir_menu(largo_panel: Integer; boton: TSpeedButton);
 var
   i: Integer;
@@ -437,6 +460,22 @@ begin
     PagActual.Show;
     prc_expandir_menu(45, TComponent(Sender) as TSpeedButton);
   end;
+end;
+
+procedure TPageMain.prc_mostrar_login;
+begin
+  PagLogin := TpagLogin.Create(Self);
+  paglogin.ShowModal;
+  log := paglogin.log;
+  if log = 0 then
+  begin
+    Application.Terminate;
+  end;
+  vGlb_usuario_login := PagLogin.vGlb_usuario_nombre;
+  vGlb_usuario_avatar_url := Paglogin.vGlb_avatar_usuario_url;
+  LblUserLogin.Caption := vGlb_usuario_login;
+  UserLoginImg.Picture.LoadFromFile(vGlb_usuario_avatar_url);
+  PageMain.Caption                      := 'SGCLINICA' + vGlb_empresa_login;
 end;
 procedure TPageMain.prc_mover_resaltador(panel: TPanel);
 begin

@@ -5,28 +5,17 @@ inherited PagPais: TPagPais
   inherited PnlPrincipal: TPanel
     inherited CardPanel1: TCardPanel
       inherited Card1: TCard
-        inherited PnlCentralGrid: TPanel
-          inherited DBGrid1: TDBGrid
-            OnDblClick = DBGrid1DblClick
-          end
-        end
         inherited PnlPieBotonAccion: TPanel
-          inherited btnActualizar: TSpeedButton
-            OnClick = btnActualizarClick
-          end
-          inherited btnNuevo: TSpeedButton
-            OnClick = btnNuevoClick
-          end
           inherited PnlPieBotonPagina: TPanel
             inherited lblPagina: TLabel
-              Height = 73
+              Height = 13
             end
           end
         end
         inherited PnlCabecera: TPanel
           inherited PnlCabeceraBusqueda: TPanel
             inherited lblSearch: TLabel
-              Width = 433
+              Width = 32
             end
             inherited edtSearch: TEdit
               OnKeyDown = edtSearchKeyDown
@@ -34,8 +23,8 @@ inherited PagPais: TPagPais
           end
           inherited PnlCabeceraTitulo: TPanel
             inherited lblTitulo: TLabel
-              Width = 645
-              Height = 43
+              Width = 69
+              Height = 25
             end
           end
         end
@@ -79,18 +68,8 @@ inherited PagPais: TPagPais
             OnClick = btnBorrarClick
           end
           inherited btnCancelar: TSpeedButton
-            OnClick = btnCancelarClick
             ExplicitLeft = 954
             ExplicitTop = 6
-          end
-          inherited btnGuardar: TSpeedButton
-            OnClick = btnGuardarClick
-          end
-        end
-        inherited PnlSubTitulo: TPanel
-          inherited lblTitulo2: TLabel
-            Width = 1088
-            Height = 73
           end
         end
       end

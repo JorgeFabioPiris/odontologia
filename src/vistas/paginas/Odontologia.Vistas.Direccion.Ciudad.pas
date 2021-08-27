@@ -47,18 +47,18 @@ type
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure btnCerrarClick(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);
-    procedure edtSearchKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure edtSearchKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnBorrarClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+
   private
     { Private declarations }
-    FController: iController;
-    FCiudad: iControllerCiudad;
-    FDepartamento: iControllerDepartamento;
+    FController   : iController;
+    FCiudad       : iControllerCiudad;
+    FDepartamento : iControllerDepartamento;
     procedure prc_estado_inicial;
 
   public
@@ -66,8 +66,8 @@ type
   end;
 
 var
-  PagCiudad: TPagCiudad;
-  Insercion: Boolean;
+  PagCiudad : TPagCiudad;
+  Insercion : Boolean;
 
 implementation
 
@@ -113,15 +113,15 @@ begin
   inherited;
   if Insercion then
   begin
-    FCiudad.Ciudad.CIU_NOMBRE := edtNombre.Text;
+    FCiudad.Ciudad.CIU_NOMBRE           := edtNombre.Text;
     FCiudad.Ciudad.CIU_COD_DEPARTAMENTO := DataSource2.DataSet.FieldByName
       ('CODIGO').AsInteger;
     FCiudad.Insertar;
   end
   else
   begin
-    FCiudad.Ciudad.CIU_CODIGO := StrToInt(edtCodigo.Text);
-    FCiudad.Ciudad.CIU_NOMBRE := edtNombre.Text;
+    FCiudad.Ciudad.CIU_CODIGO           := StrToInt(edtCodigo.Text);
+    FCiudad.Ciudad.CIU_NOMBRE           := edtNombre.Text;
     FCiudad.Ciudad.CIU_COD_DEPARTAMENTO := DataSource2.DataSet.FieldByName
       ('CODIGO').AsInteger;
     FCiudad.Modificar;
@@ -132,15 +132,14 @@ end;
 procedure TPagCiudad.btnNuevoClick(Sender: TObject);
 begin
   inherited;
-  CardPanel1.ActiveCard := Card2;
-  lblTitulo2.Caption := 'Agregar nuevo registro';
-  edtCodigo.Enabled := False;
+  CardPanel1.ActiveCard     := Card2;
+  lblTitulo2.Caption        := 'Agregar nuevo registro';
+  cmbDepartamento.KeyValue  := 14;
+  edtCodigo.Enabled         := False;
   edtNombre.SetFocus;
-  cmbDepartamento.KeyValue := 14;
-end;
+  end;
 
-procedure TPagCiudad.DataSource1DataChange(Sender: TObject;
-  Field: TField);
+procedure TPagCiudad.DataSource1DataChange(Sender: TObject; Field: TField);
 begin
   inherited;
   edtCodigo.Text := DataSource1.DataSet.FieldByName('CIU_CODIGO').AsString;
@@ -150,13 +149,12 @@ end;
 procedure TPagCiudad.DBGrid1DblClick(Sender: TObject);
 begin
   inherited;
-  Insercion := False;
-  CardPanel1.ActiveCard := Card2;
-  lblTitulo2.Caption := 'Modificar registro';
-  edtCodigo.Text := DataSource1.DataSet.FieldByName('CODIGO').AsString;
-  edtNombre.Text := DataSource1.DataSet.FieldByName('NOMBRE').AsString;
-
-  cmbDepartamento.KeyValue := DataSource1.DataSet.FieldByName('COD_DPTO').AsString;
+  Insercion                 := False;
+  CardPanel1.ActiveCard     := Card2;
+  lblTitulo2.Caption        := 'Modificar registro';
+  edtCodigo.Text            := DataSource1.DataSet.FieldByName('CODIGO').AsString;
+  edtNombre.Text            := DataSource1.DataSet.FieldByName('NOMBRE').AsString;
+  cmbDepartamento.KeyValue  := DataSource1.DataSet.FieldByName('COD_DPTO').AsString;
 end;
 
 procedure TPagCiudad.edtSearchKeyDown(Sender: TObject; var Key: Word;
@@ -171,19 +169,19 @@ begin
   inherited;
   lblTitulo.Caption := 'Registro de ciudades';
   edtCodigo.Enabled := False;
-  FController := TController.New;
-  FCiudad := FController.Ciudad.DataSource(DataSource1);
-  FDepartamento := FController.Departamento.DataSource(DataSource2);
+  FController       := TController.New;
+  FCiudad           := FController.Ciudad.DataSource(DataSource1);
+  FDepartamento     := FController.Departamento.DataSource(DataSource2);
   prc_estado_inicial;
 end;
 
 procedure TPagCiudad.prc_estado_inicial;
 begin
-  Insercion := True;
+  Insercion             := True;
   CardPanel1.ActiveCard := Card1;
-  edtSearch.Text := '';
-  edtCodigo.Text := '';
-  edtNombre.Text := '';
+  edtSearch.Text        := '';
+  edtCodigo.Text        := '';
+  edtNombre.Text        := '';
   FCiudad.Buscar;
   FDepartamento.Buscar;
 end;

@@ -205,9 +205,12 @@
         <DCCReference Include="src\controlador\estado\Odontologia.Controlador.Estado.pas"/>
         <DCCReference Include="src\controlador\estado\Odontologia.Controlador.Estado.Interfaces.pas"/>
         <DCCReference Include="src\vistas\paginas\Odontologia.Vistas.Agenda.pas">
-            <Form>PagTemplate1</Form>
+            <Form>PagAgenda</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\modelo\entidades\Odontologia.Modelo.Entidades.Agenda.pas"/>
+        <DCCReference Include="src\modelo\entidades\Odontologia.Modelo.Entidades.Medico.pas"/>
+        <DCCReference Include="src\modelo\entidades\Odontologia.Modelo.Entidades.Paciente.pas"/>
         <RcItem Include="src\Iconos\ico_actualizar.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>ico_actualizar</ResourceId>
@@ -374,13 +377,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="src\Iconos\ico_direccion.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="src\Iconos\ico_saldo_caja.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="src\Iconos\ico_saldo_caja.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="src\Iconos\ico_direccion.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>

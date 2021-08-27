@@ -1,0 +1,150 @@
+object PagLogin: TPagLogin
+  Left = 0
+  Top = 0
+  Caption = 'Login'
+  ClientHeight = 450
+  ClientWidth = 700
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PagLogin: TPanel
+    Left = 0
+    Top = 0
+    Width = 700
+    Height = 450
+    Align = alClient
+    BevelOuter = bvNone
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 701
+    ExplicitHeight = 433
+    object PnlLogo: TPanel
+      Left = 0
+      Top = 0
+      Width = 209
+      Height = 381
+      Align = alLeft
+      BevelOuter = bvNone
+      ParentBackground = False
+      TabOrder = 0
+      ExplicitLeft = -8
+      ExplicitHeight = 338
+    end
+    object PnlFormulario: TPanel
+      Left = 209
+      Top = 0
+      Width = 491
+      Height = 381
+      Align = alClient
+      BevelOuter = bvNone
+      ParentBackground = False
+      TabOrder = 1
+      ExplicitTop = -6
+      ExplicitWidth = 492
+      ExplicitHeight = 352
+      object Label1: TLabel
+        Left = 96
+        Top = 61
+        Width = 31
+        Height = 13
+        Caption = 'Label1'
+      end
+      object Label2: TLabel
+        Left = 96
+        Top = 147
+        Width = 31
+        Height = 13
+        Caption = 'Label2'
+      end
+      object Label3: TLabel
+        Left = 96
+        Top = 232
+        Width = 31
+        Height = 13
+        Caption = 'Label3'
+      end
+      object cmbEmpresa: TDBLookupComboBox
+        Left = 96
+        Top = 251
+        Width = 200
+        Height = 21
+        KeyField = 'CODIGO'
+        ListField = 'RAZON'
+        ListSource = DataSource2
+        TabOrder = 0
+      end
+      object edtLogin: TEdit
+        Left = 96
+        Top = 80
+        Width = 200
+        Height = 30
+        AutoSize = False
+        CharCase = ecUpperCase
+        TabOrder = 1
+      end
+      object edtPassword: TEdit
+        Left = 96
+        Top = 166
+        Width = 200
+        Height = 30
+        AutoSize = False
+        CharCase = ecUpperCase
+        PasswordChar = '*'
+        TabOrder = 2
+      end
+    end
+    object PnlBotones: TPanel
+      Left = 0
+      Top = 381
+      Width = 700
+      Height = 69
+      Align = alBottom
+      BevelOuter = bvNone
+      ParentBackground = False
+      TabOrder = 2
+      ExplicitTop = 352
+      ExplicitWidth = 801
+      object btnIngresar: TSpeedButton
+        Left = 0
+        Top = 0
+        Width = 350
+        Height = 69
+        Align = alLeft
+        Caption = 'Ingresar'
+        Flat = True
+        OnClick = btnIngresarClick
+      end
+      object btnSalir: TSpeedButton
+        Left = 350
+        Top = 0
+        Width = 350
+        Height = 69
+        Align = alClient
+        Caption = 'Salir'
+        Flat = True
+        OnClick = btnSalirClick
+        ExplicitLeft = 440
+        ExplicitTop = 24
+        ExplicitWidth = 150
+        ExplicitHeight = 45
+      end
+    end
+  end
+  object DataSource1: TDataSource
+    Left = 648
+    Top = 16
+  end
+  object DataSource2: TDataSource
+    Left = 640
+    Top = 88
+  end
+end
