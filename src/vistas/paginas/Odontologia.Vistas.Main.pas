@@ -20,6 +20,8 @@ uses
   Odontologia.Vistas.Direccion.Pais,
   Odontologia.Vistas.Direccion,
   Odontologia.Vistas.Home,
+  Odontologia.Vistas.Medico,
+  Odontologia.Vistas.PAciente,
   Odontologia.Vistas.Producto,
   Odontologia.Vistas.Pedido,
   Odontologia.Vistas.Usuarios,
@@ -201,6 +203,8 @@ type
     procedure LblCerrarSesionClick(Sender: TObject);
     procedure LblCerrarSesionMouseLeave(Sender: TObject);
     procedure LblCerrarSesionMouseEnter(Sender: TObject);
+    procedure btnPnelMenuRegMedicoClick(Sender: TObject);
+    procedure btnPnelMenuRegPacienteClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -273,6 +277,18 @@ begin
   prc_expandir_menu(495, TComponent(Sender) as TSpeedButton);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
 end;
+procedure TPageMain.btnPnelMenuRegMedicoClick(Sender: TObject);
+begin
+  PagNueva := TPagMedico.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
+end;
+
+procedure TPageMain.btnPnelMenuRegPacienteClick(Sender: TObject);
+begin
+  PagNueva := TPagPaciente.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
+end;
+
 procedure TPageMain.btnPnelMenuRegProductoClick(Sender: TObject);
 begin
   PagNueva := TPagProducto.Create(Self);
@@ -302,12 +318,15 @@ begin
 end;
 procedure TPageMain.btnPnlBotoneraMedicoClick(Sender: TObject);
 begin
+  PagNueva := TPagMedico.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);
   prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraMedico);
 end;
 procedure TPageMain.btnPnlBotoneraPacienteClick(Sender: TObject);
 begin
-  prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
+  PagNueva := TPagPaciente.Create(Self);
+  prc_abrir_ventana(Sender , PagNueva);prc_marcar_boton_activo(TComponent(Sender) as TSpeedButton, true);
   prc_mover_resaltador(PnlSombraBotoneraPaciente);
 end;
 procedure TPageMain.btnPnlBotoneraServicioClick(Sender: TObject);

@@ -3,6 +3,8 @@ unit Odontologia.Controlador;
 interface
 
 uses
+  Odontologia.Controlador.Agenda,
+  Odontologia.Controlador.Agenda.Interfaces,
   Odontologia.Controlador.Ciudad,
   Odontologia.Controlador.Ciudad.Interfaces,
   Odontologia.Controlador.Departamento,
@@ -13,6 +15,8 @@ uses
   Odontologia.Controlador.EmpresaTipo.Interfaces,
   Odontologia.Controlador.Estado,
   Odontologia.Controlador.Estado.Interfaces,
+  Odontologia.Controlador.Estado.Cita,
+  Odontologia.Controlador.Estado.Cita.Interfaces,
   Odontologia.Controlador.Interfaces,
   Odontologia.Controlador.Pais,
   Odontologia.Controlador.Pais.Interfaces,
@@ -33,11 +37,13 @@ type
     constructor Create;
     destructor Destroy; override;
     class function New      : iController;
+     function Agenda        : iControllerAgenda;
      function Ciudad        : iControllerCiudad;
      function Departamento  : iControllerDepartamento;
      function Empresa       : iControllerEmpresa;
      function EmpresaTipo   : iControllerEmpresaTipo;
      function Estado        : iControllerEstado;
+     function EstadoCita    : iControllerEstadoCita;
      function Pais          : iControllerPais;
      function pedido        : icontrollerpedido;
      function pedidoItem    : icontrollerpedidoitem;
@@ -48,6 +54,11 @@ type
 implementation
 
 { TController }
+
+function TController.Agenda: iControllerAgenda;
+begin
+  Result := TControllerAgenda.new;
+end;
 
 function TController.Ciudad: iControllerCiudad;
 begin
@@ -83,6 +94,11 @@ end;
 function TController.Estado: iControllerEstado;
 begin
    Result := TControllerEstado.New;
+end;
+
+function TController.EstadoCita: iControllerEstadoCita;
+begin
+   Result := TControllerEstadoCita.new;
 end;
 
 class function TController.New: iController;

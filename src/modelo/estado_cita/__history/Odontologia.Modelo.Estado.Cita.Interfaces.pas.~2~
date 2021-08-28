@@ -1,0 +1,20 @@
+unit Odontologia.Modelo.Estado.Cita.Interfaces;
+
+interface
+
+uses
+  Odontologia.Modelo.Entidades.Estado.Cita,
+  SimpleInterface,
+  Data.DB;
+
+type
+  iModelEstadoCita = interface
+    ['{18F42EE3-AD99-44E3-888B-5B91130A91EA}']
+    function Entidad : TFESTADO_CITA;
+    function DAO : iSimpleDAO<TFESTADO_CITA>;
+    function DataSource (aDataSource : TDataSource) : iModelEstadoCita;
+  end;
+
+implementation
+
+end.

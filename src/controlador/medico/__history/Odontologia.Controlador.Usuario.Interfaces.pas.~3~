@@ -1,0 +1,23 @@
+unit Odontologia.Controlador.Usuario.Interfaces;
+
+interface
+
+uses
+  Data.DB,
+  SimpleInterface,
+  Odontologia.Modelo.Empresa.Interfaces,
+  Odontologia.Modelo.Entidades.Usuario;
+
+type
+  iControllerUsuario = interface
+    ['{629DE02A-1733-4F78-9202-94F3AFABF159}']
+    function Entidad      : TDUSUARIO; overload;
+    function Entidad(aEntidad: TDUSUARIO)         : iControllerUsuario; overload;
+    function DAO          : iSimpleDAO<TDUSUARIO>;
+    function DataSource(aDataSource: TDataSource) : iControllerUsuario;
+    function Empresa      : iControllerUsuario;
+  end;
+
+implementation
+
+end.

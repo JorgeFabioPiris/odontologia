@@ -1,0 +1,23 @@
+unit Odontologia.Modelo.Medico.Interfaces;
+
+interface
+
+uses
+  Data.DB,
+  SimpleInterface,
+  Odontologia.Modelo.Estado.Interfaces,
+  Odontologia.Modelo.Entidades.Medico;
+
+type
+  iModelMedico = interface
+    ['{2DC8BA1C-DCD9-4D61-A1A5-E1C810C36875}']
+    function Entidad      : TDMEDICO; overload;
+    function Entidad(aEntidad: TDMEDICO)    : iModelMedico; overload;
+    function DAO          : iSimpleDAO<TDMEDICO>;
+    function DataSource(aDataSource: TDataSource) : iModelMedico;
+    function Estado       : iModelEstado;
+  end;
+
+implementation
+
+end.

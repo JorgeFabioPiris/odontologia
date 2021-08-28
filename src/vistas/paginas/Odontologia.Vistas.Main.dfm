@@ -78,7 +78,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 1
-          ExplicitLeft = 794
           object ptnPnlBotoneraCaja: TSpeedButton
             Tag = 25
             Left = 0
@@ -107,7 +106,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 2
-          ExplicitLeft = 644
           object btnPnlBotoneraServicio: TSpeedButton
             Tag = 24
             Left = 0
@@ -136,7 +134,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 3
-          ExplicitLeft = 494
           object btnPnlBotoneraAgenda: TSpeedButton
             Tag = 23
             Left = 0
@@ -171,7 +168,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 4
-          ExplicitLeft = 344
           object btnPnlBotoneraMedico: TSpeedButton
             Tag = 22
             Left = 0
@@ -200,7 +196,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 5
-          ExplicitLeft = 194
           object btnPnlBotoneraPaciente: TSpeedButton
             Tag = 21
             Left = 0
@@ -229,7 +224,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 6
-          ExplicitLeft = 944
           object btnPnlBotoneraCajaSaldo: TSpeedButton
             Tag = 26
             Left = 0
@@ -257,7 +251,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 7
-          ExplicitLeft = 44
           object btnMenLatInicio: TSpeedButton
             Tag = 27
             Left = 0
@@ -1599,10 +1592,9 @@ object PageMain: TPageMain
               ImageIndex = 19
               Images = ImageList1
               Flat = True
-              ExplicitLeft = 16
-              ExplicitTop = 272
-              ExplicitWidth = 23
-              ExplicitHeight = 22
+              OnClick = btnPnelMenuRegMedicoClick
+              ExplicitLeft = -6
+              ExplicitTop = 6
             end
           end
           object pnlIcoRegisBt05: TPanel
@@ -1799,6 +1791,7 @@ object PageMain: TPageMain
               ImageIndex = 22
               Images = ImageList1
               Flat = True
+              OnClick = btnPnelMenuRegPacienteClick
               ExplicitLeft = 16
               ExplicitTop = 304
               ExplicitWidth = 23
@@ -2454,6 +2447,7 @@ object PageMain: TPageMain
             ImageIndex = 22
             Flat = True
             ParentBiDiMode = False
+            OnClick = btnPnelMenuRegPacienteClick
             ExplicitLeft = 2
             ExplicitTop = 119
             ExplicitWidth = 183
@@ -2567,6 +2561,7 @@ object PageMain: TPageMain
             ImageIndex = 19
             Flat = True
             ParentBiDiMode = False
+            OnClick = btnPnelMenuRegMedicoClick
             ExplicitLeft = 1
             ExplicitWidth = 183
           end

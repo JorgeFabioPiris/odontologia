@@ -3,6 +3,8 @@ unit Odontologia.Modelo;
 interface
 
 uses
+  Odontologia.Modelo.Agenda,
+  Odontologia.Modelo.Agenda.Interfaces,
   Odontologia.Modelo.Ciudad,
   Odontologia.Modelo.Ciudad.Interfaces,
   Odontologia.Modelo.Departamento,
@@ -13,9 +15,15 @@ uses
   Odontologia.Modelo.EmpresaTipo.Interfaces,
   Odontologia.Modelo.Estado,
   Odontologia.Modelo.Estado.Interfaces,
+  Odontologia.Modelo.Estado.Cita,
+  Odontologia.Modelo.Estado.Cita.Interfaces,
   Odontologia.Modelo.Entidades.Empresa,
   Odontologia.Modelo.Entidades.EmpresaTipo,
   Odontologia.Modelo.Interfaces,
+  Odontologia.Modelo.Medico,
+  Odontologia.Modelo.Medico.interfaces,
+  Odontologia.Modelo.Paciente,
+  Odontologia.Modelo.Paciente.Interfaces,
   Odontologia.Modelo.Pais,
   Odontologia.Modelo.Pais.Interfaces,
   Odontologia.Modelo.Producto,
@@ -35,11 +43,15 @@ type
     constructor Create;
     destructor Destroy; override;
     class function New    : iModel;
+    function Agenda       : iModelAgenda;
     function Ciudad       : iModelCiudad;
     function Departamento : iModelDepartamento;
     function Empresa      : iModelEmpresa;
     function EmpresaTipo  : iModelEmpresaTipo;
     function Estado       : iModelEstado;
+    function EstadoCita   : iModelEstadoCita;
+    function Medico       : iModelMedico;
+    function Paciente     : iModelPaciente;
     function Pais         : iModelPais;
     function Pedido       : iModelPedido;
     function PedidoItem   : iModelPedidoItem;
@@ -50,6 +62,11 @@ type
 implementation
 
 { TModel }
+
+function TModel.Agenda: iModelAgenda;
+begin
+  Result := TModelAgenda.New;
+end;
 
 function TModel.Ciudad: iModelCiudad;
 begin
@@ -87,9 +104,24 @@ begin
   Result := TModelEstado.New;
 end;
 
+function TModel.EstadoCita: iModelEstadoCita;
+begin
+  Result := TModelEstadoCita.New;
+end;
+
+function TModel.Medico: iModelMedico;
+begin
+  Result := TModelMedico.New;
+end;
+
 class function TModel.New: iModel;
 begin
   Result := Self.Create;
+end;
+
+function TModel.Paciente: iModelPaciente;
+begin
+  Result := TModelPaciente.New;
 end;
 
 function TModel.Pais: iModelPais;

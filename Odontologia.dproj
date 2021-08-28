@@ -211,6 +211,31 @@
         <DCCReference Include="src\modelo\entidades\Odontologia.Modelo.Entidades.Agenda.pas"/>
         <DCCReference Include="src\modelo\entidades\Odontologia.Modelo.Entidades.Medico.pas"/>
         <DCCReference Include="src\modelo\entidades\Odontologia.Modelo.Entidades.Paciente.pas"/>
+        <DCCReference Include="src\modelo\medico\Odontologia.Modelo.Medico.Interfaces.pas"/>
+        <DCCReference Include="src\modelo\medico\Odontologia.Modelo.Medico.pas"/>
+        <DCCReference Include="src\modelo\paciente\Odontologia.Modelo.Paciente.Interfaces.pas"/>
+        <DCCReference Include="src\modelo\paciente\Odontologia.Modelo.Paciente.pas"/>
+        <DCCReference Include="src\controlador\medico\Odontologia.Controlador.Medico.Interfaces.pas"/>
+        <DCCReference Include="src\controlador\medico\Odontologia.Controlador.Medico.pas"/>
+        <DCCReference Include="src\controlador\paciente\Odontologia.Controlador.Paciente.Interfaces.pas"/>
+        <DCCReference Include="src\controlador\paciente\Odontologia.Controlador.Paciente.pas"/>
+        <DCCReference Include="src\modelo\agenda\Odontologia.Modelo.Agenda.Interfaces.pas"/>
+        <DCCReference Include="src\modelo\agenda\Odontologia.Modelo.Agenda.pas"/>
+        <DCCReference Include="src\modelo\entidades\Odontologia.Modelo.Entidades.Estado.Cita.pas"/>
+        <DCCReference Include="src\modelo\estado_cita\Odontologia.Modelo.Estado.Cita.Interfaces.pas"/>
+        <DCCReference Include="src\modelo\estado_cita\Odontologia.Modelo.Estado.Cita.pas"/>
+        <DCCReference Include="src\controlador\estado_cita\Odontologia.Controlador.Estado.Cita.Interfaces.pas"/>
+        <DCCReference Include="src\controlador\estado_cita\Odontologia.Controlador.Estado.Cita.pas"/>
+        <DCCReference Include="src\controlador\agenda\Odontologia.Controlador.Agenda.Interfaces.pas"/>
+        <DCCReference Include="src\controlador\agenda\Odontologia.Controlador.Agenda.pas"/>
+        <DCCReference Include="src\vistas\paginas\Odontologia.Vistas.Paciente.pas">
+            <Form>PagPaciente</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\vistas\paginas\Odontologia.Vistas.Medico.pas">
+            <Form>PagMedico</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="src\Iconos\ico_actualizar.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>ico_actualizar</ResourceId>
@@ -377,13 +402,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="src\Iconos\ico_direccion.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="src\Iconos\ico_saldo_caja.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="src\Iconos\ico_saldo_caja.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="src\Iconos\ico_direccion.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
