@@ -18,6 +18,10 @@ uses
   Odontologia.Controlador.Estado.Cita,
   Odontologia.Controlador.Estado.Cita.Interfaces,
   Odontologia.Controlador.Interfaces,
+  Odontologia.Controlador.Medico,
+  Odontologia.Controlador.Medico.Interfaces,
+  Odontologia.Controlador.Paciente,
+  Odontologia.Controlador.Paciente.Interfaces,
   Odontologia.Controlador.Pais,
   Odontologia.Controlador.Pais.Interfaces,
   Odontologia.Controlador.Pedido.Interfaces,
@@ -44,6 +48,8 @@ type
      function EmpresaTipo   : iControllerEmpresaTipo;
      function Estado        : iControllerEstado;
      function EstadoCita    : iControllerEstadoCita;
+     function Medico        : iControllerMedico;
+     function Paciente      : iControllerPaciente;
      function Pais          : iControllerPais;
      function pedido        : icontrollerpedido;
      function pedidoItem    : icontrollerpedidoitem;
@@ -101,9 +107,19 @@ begin
    Result := TControllerEstadoCita.new;
 end;
 
+function TController.Medico: iControllerMedico;
+begin
+  Result := Tcontrollermedico.New;
+end;
+
 class function TController.New: iController;
 begin
   Result := Self.Create;
+end;
+
+function TController.Paciente: iControllerPaciente;
+begin
+  Result := TControllerPaciente.New;
 end;
 
 function TController.Pais: iControllerPais;

@@ -1,0 +1,102 @@
+﻿unit Odontologia.Vistas.Medico;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Odontologia.Vistas.Template, Data.DB,
+  System.ImageList, Vcl.ImgList, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
+  Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Odontologia.Controlador.Interfaces,
+  Odontologia.Controlador.Medico.Interfaces,
+  Odontologia.Controlador;
+
+type
+  TPagMedico = class(TPagTemplate)
+    edtCodigo: TEdit;
+    edtNombre: TEdit;
+    edtDocumento: TEdit;
+    cmbEstado: TDBLookupComboBox;
+    edtMatricula: TEdit;
+    lblCodigo: TLabel;
+    lblNombre: TLabel;
+    lblDocumento: TLabel;
+    lblMatricula: TLabel;
+    lblEspecialidad: TLabel;
+    lblEstado: TLabel;
+    edtEspecialidad: TEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure btnNuevoClick(Sender: TObject);
+    procedure btnActualizarClick(Sender: TObject);
+    procedure btnBorrarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+    FController : iController;
+    FPais       : iControllerMedico;
+    procedure prc_estado_inicial;
+  public
+    { Public declarations }
+  end;
+
+var
+  PagMedico: TPagMedico;
+  Insercion: Boolean;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPagMedico.btnActualizarClick(Sender: TObject);
+begin
+  inherited;
+  FPais.Buscar();
+end;
+
+procedure TPagMedico.btnBorrarClick(Sender: TObject);
+var
+  ShouldClose: Boolean;
+begin
+  inherited;
+  if MessageDlg('Realmente desea eliminar este registro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    Fpais.Entidad.ID := StrToInt(edtCodigo.Text);
+    FPais.Eliminar;
+    FPais.Buscar;
+    prc_estado_inicial;
+  end else
+  begin
+    edtNombre.SetFocus;
+  end;
+  end;
+
+procedure TPagMedico.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  prc_estado_inicial;
+end;
+
+procedure TPagMedico.btnNuevoClick(Sender: TObject);
+begin
+  inherited;
+  if Insercion then
+  begin
+    FPais.Entidad.NOMBRE := edtNombre.Text;
+    FPais.Insertar;
+  end
+  else
+  begin
+    FPais.Entidad.ID := StrToInt(edtCodigo.Text);
+    FPais.Entidad.NOMBRE := edtNombre.Text;
+    FPais.Modificar;
+  end;
+  prc_estado_inicial;
+end;
+
+procedure TPagMedico.FormCreate(Sender: TObject);
+begin
+  inherited;
+  lblTitulo.Caption := 'Registro de medicos';
+end;
+
+end.

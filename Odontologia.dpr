@@ -98,9 +98,7 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TModelConexion, ModelConexion);
-  Application.CreateForm(TPageMain, PageMain);
   Application.CreateForm(TPagAgenda, PagAgenda);
-  Application.CreateForm(TPagPaciente, PagPaciente);
-  Application.CreateForm(TPagMedico, PagMedico);
+  Application.CreateForm(TPageMain, PageMain);
   Application.Run;
 end.

@@ -14,6 +14,8 @@ Type
     FMED_CODIGO       : Integer;
     FMED_ESPECIALIDAD : String;
     FMED_DOCUMENTO    : String;
+    FMED_FOTO         : String;
+    FMED_TELEFONO     : String;
     FMED_NOMBRE       : String;
     FMED_MATRICULA    : String;
 
@@ -23,6 +25,8 @@ Type
     procedure SetMED_ESPECIALIDAD(const Value: String);
     procedure SetMED_MATRICULA(const Value: String);
     procedure SetMED_NOMBRE(const Value: String);
+    procedure SetMED_FOTO(const Value: String);
+    procedure SetMED_TELEFONO(const Value: String);
 
   published
     [Campo('MED_CODIGO'), Pk, AutoInc]
@@ -37,11 +41,17 @@ Type
     [Campo('MED_MATRICULA')]
     property MED_MATRICULA    : String read FMED_MATRICULA write SetMED_MATRICULA;
 
+    [Campo('MED_TELEFONO')]
+    property MED_TELEFONO   : String read FMED_TELEFONO write SetMED_TELEFONO;
+
     [Campo('MED_ESPECIALIDAD')]
     property MED_ESPECIALIDAD : String read FMED_ESPECIALIDAD write SetMED_ESPECIALIDAD;
 
     [Campo('MED_COD_ESTADO')]
     property MED_COD_ESTADO   : Integer read FMED_COD_ESTADO write SetMED_COD_ESTADO;
+
+    [Campo('MED_FOTO')]
+    property MED_FOTO         : String read FMED_FOTO write SetMED_FOTO;
   end;
 
 implementation
@@ -73,9 +83,19 @@ begin
   FMED_MATRICULA := Value;
 end;
 
+procedure TDMEDICO.SetMED_TELEFONO(const Value: String);
+begin
+  FMED_TELEFONO := Value;
+end;
+
 procedure TDMEDICO.SetMED_NOMBRE(const Value: String);
 begin
   FMED_NOMBRE := Value;
+end;
+
+procedure TDMEDICO.SetMED_FOTO(const Value: String);
+begin
+  FMED_FOTO := Value;
 end;
 
 end.

@@ -1,0 +1,148 @@
+inherited PagMedico: TPagMedico
+  Caption = 'PagMedico'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PnlPrincipal: TPanel
+    inherited CardPanel1: TCardPanel
+      ActiveCard = Card2
+      inherited Card1: TCard
+        inherited PnlCentralGrid: TPanel
+          ExplicitTop = 62
+          ExplicitHeight = 533
+        end
+        inherited PnlPieBotonAccion: TPanel
+          inherited PnlPieBotonPagina: TPanel
+            inherited lblPagina: TLabel
+              Height = 73
+            end
+          end
+        end
+        inherited PnlCabecera: TPanel
+          inherited PnlCabeceraBusqueda: TPanel
+            ExplicitHeight = 62
+            inherited lblSearch: TLabel
+              Width = 433
+            end
+            inherited PnlCabeceraBusquedaLinea: TPanel
+              ExplicitTop = 61
+            end
+          end
+          inherited PnlCabeceraTitulo: TPanel
+            ExplicitHeight = 62
+            inherited lblTitulo: TLabel
+              Width = 645
+              Height = 32
+            end
+          end
+        end
+      end
+      inherited Card2: TCard
+        inherited PnlCentralFormulario: TPanel
+          ExplicitTop = 89
+          object lblCodigo: TLabel
+            Left = 56
+            Top = 5
+            Width = 37
+            Height = 13
+            Caption = 'C'#243'digo:'
+          end
+          object lblNombre: TLabel
+            Left = 56
+            Top = 69
+            Width = 41
+            Height = 13
+            Caption = 'Nombre:'
+          end
+          object lblDocumento: TLabel
+            Left = 56
+            Top = 133
+            Width = 58
+            Height = 13
+            Caption = 'Documento:'
+          end
+          object lblMatricula: TLabel
+            Left = 208
+            Top = 133
+            Width = 70
+            Height = 13
+            Caption = 'Matricula Prof:'
+          end
+          object lblEspecialidad: TLabel
+            Left = 56
+            Top = 205
+            Width = 62
+            Height = 13
+            Caption = 'Especialidad:'
+          end
+          object lblEstado: TLabel
+            Left = 56
+            Top = 269
+            Width = 37
+            Height = 13
+            Caption = 'Estado:'
+          end
+          object edtCodigo: TEdit
+            Left = 56
+            Top = 24
+            Width = 97
+            Height = 21
+            TabOrder = 0
+          end
+          object edtNombre: TEdit
+            Left = 56
+            Top = 88
+            Width = 369
+            Height = 21
+            TabOrder = 1
+          end
+          object edtDocumento: TEdit
+            Left = 56
+            Top = 152
+            Width = 121
+            Height = 21
+            TabOrder = 2
+          end
+          object cmbEstado: TDBLookupComboBox
+            Left = 56
+            Top = 288
+            Width = 145
+            Height = 21
+            KeyField = 'SIT_CODIGO'
+            ListField = 'SIT_SITUACION'
+            ListSource = DataSource2
+            TabOrder = 3
+          end
+          object edtMatricula: TEdit
+            Left = 208
+            Top = 152
+            Width = 121
+            Height = 21
+            TabOrder = 4
+          end
+          object edtEspecialidad: TEdit
+            Left = 56
+            Top = 224
+            Width = 121
+            Height = 21
+            TabOrder = 5
+          end
+        end
+        inherited PnlPieBotonEdicion: TPanel
+          inherited btnBorrar: TSpeedButton
+            OnClick = btnBorrarClick
+          end
+        end
+        inherited PnlSubTitulo: TPanel
+          inherited lblTitulo2: TLabel
+            Width = 1088
+            Height = 73
+          end
+        end
+      end
+    end
+  end
+  object DataSource2: TDataSource
+    Left = 1062
+    Top = 129
+  end
+end

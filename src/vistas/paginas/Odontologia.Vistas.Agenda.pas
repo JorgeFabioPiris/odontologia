@@ -1,12 +1,36 @@
-unit Odontologia.Vistas.Agenda;
+ï»¿unit Odontologia.Vistas.Agenda;
 
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Grids, Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls, System.ImageList,
-  Vcl.ImgList, Vcl.DBCtrls, Vcl.WinXCalendars;
+  Data.DB,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  Winapi.Windows,
+  Winapi.Messages,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.WinXPanels,
+  Vcl.ExtCtrls,
+  Vcl.ImgList,
+  Vcl.DBCtrls,
+  Vcl.WinXCalendars,
+  Vcl.ComCtrls,
+  Odontologia.Controlador,
+  Odontologia.Controlador.Agenda.Interfaces,
+  Odontologia.Controlador.Estado.Cita.Interfaces,
+  Odontologia.Controlador.Interfaces,
+  Odontologia.Controlador.Medico.Interfaces,
+  Odontologia.Vistas.Main,
+  Odontologia.Vista.Estilos;
 
 type
   TPagAgenda = class(TForm)
@@ -45,6 +69,7 @@ type
     btnBorrar: TSpeedButton;
     btnPrior: TSpeedButton;
     btnNext: TSpeedButton;
+    SpeedButton1: TSpeedButton;
 
     lblTitulo: TLabel;
     lblTitulo2: TLabel;
@@ -52,9 +77,23 @@ type
     LblPaciente: TLabel;
     LblEstado: TLabel;
     lblPagina: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
 
     EdtMedico: TEdit;
     EdtPaciente: TEdit;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit5: TEdit;
+
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBox3: TDBLookupComboBox;
+    DateTimePicker1: TDateTimePicker;
+    DataSource4: TDataSource;
 
     procedure btnNuevoClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);
@@ -65,6 +104,10 @@ type
 
   private
     { Private declarations }
+    FController : iController;
+    FAgenda     : iControllerAgenda;
+    FMedico     : iControllerMedico;
+    FEstadoCita : iControllerEstadoCita;
     procedure prc_estado_inicial;
 
   public
@@ -72,13 +115,10 @@ type
   end;
 
 var
-  PagAgenda     : TPagAgenda;
-  Insercion : Boolean;
+  PagAgenda: TPagAgenda;
+  Insercion: Boolean;
 
 implementation
-
-uses
-  Odontologia.Vistas.Main, Odontologia.Vista.Estilos;
 
 {$R *.dfm}
 
@@ -95,7 +135,7 @@ end;
 
 procedure TPagAgenda.btnCerrarClick(Sender: TObject);
 begin
-  if MessageDlg('Está seguro de cerrar la ventana?', mtConfirmation,
+  if MessageDlg('Estï¿½ seguro de cerrar la ventana?', mtConfirmation,
     [mbOk, mbCancel], 0) = mrOk then
     close;
 end;
@@ -107,43 +147,54 @@ end;
 
 procedure TPagAgenda.btnNuevoClick(Sender: TObject);
 begin
-  modoEdicion           := True;
+  modoEdicion := True;
   CardPanel1.ActiveCard := Card2;
-  lblTitulo2.Caption    := 'Agregar nuevo registro';
+  lblTitulo2.Caption := 'Agregar nuevo registro';
 
 end;
 
 procedure TPagAgenda.FormCreate(Sender: TObject);
 begin
-  Self.Font.Color             := FONT_COLOR;
-  Self.Font.Size              := FONT_H7;
-  lblTitulo.Caption           := 'Agendamiento de citas y consultas';
-  CardPanel1.ActiveCard       := Card1;
-  CardPanel1.Color            := COLOR_BACKGROUND;
-  PnlPrincipal.Color          := COLOR_BACKGROUND;
-  PnlCabecera.Color           := COLOR_BACKGROUND;
-  PnlCabeceraTitulo.Color     := COLOR_BACKGROUND;
-  PnlCentralGridLinea.Color   := COLOR_BACKGROUND_DESTAK;
-  PnlCentralGrid.Color        := COLOR_BACKGROUND;
-  PnlCentralFiltro.Color      := COLOR_BACKGROUND;
-  PnlPieBotonAccion.Color     := COLOR_BACKGROUND;
-  PnlPieBotonPagina.Color     := COLOR_BACKGROUND;
-  PnlCentralFormulario.Color  := COLOR_BACKGROUND;
-  PnlPieBotonEdicion.Color    := COLOR_BACKGROUND;
-  PnlSubTitulo.Color          := COLOR_BACKGROUND;
-  lblTitulo.Font.Color        := FONT_COLOR3;
-  lblTitulo.Font.Size         := FONT_H5;
-  lblTitulo2.Font.Color       := FONT_COLOR3;
-  lblTitulo2.Font.Size        := FONT_H5;
+  Self.Font.Color := FONT_COLOR;
+  Self.Font.Size := FONT_H7;
+  lblTitulo.Caption := 'Agendamiento de citas y consultas';
+  CardPanel1.ActiveCard := Card1;
+  CardPanel1.Color := COLOR_BACKGROUND;
+  PnlPrincipal.Color := COLOR_BACKGROUND;
+  PnlCabecera.Color := COLOR_BACKGROUND;
+  PnlCabeceraTitulo.Color := COLOR_BACKGROUND;
+  PnlCentralGridLinea.Color := COLOR_BACKGROUND_DESTAK;
+  PnlCentralGrid.Color := COLOR_BACKGROUND;
+  PnlCentralFiltro.Color := COLOR_BACKGROUND;
+  PnlPieBotonAccion.Color := COLOR_BACKGROUND;
+  PnlPieBotonPagina.Color := COLOR_BACKGROUND;
+  PnlCentralFormulario.Color := COLOR_BACKGROUND;
+  PnlPieBotonEdicion.Color := COLOR_BACKGROUND;
+  PnlSubTitulo.Color := COLOR_BACKGROUND;
+  lblTitulo.Font.Color := FONT_COLOR3;
+  lblTitulo.Font.Size := FONT_H5;
+  lblTitulo2.Font.Color := FONT_COLOR3;
+  lblTitulo2.Font.Size := FONT_H5;
+
+  FController       := TController.New;
+  FAgenda           := FController.Agenda.DataSource(DataSource1);
+  FMedico           := FController.Medico.DataSource(DataSource2);
+  FEstadoCita       := FController.EstadoCita.DataSource(DataSource4);
+  prc_estado_inicial;
 end;
 
 procedure TPagAgenda.prc_estado_inicial;
 begin
-  Insercion               := True;
-  CardPanel1.ActiveCard   := Card1;
-  EdtMedico.Text          := '';
-  EdtPaciente.Text        := '';
-  cmbEstadoCita.KeyValue  := 1;
-end;
+  Insercion := True;
+  CardPanel1.ActiveCard := Card1;
+  EdtMedico.Text := '';
+  EdtPaciente.Text := '';
+
+  Fagenda.Buscar;
+  FMedico.Buscar;
+  FEstadoCita.Buscar;
+  cmbEstadoCita.KeyValue := 1;
+
+  end;
 
 end.

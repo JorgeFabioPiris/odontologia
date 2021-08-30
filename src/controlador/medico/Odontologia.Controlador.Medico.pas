@@ -27,14 +27,13 @@ type
     destructor Destroy; override;
     class function New    : iControllerMedico;
     function DataSource (aDataSource : TDataSource) : iControllerMedico;
-    function Buscar (aLogin : String)               : iControllerMedico; overload;
-    function Buscar (aLogin, aPassword : String ; aEmpresa : Integer)  : iControllerMedico; overload;
+    function Buscar (aNombre : String)              : iControllerMedico; overload;
     function Buscar       : iControllerMedico; overload;
     function Insertar     : iControllerMedico;
     function Modificar    : iControllerMedico;
     function Eliminar     : iControllerMedico;
     function Entidad      : TDMEDICO;
-    function Estado      : iControllerEstado;
+    function Estado       : iControllerEstado;
   end;
 
 implementation
@@ -45,66 +44,55 @@ function TControllerMedico.Buscar: iControllerMedico;
 begin
   Result := Self;
   FDataSource.dataset.DisableControls;
-  FModel.DAO.SQL.Fields('DUSUARIO.USU_CODIGO AS CODIGO,')
-    .Fields('DUSUARIO.USU_LOGIN AS LOGIN,')
-    .Fields('DUSUARIO.USU_NIVEL AS NIVEL,')
-    .Fields('DUSUARIO.USU_CLAVE AS CLAVE,')
-    .Fields('DUSUARIO.USU_FOTO AS FOTO,')
-    .Fields('DUSUARIO.USU_COD_EMPRESA AS CODEMPRESA,')
-    .Fields('DUSUARIO.USU_COD_ESTADO AS CODESTADO,')
-    .Fields('FSITUACION.SIT_SITUACION AS ESTADO,')
-    .Fields('DEMPRESA.EMP_FANTASIA AS EMPRESA')
-    .Join('INNER JOIN DEMPRESA ON DEMPRESA.EMP_CODIGO = DUSUARIO.USU_COD_EMPRESA')
-    .Join('INNER JOIN FSITUACION ON FSITUACION.SIT_CODIGO = DUSUARIO.USU_COD_ESTADO')
+  FModel.DAO.SQL.Fields('DMEDICO.MED_CODIGO AS CODIGO,')
+    .Fields('DMEDICO.MED_NOMBRE AS NOMBRE,')
+    .Fields('DMEDICO.MED_DOCUMENTO AS DOCUMENTO,')
+    .Fields('DMEDICO.MED_TELEFONO AS TELEFONO,')
+    .Fields('DMEDICO.MED_MATRICULA AS MATRICULA,')
+    .Fields('DMEDICO.MED_ESPECIALIDAD AS ESPECIALIDAD,')
+    .Fields('DMEDICO.MED_FOTO AS FOTO,')
+    .Fields('DMEDICO.MED_COD_ESTADO AS CODESTADO,')
+    .Fields('FSITUACION.SIT_SITUACION AS ESTADO ')
+    .Join('INNER JOIN FSITUACION ON FSITUACION.SIT_CODIGO = DMEDICO.MED_COD_ESTADO')
     .Where('')
-  .OrderBy('LOGIN')
+  .OrderBy('NOMBRE')
   .&End.Find;
+
   FDataSource.dataset.EnableControls;
-  FDataSource.dataset.FieldByName('CODIGO').Visible := False;
-  FDataSource.dataset.FieldByName('CLAVE').Visible := False;
-  FDataSource.dataset.FieldByName('NIVEL').Visible := False;
-  FDataSource.dataset.FieldByName('CODEMPRESA').Visible := False;
-  FDataSource.dataset.FieldByName('CODESTADO').Visible := False;
-  FDataSource.dataset.FieldByName('FOTO').Visible := False;
-  FDataSource.dataset.FieldByName('LOGIN').DisplayWidth :=50;
+  FDataSource.dataset.FieldByName('CODIGO').Visible       := False;
+  FDataSource.dataset.FieldByName('MATRICULA').Visible    := False;
+  FDataSource.dataset.FieldByName('DOCUMENTO').Visible    := False;
+  FDataSource.dataset.FieldByName('FOTO').Visible         := False;
+  FDataSource.dataset.FieldByName('CODESTADO').Visible    := False;
+  FDataSource.dataset.FieldByName('NOMBRE').DisplayWidth  := 50;
 end;
 
-function TControllerMedico.Buscar(aLogin: String): iControllerMedico;
+function TControllerMedico.Buscar(aNombre: String): iControllerMedico;
 begin
   Result := Self;
+
   FDataSource.dataset.DisableControls;
-  FModel.DAO.SQL.Fields('DUSUARIO.USU_CODIGO AS CODIGO,')
-    .Fields('DUSUARIO.USU_LOGIN AS LOGIN,')
-    .Fields('DUSUARIO.USU_NIVEL AS NIVEL,')
-    .Fields('DUSUARIO.USU_CLAVE AS CLAVE,')
-    .Fields('DUSUARIO.USU_FOTO AS FOTO,')
-    .Fields('DUSUARIO.USU_COD_EMPRESA AS CODEMPRESA,')
-    .Fields('DUSUARIO.USU_COD_ESTADO AS CODESTADO,')
-    .Fields('FSITUACION.SIT_SITUACION AS ESTADO,')
-    .Fields('DEMPRESA.EMP_FANTASIA AS EMPRESA')
-    .Join('INNER JOIN DEMPRESA ON DEMPRESA.EMP_CODIGO = DUSUARIO.USU_COD_EMPRESA')
-    .Join('INNER JOIN FSITUACION ON FSITUACION.SIT_CODIGO = DUSUARIO.USU_COD_ESTADO')
-    .Where('DUSUARIO.USU_LOGIN LIKE ' +QuotedStr(aLogin) + '')
-  .OrderBy('LOGIN')
+  FModel.DAO.SQL.Fields('DMEDICO.MED_CODIGO AS CODIGO,')
+    .Fields('DMEDICO.MED_NOMBRE AS NOMBRE,')
+    .Fields('DMEDICO.MED_DOCUMENTO AS DOCUMENTO,')
+    .Fields('DMEDICO.MED_TELEFONO AS TELEFONO,')
+    .Fields('DMEDICO.MED_MATRICULA AS MATRICULA,')
+    .Fields('DMEDICO.MED_ESPECIALIDAD AS ESPECIALIDAD,')
+    .Fields('DMEDICO.MED_FOTO AS FOTO,')
+    .Fields('DMEDICO.MED_COD_ESTADO AS CODESTADO,')
+    .Fields('FSITUACION.SIT_SITUACION AS ESTADO ')
+    .Join('INNER JOIN FSITUACION ON FSITUACION.SIT_CODIGO = DMEDICO.MED_COD_ESTADO')
+    .Where('DMEDICO.MED_NOMBRE LIKE ' +QuotedStr(aNombre) + '')
+  .OrderBy('NOMBRE')
   .&End.Find;
-  FDataSource.dataset.EnableControls;
-  FDataSource.dataset.FieldByName('CODIGO').Visible := False;
-  FDataSource.dataset.FieldByName('CLAVE').Visible := False;
-  FDataSource.dataset.FieldByName('NIVEL').Visible := False;
-  FDataSource.dataset.FieldByName('CODEMPRESA').Visible := False;
-  FDataSource.dataset.FieldByName('CODESTADO').Visible := False;
-  FDataSource.dataset.FieldByName('FOTO').Visible := False;
-  FDataSource.dataset.FieldByName('LOGIN').DisplayWidth :=50;
-end;
 
-function TControllerMedico.Buscar(aLogin, aPassword: String; aEmpresa: Integer): iControllerMedico;
-begin
-  Result := Self;
-  FModel.DAO
-    .SQL
-      .Where('USU_LOGIN = ' +QuotedStr(aLogin) + ' AND USU_CLAVE = ' + QuotedStr(aPassword) + ' AND USU_COD_EMPRESA = ' + intToStr(aEmpresa))
-    .&End
-  .Find;
+  FDataSource.dataset.EnableControls;
+  FDataSource.dataset.FieldByName('CODIGO').Visible       := False;
+  FDataSource.dataset.FieldByName('MATRICULA').Visible    := False;
+  FDataSource.dataset.FieldByName('DOCUMENTO').Visible    := False;
+  FDataSource.dataset.FieldByName('FOTO').Visible         := False;
+  FDataSource.dataset.FieldByName('CODESTADO').Visible    := False;
+  FDataSource.dataset.FieldByName('NOMBRE').DisplayWidth  := 50;
 end;
 
 constructor TControllerMedico.Create;

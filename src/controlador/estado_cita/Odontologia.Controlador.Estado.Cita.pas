@@ -23,9 +23,7 @@ type
     destructor Destroy; override;
     class function New: iControllerEstadoCita;
     function DataSource(aDataSource: TDataSource): iControllerEstadoCita;
-    function Buscar: iControllerEstadoCita; overload;
-    function Buscar(aId: Integer): iControllerEstadoCita; overload;
-    function Buscar(aNombre: String): iControllerEstadoCita; overload;
+    function Buscar: iControllerEstadoCita;
     function Insertar: iControllerEstadoCita;
     function Modificar: iControllerEstadoCita;
     function Eliminar: iControllerEstadoCita;
@@ -44,25 +42,6 @@ begin
       .Where('')
     .&End
   .Find;
-end;
-
-function TControllerEstadoCita.Buscar(aNombre: String): iControllerEstadoCita;
-begin
-  Result := Self;
-  FModel.DAO
-    .SQL
-      .Where('PAI_NOMBRE CONTAINING ' +QuotedStr(aNombre) + '')
-    .&End
-  .Find;
-end;
-
-function TControllerEstadoCita.Buscar(aId: Integer): iControllerEstadoCita;
-begin
-  Result := Self;
-
-  if Assigned(FEntidad) then
-    FEntidad.Free;
-  FEntidad := FModel.DAO.Find(aId);
 end;
 
 constructor TControllerEstadoCita.Create;

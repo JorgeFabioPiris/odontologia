@@ -10,15 +10,17 @@ type
   TDPACIENTE = class
 
   private
-    FPAC_COD_ESTADO: Integer;
-    FPAC_CODIGO: Integer;
-    FPAC_DIRECCION: String;
-    FPAC_DOCUMENTO: String;
-    FPAC_TELEFONO: String;
-    FPAC_NOMBRE: String;
+    FPAC_COD_ESTADO : Integer;
+    FPAC_CODIGO     : Integer;
+    FPAC_DIRECCION  : String;
+    FPAC_DOCUMENTO  : String;
+    FPAC_FOTO       : String;
+    FPAC_TELEFONO   : String;
+    FPAC_NOMBRE     : String;
     procedure SetPAC_COD_ESTADO(const Value: Integer);
     procedure SetPAC_CODIGO(const Value: Integer);
     procedure SetPAC_DIRECCION(const Value: String);
+    procedure SetPAC_FOTO (const Value: String);
     procedure SetPAC_DOCUMENTO(const Value: String);
     procedure SetPAC_NOMBRE(const Value: String);
     procedure SetPAC_TELEFONO(const Value: String);
@@ -33,11 +35,14 @@ type
     [Campo('PAC_DOCUMENTO')]
     property PAC_DOCUMENTO  : String read FPAC_DOCUMENTO write SetPAC_DOCUMENTO;
 
-    [Campo('PAC_TELEFONO')]
-    property PAC_TELEFONO   : String read FPAC_TELEFONO write SetPAC_TELEFONO;
-
     [Campo('PAC_DIRECCION')]
     property PAC_DIRECCION  : String read FPAC_DIRECCION write SetPAC_DIRECCION;
+
+    [Campo('PAC_FOTO')]
+    property PAC_FOTO   : String read FPAC_FOTO write SetPAC_FOTO;
+
+    [Campo('PAC_TELEFONO')]
+    property PAC_TELEFONO   : String read FPAC_TELEFONO write SetPAC_TELEFONO;
 
     [Campo('PAC_COD_ESTADO')]
     property PAC_COD_ESTADO : Integer read FPAC_COD_ESTADO write SetPAC_COD_ESTADO;
@@ -65,6 +70,11 @@ end;
 procedure TDPACIENTE.SetPAC_DOCUMENTO(const Value: String);
 begin
   FPAC_DOCUMENTO := Value;
+end;
+
+procedure TDPACIENTE.SetPAC_FOTO(const Value: String);
+begin
+  FPAC_FOTO := Value;
 end;
 
 procedure TDPACIENTE.SetPAC_NOMBRE(const Value: String);

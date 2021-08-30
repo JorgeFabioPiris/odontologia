@@ -10,6 +10,8 @@ uses
   Odontologia.Controlador.EmpresaTipo.Interfaces,
   Odontologia.Controlador.Estado.Interfaces,
   Odontologia.Controlador.Estado.Cita.Interfaces,
+  Odontologia.Controlador.Medico.Interfaces,
+  Odontologia.Controlador.Paciente.Interfaces,
   Odontologia.Controlador.Pais.Interfaces,
   Odontologia.Controlador.Pedido.Interfaces,
   Odontologia.Controlador.Producto.Interfaces,
@@ -25,6 +27,8 @@ type
      function EmpresaTipo   : iControllerEmpresaTipo;
      function Estado        : iControllerEstado;
      function EstadoCita    : iControllerEstadoCita;
+     function Medico        : iControllerMedico;
+     function Paciente      : iControllerPaciente;
      function Pais          : iControllerPais;
      function pedido        : icontrollerpedido;
      function pedidoItem    : icontrollerpedidoitem;

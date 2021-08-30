@@ -68,8 +68,6 @@ type
     FEmpresa      : iControllerEmpresa;
     FEstado       : iControllerEstado;
     FUsuario      : iControllerUsuario;
-    imagenURL     : String;
-    imagenModif   : Boolean;
     procedure prc_estado_inicial;
     procedure prc_copiar_img_directorio(origen : String);
 
@@ -80,10 +78,9 @@ type
 var
   PagUsuario  : TPagUsuario;
   Insercion   : Boolean;
-  ImgURL      : String;
-  ImgMod      : Boolean;
+  imagenURL     : String;
+  imagenModif   : Boolean;
   path        : string;
-
 
 implementation
 
@@ -132,7 +129,7 @@ begin
     FUsuario.Entidad.USU_NIVEL         := StrToInt(edtNivel.Text);
     FUsuario.Entidad.USU_CLAVE         := edtClave.Text;
     FUsuario.Entidad.USU_COD_EMPRESA   := DataSource2.DataSet.FieldByName('CODIGO').AsInteger;
-    if ImgMod then
+    if imagenModif then
       begin
         FUsuario.Entidad.USU_FOTO      := imagenURL;
       end else
@@ -165,8 +162,8 @@ begin
     end else
     begin
       prc_copiar_img_directorio(OpenPictureDialog1.FileName);
-      ImgMod := true;
-      btnGuardarImagen.Enabled := false;
+      imagenModif               := true;
+      btnGuardarImagen.Enabled  := false;
     end;
   ShowMessage('La imagen ha sido guardada');
 end;
@@ -177,22 +174,22 @@ begin
   CardPanel1.ActiveCard := Card2;
   lblTitulo2.Caption    := 'Agregar nuevo registro';
   edtCodigo.Enabled     := False;
-  edtLogin.SetFocus;
   cmbEstado.KeyValue    := 1;
   cmbEmpresa.KeyValue   := 1;
+  edtLogin.SetFocus;
 end;
 
 procedure TPagUsuario.DataSource1DataChange(Sender: TObject; Field: TField);
 begin
   inherited;
-  edtCodigo.Text  := DataSource1.DataSet.FieldByName('EMP_CODIGO').AsString;
-  edtLogin.Text   := DataSource1.DataSet.FieldByName('EMP_NOMBRE').AsString;
+  edtCodigo.Text        := DataSource1.DataSet.FieldByName('EMP_CODIGO').AsString;
+  edtLogin.Text         := DataSource1.DataSet.FieldByName('EMP_NOMBRE').AsString;
 end;
 
 procedure TPagUsuario.DBGrid1DblClick(Sender: TObject);
 begin
   inherited;
-  Insercion := False;
+  Insercion               := False;
   CardPanel1.ActiveCard   := Card2;
   lblTitulo2.Caption      := 'Modificar registro';
   edtCodigo.Text          := DataSource1.DataSet.FieldByName('CODIGO').AsString;
@@ -245,13 +242,13 @@ end;
 
 procedure TPagUsuario.prc_copiar_img_directorio(origen : String);
 begin
-  imagenURL := path + 'fotos\avatar_' + edtLogin.text + '.jpg';
+  imagenURL := path + 'fotos\usuario_' + edtLogin.text + '.jpg';
   CopyFile(PChar(origen),PChar(imagenURL),False);
 end;
 
 procedure TPagUsuario.prc_estado_inicial;
 begin
-  ImgMod                := false;
+  imagenModif            := false;
   imagenURL := path + 'fotos\noimage.jpg';
   if FileExists(imagenURL) then
     begin
