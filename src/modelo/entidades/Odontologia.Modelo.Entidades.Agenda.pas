@@ -6,7 +6,9 @@ uses
   SimpleAttributes;
 
 type
+  [Tabela('DAGENDA')]
   TDAGENDA = class
+
   private
     FAGE_PACIENTE: integer;
     FAGE_CODIGO: integer;
@@ -20,12 +22,24 @@ type
     procedure SetAGE_HORA(const Value: TDateTime);
     procedure SetAGE_MEDICO(const Value: integer);
     procedure SetAGE_PACIENTE(const Value: integer);
+
   published
+    [Campo('AGE_CODIGO'), Pk, AutoInc]
     property AGE_CODIGO : integer read FAGE_CODIGO write SetAGE_CODIGO;
+
+    [Campo('AGE_FECHA')]
     property AGE_FECHA  : TDateTime read FAGE_FECHA write SetAGE_FECHA;
+
+    [Campo('AGE_HORA')]
     property AGE_HORA   : TDateTime read FAGE_HORA write SetAGE_HORA;
+
+    [Campo('AGE_PACIENTE')]
     property AGE_PACIENTE : integer read FAGE_PACIENTE write SetAGE_PACIENTE;
+
+    [Campo('AGE_MEDICO')]
     property AGE_MEDICO   : integer read FAGE_MEDICO write SetAGE_MEDICO;
+
+    [Campo('AGE_COD_ESTADO_CITA')]
     property AGE_COD_ESTADO_CITA  : integer read FAGE_COD_ESTADO_CITA write SetAGE_COD_ESTADO_CITA;
   end;
 implementation

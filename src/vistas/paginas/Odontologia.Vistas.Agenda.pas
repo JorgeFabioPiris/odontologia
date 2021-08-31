@@ -94,6 +94,8 @@ type
     DBLookupComboBox3: TDBLookupComboBox;
     DateTimePicker1: TDateTimePicker;
     DataSource4: TDataSource;
+    DateTimePicker2: TDateTimePicker;
+    Label4: TLabel;
 
     procedure btnNuevoClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);

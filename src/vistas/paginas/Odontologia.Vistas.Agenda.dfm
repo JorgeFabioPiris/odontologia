@@ -32,7 +32,7 @@ object PagAgenda: TPagAgenda
       Width = 1118
       Height = 572
       Align = alClient
-      ActiveCard = Card1
+      ActiveCard = Card2
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 0
@@ -326,6 +326,7 @@ object PagAgenda: TPagAgenda
           Padding.Right = 25
           ParentBackground = False
           TabOrder = 0
+          ExplicitTop = 79
           object Label1: TLabel
             Left = 56
             Top = 5
@@ -374,6 +375,13 @@ object PagAgenda: TPagAgenda
             Width = 49
             Height = 22
           end
+          object Label4: TLabel
+            Left = 224
+            Top = 133
+            Width = 98
+            Height = 13
+            Caption = 'Fecha de la consulta'
+          end
           object DBLookupComboBox2: TDBLookupComboBox
             Left = 55
             Top = 216
@@ -418,11 +426,25 @@ object PagAgenda: TPagAgenda
           object DateTimePicker1: TDateTimePicker
             Left = 56
             Top = 152
-            Width = 186
-            Height = 21
+            Width = 144
+            Height = 25
             Date = 44438.000000000000000000
             Time = 0.652935532409173900
+            ParentShowHint = False
+            ShowHint = False
             TabOrder = 5
+          end
+          object DateTimePicker2: TDateTimePicker
+            Left = 224
+            Top = 152
+            Width = 144
+            Height = 25
+            Date = 44438.000000000000000000
+            Time = 0.652935532409173900
+            Kind = dtkTime
+            ParentShowHint = False
+            ShowHint = False
+            TabOrder = 6
           end
         end
         object PnlPieBotonEdicion: TPanel
@@ -434,6 +456,7 @@ object PagAgenda: TPagAgenda
           BevelOuter = bvNone
           ParentBackground = False
           TabOrder = 1
+          ExplicitTop = 505
           object btnBorrar: TSpeedButton
             Left = 0
             Top = 0

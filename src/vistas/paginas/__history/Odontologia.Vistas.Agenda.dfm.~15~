@@ -1,9 +1,9 @@
-object Form1: TForm1
+object PagAgenda: TPagAgenda
   Left = 0
   Top = 0
   Align = alClient
   BorderStyle = bsNone
-  ClientHeight = 668
+  ClientHeight = 572
   ClientWidth = 1148
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 1148
-    Height = 668
+    Height = 572
     Align = alClient
     BevelOuter = bvNone
     Padding.Left = 15
@@ -30,9 +30,9 @@ object Form1: TForm1
       Left = 15
       Top = 0
       Width = 1118
-      Height = 668
+      Height = 572
       Align = alClient
-      ActiveCard = Card2
+      ActiveCard = Card1
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 0
@@ -40,15 +40,15 @@ object Form1: TForm1
         Left = 0
         Top = 0
         Width = 1118
-        Height = 668
+        Height = 572
         Caption = 'Card1'
         CardIndex = 0
         TabOrder = 0
         object PnlCentralGrid: TPanel
           Left = 0
-          Top = 73
+          Top = 62
           Width = 1118
-          Height = 522
+          Height = 437
           Align = alClient
           BevelOuter = bvNone
           Padding.Left = 15
@@ -57,10 +57,10 @@ object Form1: TForm1
           ParentBackground = False
           TabOrder = 0
           object DBGrid1: TDBGrid
-            Left = 313
+            Left = 281
             Top = 17
-            Width = 790
-            Height = 505
+            Width = 822
+            Height = 420
             Align = alClient
             BorderStyle = bsNone
             DataSource = DataSource1
@@ -85,32 +85,30 @@ object Form1: TForm1
           object PnlCentralFiltro: TPanel
             Left = 15
             Top = 17
-            Width = 298
-            Height = 505
+            Width = 266
+            Height = 420
             Align = alLeft
             BevelOuter = bvNone
             Padding.Right = 20
             ParentBackground = False
             TabOrder = 2
-            ExplicitLeft = 9
-            ExplicitTop = 23
             object LblMedico: TLabel
-              Left = 0
-              Top = 304
+              Left = 2
+              Top = 248
               Width = 33
               Height = 13
               Caption = 'Medico'
             end
             object LblPaciente: TLabel
-              Left = 0
-              Top = 368
+              Left = 2
+              Top = 303
               Width = 41
               Height = 13
               Caption = 'Paciente'
             end
-            object Label1: TLabel
+            object LblEstado: TLabel
               Left = 2
-              Top = 437
+              Top = 358
               Width = 79
               Height = 13
               Caption = 'Estado de la cita'
@@ -118,8 +116,8 @@ object Form1: TForm1
             object CalendarView1: TCalendarView
               Left = 0
               Top = 0
-              Width = 278
-              Height = 281
+              Width = 246
+              Height = 241
               Align = alTop
               Date = 44434.000000000000000000
               Font.Charset = DEFAULT_CHARSET
@@ -141,31 +139,34 @@ object Form1: TForm1
               TabOrder = 0
             end
             object EdtMedico: TEdit
-              Left = 0
-              Top = 323
-              Width = 273
-              Height = 30
+              Left = 2
+              Top = 267
+              Width = 247
+              Height = 21
               TabOrder = 1
             end
             object EdtPaciente: TEdit
-              Left = 0
-              Top = 387
-              Width = 273
-              Height = 30
+              Left = 2
+              Top = 322
+              Width = 247
+              Height = 21
               TabOrder = 2
             end
-            object DBLookupComboBox1: TDBLookupComboBox
+            object cmbEstadoCita: TDBLookupComboBox
               Left = 0
-              Top = 456
-              Width = 273
+              Top = 377
+              Width = 249
               Height = 21
+              KeyField = 'CIT_CODIGO'
+              ListField = 'CIT_DESCRIPCION'
+              ListSource = DataSource4
               TabOrder = 3
             end
           end
         end
         object PnlPieBotonAccion: TPanel
           Left = 0
-          Top = 595
+          Top = 499
           Width = 1118
           Height = 73
           Align = alBottom
@@ -267,7 +268,7 @@ object Form1: TForm1
           Left = 0
           Top = 0
           Width = 1118
-          Height = 73
+          Height = 62
           Align = alTop
           BevelOuter = bvNone
           ParentBackground = False
@@ -276,7 +277,7 @@ object Form1: TForm1
             Left = 0
             Top = 0
             Width = 660
-            Height = 73
+            Height = 62
             Align = alLeft
             BevelOuter = bvNone
             Padding.Left = 15
@@ -288,17 +289,17 @@ object Form1: TForm1
               Left = 15
               Top = 15
               Width = 645
-              Height = 43
+              Height = 32
               Align = alClient
               Caption = 'lblTitulo'
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clBlue
               Font.Height = -19
               Font.Name = 'Segoe UI'
-              Font.Style = [fsBold]
+              Font.Style = []
               ParentFont = False
               Layout = tlCenter
-              ExplicitWidth = 74
+              ExplicitWidth = 69
               ExplicitHeight = 25
             end
           end
@@ -308,7 +309,7 @@ object Form1: TForm1
         Left = 0
         Top = 0
         Width = 1118
-        Height = 668
+        Height = 572
         Caption = 'Card2'
         CardIndex = 1
         Padding.Left = 15
@@ -318,17 +319,115 @@ object Form1: TForm1
           Left = 15
           Top = 73
           Width = 1088
-          Height = 522
+          Height = 426
           Align = alClient
           BevelOuter = bvNone
           Padding.Left = 25
           Padding.Right = 25
           ParentBackground = False
           TabOrder = 0
+          object Label1: TLabel
+            Left = 56
+            Top = 5
+            Width = 82
+            Height = 13
+            Caption = 'Codigo Consulta:'
+          end
+          object Label2: TLabel
+            Left = 56
+            Top = 69
+            Width = 31
+            Height = 13
+            Caption = 'Codig:'
+          end
+          object Label3: TLabel
+            Left = 56
+            Top = 133
+            Width = 98
+            Height = 13
+            Caption = 'Fecha de la consulta'
+          end
+          object Label6: TLabel
+            Left = 56
+            Top = 197
+            Width = 37
+            Height = 13
+            Caption = 'Medico:'
+          end
+          object Label7: TLabel
+            Left = 56
+            Top = 261
+            Width = 102
+            Height = 13
+            Caption = 'Estado de la consulta'
+          end
+          object Label8: TLabel
+            Left = 155
+            Top = 69
+            Width = 45
+            Height = 13
+            Caption = 'Paciente:'
+          end
+          object SpeedButton1: TSpeedButton
+            Left = 464
+            Top = 87
+            Width = 49
+            Height = 22
+          end
+          object DBLookupComboBox2: TDBLookupComboBox
+            Left = 55
+            Top = 216
+            Width = 145
+            Height = 21
+            TabOrder = 0
+          end
+          object DBLookupComboBox3: TDBLookupComboBox
+            Left = 56
+            Top = 280
+            Width = 145
+            Height = 21
+            KeyField = 'CIT_CODIGO'
+            ListField = 'CIT_DESCRIPCION'
+            ListSource = DataSource4
+            TabOrder = 1
+          end
+          object Edit1: TEdit
+            Left = 56
+            Top = 24
+            Width = 97
+            Height = 21
+            TabOrder = 2
+            Text = 'Edit1'
+          end
+          object Edit2: TEdit
+            Left = 56
+            Top = 88
+            Width = 84
+            Height = 21
+            TabOrder = 3
+            Text = 'Edit2'
+          end
+          object Edit5: TEdit
+            Left = 155
+            Top = 88
+            Width = 294
+            Height = 21
+            TabOrder = 4
+            Text = 'Edit2'
+          end
+          object DateTimePicker1: TDateTimePicker
+            Left = 56
+            Top = 152
+            Width = 186
+            Height = 21
+            Date = 44438.000000000000000000
+            Time = 0.652935532409173900
+            TabOrder = 5
+          end
         end
         object PnlPieBotonEdicion: TPanel
           Left = 15
-          Top = 595
+          Top = 499
           Width = 1088
           Height = 73
           Align = alBottom
@@ -1481,5 +1580,9 @@ object Form1: TForm1
   object DataSource3: TDataSource
     Left = 1063
     Top = 233
+  end
+  object DataSource4: TDataSource
+    Left = 1063
+    Top = 326
   end
 end

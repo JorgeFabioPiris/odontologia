@@ -402,13 +402,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="src\Iconos\ico_direccion.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="src\Iconos\ico_saldo_caja.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="src\Iconos\ico_saldo_caja.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="src\Iconos\ico_direccion.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>

@@ -35,7 +35,6 @@ object PageMain: TPageMain
       Padding.Top = 7
       ParentBackground = False
       TabOrder = 0
-      ExplicitTop = 122
     end
     object pnlCabecera: TPanel
       Left = 1
@@ -59,7 +58,7 @@ object PageMain: TPageMain
         object btnOcultarPanelLateral: TSpeedButton
           Left = 0
           Top = 0
-          Width = 44
+          Width = 50
           Height = 41
           Align = alLeft
           ImageIndex = 32
@@ -69,7 +68,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraCaja: TPanel
           Tag = 125
-          Left = 794
+          Left = 800
           Top = 0
           Width = 150
           Height = 41
@@ -97,7 +96,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraServicio: TPanel
           Tag = 124
-          Left = 644
+          Left = 650
           Top = 0
           Width = 150
           Height = 41
@@ -125,7 +124,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraAgenda: TPanel
           Tag = 123
-          Left = 494
+          Left = 500
           Top = 0
           Width = 150
           Height = 41
@@ -159,7 +158,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraMedico: TPanel
           Tag = 122
-          Left = 344
+          Left = 350
           Top = 0
           Width = 150
           Height = 41
@@ -187,7 +186,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraPaciente: TPanel
           Tag = 121
-          Left = 194
+          Left = 200
           Top = 0
           Width = 150
           Height = 41
@@ -215,7 +214,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraSaldo: TPanel
           Tag = 126
-          Left = 944
+          Left = 950
           Top = 0
           Width = 150
           Height = 41
@@ -242,7 +241,7 @@ object PageMain: TPageMain
         end
         object pnlSombraBotoneraInicio: TPanel
           Tag = 127
-          Left = 44
+          Left = 50
           Top = 0
           Width = 150
           Height = 41
@@ -1099,7 +1098,6 @@ object PageMain: TPageMain
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
-              ExplicitTop = 0
               ExplicitWidth = 90
               ExplicitHeight = 25
             end
@@ -1108,6 +1106,7 @@ object PageMain: TPageMain
               Top = 49
               Width = 115
               Height = 21
+              Cursor = crHandPoint
               Align = alBottom
               Alignment = taCenter
               Caption = 'Cerrar Sesion'
@@ -1117,6 +1116,9 @@ object PageMain: TPageMain
               Font.Name = 'Segoe UI'
               Font.Style = []
               ParentFont = False
+              OnClick = LblCerrarSesionClick
+              OnMouseEnter = LblCerrarSesionMouseEnter
+              OnMouseLeave = LblCerrarSesionMouseLeave
               ExplicitWidth = 94
             end
             object Label1: TLabel
@@ -1163,7 +1165,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 0
-          ExplicitTop = 694
           object pnlIcoConfigDiv: TPanel
             Left = 0
             Top = 45
@@ -1283,7 +1284,6 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 1
-          ExplicitTop = 647
         end
         object pnlIcoDiv02: TPanel
           Left = 0
@@ -1296,7 +1296,6 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 2
-          ExplicitTop = 601
         end
         object pnlIcoDiv05: TPanel
           Left = 0
@@ -1308,7 +1307,6 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 3
-          ExplicitTop = 739
         end
         object pnlIcoDiv04: TPanel
           Left = 0
@@ -1320,7 +1318,6 @@ object PageMain: TPageMain
           Color = clBackground
           ParentBackground = False
           TabOrder = 4
-          ExplicitTop = 693
         end
         object pnlIcoDiv01: TPanel
           Left = 0
@@ -1344,7 +1341,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 6
-          ExplicitTop = 602
           object pnlIcoFinanDiv: TPanel
             Left = 0
             Top = 45
@@ -1570,6 +1566,7 @@ object PageMain: TPageMain
               ImageIndex = 10
               Images = ImageList1
               Flat = True
+              OnClick = btnPnelMenuRegEmpresaClick
               ExplicitLeft = 16
               ExplicitTop = 240
               ExplicitWidth = 23
@@ -1595,10 +1592,9 @@ object PageMain: TPageMain
               ImageIndex = 19
               Images = ImageList1
               Flat = True
-              ExplicitLeft = 16
-              ExplicitTop = 272
-              ExplicitWidth = 23
-              ExplicitHeight = 22
+              OnClick = btnPnelMenuRegMedicoClick
+              ExplicitLeft = -6
+              ExplicitTop = 6
             end
           end
           object pnlIcoRegisBt05: TPanel
@@ -1620,10 +1616,9 @@ object PageMain: TPageMain
               ImageIndex = 1
               Images = ImageList1
               Flat = True
-              ExplicitLeft = 24
-              ExplicitTop = 336
-              ExplicitWidth = 23
-              ExplicitHeight = 22
+              OnClick = btnPnelMenuRegAgendaClick
+              ExplicitLeft = -6
+              ExplicitTop = -6
             end
           end
           object pnlIcoRegisBt06: TPanel
@@ -1796,6 +1791,7 @@ object PageMain: TPageMain
               ImageIndex = 22
               Images = ImageList1
               Flat = True
+              OnClick = btnPnelMenuRegPacienteClick
               ExplicitLeft = 16
               ExplicitTop = 304
               ExplicitWidth = 23
@@ -1814,7 +1810,6 @@ object PageMain: TPageMain
           Color = clWhite
           ParentBackground = False
           TabOrder = 8
-          ExplicitTop = 648
           object pnlIcoConsDiv: TPanel
             Left = 0
             Top = 45
@@ -2452,6 +2447,7 @@ object PageMain: TPageMain
             ImageIndex = 22
             Flat = True
             ParentBiDiMode = False
+            OnClick = btnPnelMenuRegPacienteClick
             ExplicitLeft = 2
             ExplicitTop = 119
             ExplicitWidth = 183
@@ -2534,6 +2530,7 @@ object PageMain: TPageMain
             ImageIndex = 1
             Flat = True
             ParentBiDiMode = False
+            OnClick = btnPnelMenuRegAgendaClick
             ExplicitLeft = 17
             ExplicitTop = 120
             ExplicitWidth = 183
@@ -2564,6 +2561,7 @@ object PageMain: TPageMain
             ImageIndex = 19
             Flat = True
             ParentBiDiMode = False
+            OnClick = btnPnelMenuRegMedicoClick
             ExplicitLeft = 1
             ExplicitWidth = 183
           end
