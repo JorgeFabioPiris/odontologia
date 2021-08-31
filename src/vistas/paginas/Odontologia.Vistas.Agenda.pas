@@ -69,7 +69,7 @@ type
     btnBorrar: TSpeedButton;
     btnPrior: TSpeedButton;
     btnNext: TSpeedButton;
-    SpeedButton1: TSpeedButton;
+    btnBuscarPaciente: TSpeedButton;
 
     lblTitulo: TLabel;
     lblTitulo2: TLabel;
@@ -77,25 +77,24 @@ type
     LblPaciente: TLabel;
     LblEstado: TLabel;
     lblPagina: TLabel;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
+    lblCodigoConsulta: TLabel;
+    lblCodigoPaciente: TLabel;
+    lblFecha: TLabel;
+    lblMedicoRegistro: TLabel;
+    lblEstadoConsulta: TLabel;
+    lblNombrePaciente: TLabel;
 
     EdtMedico: TEdit;
     EdtPaciente: TEdit;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit5: TEdit;
-
-    DBLookupComboBox2: TDBLookupComboBox;
-    DBLookupComboBox3: TDBLookupComboBox;
-    DateTimePicker1: TDateTimePicker;
+    edtCodigoConsulta: TEdit;
+    edtCodigoPaciente: TEdit;
+    edtNombrePaciente: TEdit;
+    cmbRegMedico: TDBLookupComboBox;
+    cmbRegEstado: TDBLookupComboBox;
+    fechaReg: TDateTimePicker;
     DataSource4: TDataSource;
-    DateTimePicker2: TDateTimePicker;
-    Label4: TLabel;
+    horaReg: TDateTimePicker;
+    lblHora: TLabel;
 
     procedure btnNuevoClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);
@@ -103,6 +102,7 @@ type
     procedure btnGuardarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnBorrarClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -126,7 +126,25 @@ implementation
 
 procedure TPagAgenda.btnActualizarClick(Sender: TObject);
 begin
+  FAgenda.Buscar;
   modoEdicion := False;
+end;
+
+procedure TPagAgenda.btnBorrarClick(Sender: TObject);
+var
+  ShouldClose: Boolean;
+begin
+  inherited;
+  if MessageDlg('Realmente desea eliminar este registro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    FAgenda.Entidad.AGe_CODIGO := StrToInt(edtCodigoConsulta.Text);
+    FAgenda.Eliminar;
+    FAgenda.Buscar;
+    prc_estado_inicial;
+  end else
+  begin
+    edtNombrePaciente.SetFocus;
+  end;
 end;
 
 procedure TPagAgenda.btnCancelarClick(Sender: TObject);
@@ -137,7 +155,7 @@ end;
 
 procedure TPagAgenda.btnCerrarClick(Sender: TObject);
 begin
-  if MessageDlg('Est� seguro de cerrar la ventana?', mtConfirmation,
+  if MessageDlg('Está seguro de cerrar la ventana?', mtConfirmation,
     [mbOk, mbCancel], 0) = mrOk then
     close;
 end;
