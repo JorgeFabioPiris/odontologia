@@ -3,15 +3,33 @@
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.Grids, Vcl.DBGrids, Vcl.WinXPanels, Vcl.ExtCtrls, System.ImageList,
-  Vcl.ImgList, Vcl.DBCtrls, Vcl.WinXCalendars, Vcl.ComCtrls,
-  Odontologia.Controlador.Interfaces,
+  Data.DB,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  Winapi.Windows,
+  Winapi.Messages,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.WinXPanels,
+  Vcl.ExtCtrls,
+  Vcl.ImgList,
+  Vcl.DBCtrls,
+  Vcl.WinXCalendars,
+  Vcl.ComCtrls,
+  Odontologia.Controlador,
+  Odontologia.Controlador.Agenda.Interfaces,
   Odontologia.Controlador.Estado.Cita.Interfaces,
+  Odontologia.Controlador.Interfaces,
   Odontologia.Controlador.Medico.Interfaces,
-  Odontologia.Controlador;
+  Odontologia.Vistas.Main,
+  Odontologia.Vista.Estilos;
 
 type
   TPagAgenda = class(TForm)
@@ -50,6 +68,7 @@ type
     btnBorrar: TSpeedButton;
     btnPrior: TSpeedButton;
     btnNext: TSpeedButton;
+    btnBuscarPaciente: TSpeedButton;
 
     lblTitulo: TLabel;
     lblTitulo2: TLabel;
@@ -57,23 +76,24 @@ type
     LblPaciente: TLabel;
     LblEstado: TLabel;
     lblPagina: TLabel;
+    lblCodigoConsulta: TLabel;
+    lblCodigoPaciente: TLabel;
+    lblFecha: TLabel;
+    lblMedicoRegistro: TLabel;
+    lblEstadoConsulta: TLabel;
+    lblNombrePaciente: TLabel;
 
     EdtMedico: TEdit;
     EdtPaciente: TEdit;
-    DBLookupComboBox2: TDBLookupComboBox;
-    DBLookupComboBox3: TDBLookupComboBox;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Edit5: TEdit;
-    Label8: TLabel;
-    SpeedButton1: TSpeedButton;
-    DateTimePicker1: TDateTimePicker;
+    edtCodigoConsulta: TEdit;
+    edtCodigoPaciente: TEdit;
+    edtNombrePaciente: TEdit;
+    cmbRegMedico: TDBLookupComboBox;
+    cmbRegEstado: TDBLookupComboBox;
+    fechaReg: TDateTimePicker;
     DataSource4: TDataSource;
+    horaReg: TDateTimePicker;
+    lblHora: TLabel;
 
     procedure btnNuevoClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);
@@ -81,10 +101,12 @@ type
     procedure btnGuardarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnBorrarClick(Sender: TObject);
 
   private
     { Private declarations }
     FController : iController;
+    FAgenda     : iControllerAgenda;
     FMedico     : iControllerMedico;
     FEstadoCita : iControllerEstadoCita;
     procedure prc_estado_inicial;
@@ -100,13 +122,31 @@ var
 implementation
 
 uses
-  Odontologia.Vistas.Main, Odontologia.Vista.Estilos;
+  System.SysUtils;
 
 {$R *.dfm}
 
 procedure TPagAgenda.btnActualizarClick(Sender: TObject);
 begin
+  FAgenda.Buscar;
   modoEdicion := False;
+end;
+
+procedure TPagAgenda.btnBorrarClick(Sender: TObject);
+var
+  ShouldClose: Boolean;
+begin
+  inherited;
+  if MessageDlg('Realmente desea eliminar este registro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    FAgenda.Entidad.AGe_CODIGO := StrToInt(edtCodigoConsulta.Text);
+    FAgenda.Eliminar;
+    FAgenda.Buscar;
+    prc_estado_inicial;
+  end else
+  begin
+    edtNombrePaciente.SetFocus;
+  end;
 end;
 
 procedure TPagAgenda.btnCancelarClick(Sender: TObject);
@@ -117,22 +157,49 @@ end;
 
 procedure TPagAgenda.btnCerrarClick(Sender: TObject);
 begin
-  if MessageDlg('Est� seguro de cerrar la ventana?', mtConfirmation,
+  if MessageDlg('Está seguro de cerrar la ventana?', mtConfirmation,
     [mbOk, mbCancel], 0) = mrOk then
     close;
 end;
 
 procedure TPagAgenda.btnGuardarClick(Sender: TObject);
+
+
 begin
+  inherited;
   modoEdicion := False;
+//  ShowMessage('la fecha es ' + quotedstr(FormatDateTime('yyyy/mm/dd', fechaReg.Date)));
+
+  if Insercion then
+    begin
+      FAgenda.Entidad.AGE_FECHA           := fechaReg.Date;
+      FAgenda.Entidad.AGE_HORA            := horaReg.Time;
+      FAgenda.Entidad.AGE_PACIENTE        := StrToInt(edtCodigoPaciente.Text);
+      FAgenda.Entidad.AGE_MEDICO          := cmbRegMedico.KeyValue;
+      FAgenda.Entidad.AGE_COD_ESTADO_CITA := cmbRegEstado.KeyValue;
+      FAgenda.Insertar;
+    end else
+    begin
+      FAgenda.Entidad.AGE_CODIGO          := StrToInt(edtCodigoConsulta.Text);
+      FAgenda.Entidad.AGE_FECHA           := fechaReg.Date;
+      FAgenda.Entidad.AGE_HORA            := horaReg.DateTime;
+      FAgenda.Entidad.AGE_PACIENTE        := StrToInt(edtCodigoPaciente.Text);
+      FAgenda.Entidad.AGE_MEDICO          := cmbRegMedico.KeyValue;
+      FAgenda.Entidad.AGE_COD_ESTADO_CITA := cmbRegEstado.KeyValue;
+      FAgenda.Modificar;
+    end;
+  prc_estado_inicial;
 end;
 
 procedure TPagAgenda.btnNuevoClick(Sender: TObject);
 begin
-  modoEdicion := True;
+  Insercion             := True;
+  modoEdicion           := True;
   CardPanel1.ActiveCard := Card2;
-  lblTitulo2.Caption := 'Agregar nuevo registro';
-
+  lblTitulo2.Caption    := 'Agregar nuevo registro';
+  cmbRegMedico.KeyValue := 1;
+  cmbRegEstado.KeyValue := 1;
+  edtCodigoPaciente.SetFocus;
 end;
 
 procedure TPagAgenda.FormCreate(Sender: TObject);
@@ -159,18 +226,23 @@ begin
   lblTitulo2.Font.Size := FONT_H5;
 
   FController       := TController.New;
-  FMedico           := FController.Medico.DataSource(DataSource1);
-  FEstadoCita       := FController.Estado.DataSource(DataSource2);
+  FAgenda           := FController.Agenda.DataSource(DataSource1);
+  FMedico           := FController.Medico.DataSource(DataSource2);
+  FEstadoCita       := FController.EstadoCita.DataSource(DataSource4);
   prc_estado_inicial;
 end;
 
 procedure TPagAgenda.prc_estado_inicial;
 begin
-  Insercion := True;
   CardPanel1.ActiveCard := Card1;
   EdtMedico.Text := '';
   EdtPaciente.Text := '';
+
+  Fagenda.Buscar;
+  FMedico.Buscar;
+  FEstadoCita.Buscar;
   cmbEstadoCita.KeyValue := 1;
-end;
+
+  end;
 
 end.

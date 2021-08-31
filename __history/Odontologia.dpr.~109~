@@ -71,7 +71,26 @@ uses
   Odontologia.Vistas.Agenda in 'src\vistas\paginas\Odontologia.Vistas.Agenda.pas' {PagAgenda},
   Odontologia.Modelo.Entidades.Agenda in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Agenda.pas',
   Odontologia.Modelo.Entidades.Medico in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Medico.pas',
-  Odontologia.Modelo.Entidades.Paciente in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Paciente.pas';
+  Odontologia.Modelo.Entidades.Paciente in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Paciente.pas',
+  Odontologia.Modelo.Medico.Interfaces in 'src\modelo\medico\Odontologia.Modelo.Medico.Interfaces.pas',
+  Odontologia.Modelo.Medico in 'src\modelo\medico\Odontologia.Modelo.Medico.pas',
+  Odontologia.Modelo.Paciente.Interfaces in 'src\modelo\paciente\Odontologia.Modelo.Paciente.Interfaces.pas',
+  Odontologia.Modelo.Paciente in 'src\modelo\paciente\Odontologia.Modelo.Paciente.pas',
+  Odontologia.Controlador.Medico.Interfaces in 'src\controlador\medico\Odontologia.Controlador.Medico.Interfaces.pas',
+  Odontologia.Controlador.Medico in 'src\controlador\medico\Odontologia.Controlador.Medico.pas',
+  Odontologia.Controlador.Paciente.Interfaces in 'src\controlador\paciente\Odontologia.Controlador.Paciente.Interfaces.pas',
+  Odontologia.Controlador.Paciente in 'src\controlador\paciente\Odontologia.Controlador.Paciente.pas',
+  Odontologia.Modelo.Agenda.Interfaces in 'src\modelo\agenda\Odontologia.Modelo.Agenda.Interfaces.pas',
+  Odontologia.Modelo.Agenda in 'src\modelo\agenda\Odontologia.Modelo.Agenda.pas',
+  Odontologia.Modelo.Entidades.Estado.Cita in 'src\modelo\entidades\Odontologia.Modelo.Entidades.Estado.Cita.pas',
+  Odontologia.Modelo.Estado.Cita.Interfaces in 'src\modelo\estado_cita\Odontologia.Modelo.Estado.Cita.Interfaces.pas',
+  Odontologia.Modelo.Estado.Cita in 'src\modelo\estado_cita\Odontologia.Modelo.Estado.Cita.pas',
+  Odontologia.Controlador.Estado.Cita.Interfaces in 'src\controlador\estado_cita\Odontologia.Controlador.Estado.Cita.Interfaces.pas',
+  Odontologia.Controlador.Estado.Cita in 'src\controlador\estado_cita\Odontologia.Controlador.Estado.Cita.pas',
+  Odontologia.Controlador.Agenda.Interfaces in 'src\controlador\agenda\Odontologia.Controlador.Agenda.Interfaces.pas',
+  Odontologia.Controlador.Agenda in 'src\controlador\agenda\Odontologia.Controlador.Agenda.pas',
+  Odontologia.Vistas.Paciente in 'src\vistas\paginas\Odontologia.Vistas.Paciente.pas' {PagPaciente},
+  Odontologia.Vistas.Medico in 'src\vistas\paginas\Odontologia.Vistas.Medico.pas' {PagMedico};
 
 {$R *.res}
 begin
@@ -79,7 +98,7 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TModelConexion, ModelConexion);
-  Application.CreateForm(TPageMain, PageMain);
   Application.CreateForm(TPagAgenda, PagAgenda);
+  Application.CreateForm(TPageMain, PageMain);
   Application.Run;
 end.

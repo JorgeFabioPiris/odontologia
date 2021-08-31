@@ -12,8 +12,11 @@ uses
 type
   iControllerAgenda = interface
     ['{CF622183-1258-4B6E-B4A1-A3D28F5CC81E}']
-    function DataSource (aDataSource : TDataSource) : iControllerAgenda;
-    function Buscar       : iControllerAgenda;
+    function DataSource (aDataSource : TDataSource)                 : iControllerAgenda;
+    function Buscar (aFecha : String)                               : iControllerAgenda; overload;
+    function Buscar (aFecha, aMedico, aPaciente : String)           : iControllerAgenda; overload;
+    function Buscar (aFecha, aMedico, aPaciente, aEstado : String)  : iControllerAgenda; overload;
+    function Buscar       : iControllerAgenda; overload;
     function Insertar     : iControllerAgenda;
     function Modificar    : iControllerAgenda;
     function Eliminar     : iControllerAgenda;

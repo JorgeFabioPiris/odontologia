@@ -13,6 +13,7 @@ object PagAgenda: TPagAgenda
   Font.Style = []
   OldCreateOrder = False
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object PnlPrincipal: TPanel
@@ -32,7 +33,7 @@ object PagAgenda: TPagAgenda
       Width = 1118
       Height = 572
       Align = alClient
-      ActiveCard = Card2
+      ActiveCard = Card1
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 0
@@ -92,6 +93,8 @@ object PagAgenda: TPagAgenda
             Padding.Right = 20
             ParentBackground = False
             TabOrder = 2
+            ExplicitLeft = 23
+            ExplicitTop = 11
             object LblMedico: TLabel
               Left = 2
               Top = 248
@@ -101,14 +104,14 @@ object PagAgenda: TPagAgenda
             end
             object LblPaciente: TLabel
               Left = 2
-              Top = 303
+              Top = 295
               Width = 41
               Height = 13
               Caption = 'Paciente'
             end
             object LblEstado: TLabel
-              Left = 2
-              Top = 358
+              Left = 4
+              Top = 342
               Width = 79
               Height = 13
               Caption = 'Estado de la cita'
@@ -135,6 +138,7 @@ object PagAgenda: TPagAgenda
               HeaderInfo.Font.Height = -20
               HeaderInfo.Font.Name = 'Segoe UI'
               HeaderInfo.Font.Style = []
+              OnChange = CalendarView1Change
               ParentFont = False
               TabOrder = 0
             end
@@ -144,23 +148,53 @@ object PagAgenda: TPagAgenda
               Width = 247
               Height = 21
               TabOrder = 1
+              OnKeyUp = EdtMedicoKeyUp
             end
             object EdtPaciente: TEdit
               Left = 2
-              Top = 322
+              Top = 314
               Width = 247
               Height = 21
               TabOrder = 2
+              OnKeyUp = EdtPacienteKeyUp
             end
-            object cmbEstadoCita: TDBLookupComboBox
-              Left = 0
-              Top = 377
-              Width = 249
-              Height = 21
-              KeyField = 'CIT_CODIGO'
-              ListField = 'CIT_DESCRIPCION'
-              ListSource = DataSource4
+            object RadioButton1: TRadioButton
+              Left = 2
+              Top = 361
+              Width = 81
+              Height = 17
+              Caption = 'Todos'
+              Checked = True
               TabOrder = 3
+              TabStop = True
+              OnClick = RadioButton1Click
+            end
+            object RadioButton2: TRadioButton
+              Left = 2
+              Top = 384
+              Width = 113
+              Height = 17
+              Caption = 'Agendadas'
+              TabOrder = 4
+              OnClick = RadioButton2Click
+            end
+            object RadioButton3: TRadioButton
+              Left = 128
+              Top = 361
+              Width = 113
+              Height = 17
+              Caption = 'Realizadas'
+              TabOrder = 5
+              OnClick = RadioButton3Click
+            end
+            object RadioButton4: TRadioButton
+              Left = 128
+              Top = 384
+              Width = 113
+              Height = 17
+              Caption = 'Canceladas'
+              TabOrder = 6
+              OnClick = RadioButton4Click
             end
           end
         end
@@ -386,7 +420,10 @@ object PagAgenda: TPagAgenda
             Top = 216
             Width = 145
             Height = 21
-            TabOrder = 0
+            KeyField = 'CODIGO'
+            ListField = 'NOMBRE'
+            ListSource = DataSource2
+            TabOrder = 5
           end
           object cmbRegEstado: TDBLookupComboBox
             Left = 56
@@ -396,28 +433,28 @@ object PagAgenda: TPagAgenda
             KeyField = 'CIT_CODIGO'
             ListField = 'CIT_DESCRIPCION'
             ListSource = DataSource4
-            TabOrder = 1
+            TabOrder = 6
           end
           object edtCodigoConsulta: TEdit
             Left = 56
             Top = 24
-            Width = 97
+            Width = 84
             Height = 21
-            TabOrder = 2
+            TabOrder = 0
           end
           object edtCodigoPaciente: TEdit
             Left = 56
             Top = 88
             Width = 84
             Height = 21
-            TabOrder = 3
+            TabOrder = 1
           end
           object edtNombrePaciente: TEdit
             Left = 155
             Top = 88
             Width = 294
             Height = 21
-            TabOrder = 4
+            TabOrder = 2
           end
           object fechaReg: TDateTimePicker
             Left = 56
@@ -428,7 +465,7 @@ object PagAgenda: TPagAgenda
             Time = 0.652935532409173900
             ParentShowHint = False
             ShowHint = False
-            TabOrder = 5
+            TabOrder = 3
           end
           object horaReg: TDateTimePicker
             Left = 224
@@ -440,7 +477,7 @@ object PagAgenda: TPagAgenda
             Kind = dtkTime
             ParentShowHint = False
             ShowHint = False
-            TabOrder = 6
+            TabOrder = 4
           end
         end
         object PnlPieBotonEdicion: TPanel

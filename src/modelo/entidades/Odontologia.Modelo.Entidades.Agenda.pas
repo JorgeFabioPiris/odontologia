@@ -10,28 +10,29 @@ type
   TDAGENDA = class
 
   private
-    FAGE_PACIENTE: integer;
-    FAGE_CODIGO: integer;
-    FAGE_FECHA: TDateTime;
-    FAGE_MEDICO: integer;
-    FAGE_COD_ESTADO_CITA: integer;
-    FAGE_HORA: TDateTime;
+    FAGE_PACIENTE         : integer;
+    FAGE_CODIGO           : integer;
+    FAGE_FECHA            : String;
+    FAGE_MEDICO           : integer;
+    FAGE_COD_ESTADO_CITA  : integer;
+    FAGE_HORA             : TTime;
+
     procedure SetAGE_COD_ESTADO_CITA(const Value: integer);
     procedure SetAGE_CODIGO(const Value: integer);
-    procedure SetAGE_FECHA(const Value: TDateTime);
-    procedure SetAGE_HORA(const Value: TDateTime);
+    procedure SetAGE_FECHA(const Value: String);
+    procedure SetAGE_HORA(const Value: TTime);
     procedure SetAGE_MEDICO(const Value: integer);
     procedure SetAGE_PACIENTE(const Value: integer);
 
   published
     [Campo('AGE_CODIGO'), Pk, AutoInc]
-    property AGE_CODIGO : integer read FAGE_CODIGO write SetAGE_CODIGO;
+    property AGE_CODIGO   : integer read FAGE_CODIGO write SetAGE_CODIGO;
 
     [Campo('AGE_FECHA')]
-    property AGE_FECHA  : TDateTime read FAGE_FECHA write SetAGE_FECHA;
+    property AGE_FECHA    : String read FAGE_FECHA write SetAGE_FECHA;
 
     [Campo('AGE_HORA')]
-    property AGE_HORA   : TDateTime read FAGE_HORA write SetAGE_HORA;
+    property AGE_HORA     : TTime read FAGE_HORA write SetAGE_HORA;
 
     [Campo('AGE_PACIENTE')]
     property AGE_PACIENTE : integer read FAGE_PACIENTE write SetAGE_PACIENTE;
@@ -56,12 +57,12 @@ begin
   FAGE_COD_ESTADO_CITA := Value;
 end;
 
-procedure TDAGENDA.SetAGE_FECHA(const Value: TDateTime);
+procedure TDAGENDA.SetAGE_FECHA(const Value: String);
 begin
   FAGE_FECHA := Value;
 end;
 
-procedure TDAGENDA.SetAGE_HORA(const Value: TDateTime);
+procedure TDAGENDA.SetAGE_HORA(const Value: TTime);
 begin
   FAGE_HORA := Value;
 end;

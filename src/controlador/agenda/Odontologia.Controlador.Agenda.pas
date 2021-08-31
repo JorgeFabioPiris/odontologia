@@ -32,8 +32,11 @@ type
     constructor Create;
     destructor Destroy; override;
     class function New: iControllerAgenda;
-    function DataSource (aDataSource : TDataSource) : iControllerAgenda;
-    function Buscar       : iControllerAgenda;
+    function DataSource (aDataSource : TDataSource)                 : iControllerAgenda;
+    function Buscar (aFecha : String)                               : iControllerAgenda; overload;
+    function Buscar (aFecha, aMedico, aPaciente : String)           : iControllerAgenda; overload;
+    function Buscar (aFecha, aMedico, aPaciente, aEstado : String)  : iControllerAgenda; overload;
+    function Buscar       : iControllerAgenda; overload;
     function Insertar     : iControllerAgenda;
     function Modificar    : iControllerAgenda;
     function Eliminar     : iControllerAgenda;
@@ -71,9 +74,73 @@ begin
   FDataSource.dataset.FieldByName('CODPAC').Visible := false;
   FDataSource.dataset.FieldByName('CODMED').Visible := false;
   FDataSource.dataset.FieldByName('CODESTADO').Visible := false;
-  FDataSource.dataset.FieldByName('FECHA').DisplayWidth := 30;
-  FDataSource.dataset.FieldByName('MEDICO').DisplayWidth := 60;
-  FDataSource.dataset.FieldByName('PACIENTE').DisplayWidth := 60;
+  FDataSource.dataset.FieldByName('FECHA').DisplayWidth := 20;
+  FDataSource.dataset.FieldByName('MEDICO').DisplayWidth := 30;
+  FDataSource.dataset.FieldByName('PACIENTE').DisplayWidth := 30;
+end;
+
+function TControllerAgenda.Buscar(aFecha, aMedico, aPaciente, aEstado : String) : iControllerAgenda;
+begin
+  Result := Self;
+  FDataSource.dataset.DisableControls;
+  FModel.DAO.SQL.Fields('DAGENDA.AGE_CODIGO AS CODIGO,')
+    .Fields('DAGENDA.AGE_FECHA AS FECHA,')
+    .Fields('DAGENDA.AGE_HORA AS HORA,')
+    .Fields('DAGENDA.AGE_PACIENTE AS CODPAC,')
+    .Fields('DAGENDA.AGE_MEDICO AS CODMED,')
+    .Fields('DAGENDA.AGE_COD_ESTADO_CITA AS CODESTADO,')
+    .Fields('DPACIENTE.PAC_NOMBRE AS PACIENTE,')
+    .Fields('DMEDICO.MED_NOMBRE AS MEDICO,')
+    .Fields('FESTADO_CITA.CIT_DESCRIPCION AS ESTADO')
+    .Join('INNER JOIN DPACIENTE ON DPACIENTE.PAC_CODIGO = DAGENDA.AGE_PACIENTE')
+    .Join('INNER JOIN DMEDICO ON DMEDICO.MED_CODIGO = DAGENDA.AGE_MEDICO')
+    .Join('INNER JOIN FESTADO_CITA ON FESTADO_CITA.CIT_CODIGO = DAGENDA.AGE_COD_ESTADO_CITA')
+    .Where('DAGENDA.AGE_FECHA = ' + QuotedStr(aFecha) + ' AND DMEDICO.MED_NOMBRE LIKE ' + QuotedStr(aMedico) + ' AND DPACIENTE.PAC_NOMBRE LIKE ' + QuotedStr(aPaciente) + ' AND FESTADO_CITA.CIT_DESCRIPCION LIKE ' + QuotedStr(AESTADO) + '')
+  .OrderBy('FECHA')
+  .&End.Find;
+  FDataSource.dataset.EnableControls;
+  FDataSource.dataset.FieldByName('CODIGO').Visible := false;
+  FDataSource.dataset.FieldByName('CODPAC').Visible := false;
+  FDataSource.dataset.FieldByName('CODMED').Visible := false;
+  FDataSource.dataset.FieldByName('CODESTADO').Visible := false;
+  FDataSource.dataset.FieldByName('FECHA').DisplayWidth := 20;
+  FDataSource.dataset.FieldByName('MEDICO').DisplayWidth := 30;
+  FDataSource.dataset.FieldByName('PACIENTE').DisplayWidth := 30;
+end;
+
+function TControllerAgenda.Buscar(aFecha, aMedico,
+  aPaciente: String): iControllerAgenda;
+begin
+
+end;
+
+function TControllerAgenda.Buscar(aFecha: String): iControllerAgenda;
+begin
+  Result := Self;
+  FDataSource.dataset.DisableControls;
+  FModel.DAO.SQL.Fields('DAGENDA.AGE_CODIGO AS CODIGO,')
+    .Fields('DAGENDA.AGE_FECHA AS FECHA,')
+    .Fields('DAGENDA.AGE_HORA AS HORA,')
+    .Fields('DAGENDA.AGE_PACIENTE AS CODPAC,')
+    .Fields('DAGENDA.AGE_MEDICO AS CODMED,')
+    .Fields('DAGENDA.AGE_COD_ESTADO_CITA AS CODESTADO,')
+    .Fields('DPACIENTE.PAC_NOMBRE AS PACIENTE,')
+    .Fields('DMEDICO.MED_NOMBRE AS MEDICO,')
+    .Fields('FESTADO_CITA.CIT_DESCRIPCION AS ESTADO')
+    .Join('INNER JOIN DPACIENTE ON DPACIENTE.PAC_CODIGO = DAGENDA.AGE_PACIENTE')
+    .Join('INNER JOIN DMEDICO ON DMEDICO.MED_CODIGO = DAGENDA.AGE_MEDICO')
+    .Join('INNER JOIN FESTADO_CITA ON FESTADO_CITA.CIT_CODIGO = DAGENDA.AGE_COD_ESTADO_CITA')
+    .Where('DAGENDA.AGE_FECHA = ' + QuotedStr(aFecha))
+  .OrderBy('FECHA')
+  .&End.Find;
+  FDataSource.dataset.EnableControls;
+  FDataSource.dataset.FieldByName('CODIGO').Visible := false;
+  FDataSource.dataset.FieldByName('CODPAC').Visible := false;
+  FDataSource.dataset.FieldByName('CODMED').Visible := false;
+  FDataSource.dataset.FieldByName('CODESTADO').Visible := false;
+  FDataSource.dataset.FieldByName('FECHA').DisplayWidth := 20;
+  FDataSource.dataset.FieldByName('MEDICO').DisplayWidth := 30;
+  FDataSource.dataset.FieldByName('PACIENTE').DisplayWidth := 30;
 end;
 
 constructor TControllerAgenda.Create;

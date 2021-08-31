@@ -32,7 +32,7 @@ object PagAgenda: TPagAgenda
       Width = 1118
       Height = 572
       Align = alClient
-      ActiveCard = Card1
+      ActiveCard = Card2
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 0
@@ -119,7 +119,7 @@ object PagAgenda: TPagAgenda
               Width = 246
               Height = 241
               Align = alTop
-              Date = 44434.000000000000000000
+              Date = 44439.000000000000000000
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
               Font.Height = -20
@@ -326,62 +326,72 @@ object PagAgenda: TPagAgenda
           Padding.Right = 25
           ParentBackground = False
           TabOrder = 0
-          object Label1: TLabel
+          object lblCodigoConsulta: TLabel
             Left = 56
             Top = 5
             Width = 82
             Height = 13
             Caption = 'Codigo Consulta:'
           end
-          object Label2: TLabel
+          object lblCodigoPaciente: TLabel
             Left = 56
             Top = 69
-            Width = 31
+            Width = 37
             Height = 13
-            Caption = 'Codig:'
+            Caption = 'Codigo:'
           end
-          object Label3: TLabel
+          object lblFecha: TLabel
             Left = 56
             Top = 133
             Width = 98
             Height = 13
             Caption = 'Fecha de la consulta'
           end
-          object Label6: TLabel
+          object lblMedicoRegistro: TLabel
             Left = 56
             Top = 197
             Width = 37
             Height = 13
             Caption = 'Medico:'
           end
-          object Label7: TLabel
+          object lblEstadoConsulta: TLabel
             Left = 56
             Top = 261
             Width = 102
             Height = 13
             Caption = 'Estado de la consulta'
           end
-          object Label8: TLabel
+          object lblNombrePaciente: TLabel
             Left = 155
             Top = 69
             Width = 45
             Height = 13
             Caption = 'Paciente:'
           end
-          object SpeedButton1: TSpeedButton
+          object btnBuscarPaciente: TSpeedButton
             Left = 464
             Top = 87
             Width = 49
             Height = 22
           end
-          object DBLookupComboBox2: TDBLookupComboBox
+          object lblHora: TLabel
+            Left = 224
+            Top = 133
+            Width = 98
+            Height = 13
+            Caption = 'Fecha de la consulta'
+          end
+          object cmbRegMedico: TDBLookupComboBox
             Left = 55
             Top = 216
             Width = 145
             Height = 21
-            TabOrder = 0
+            KeyField = 'CODIGO'
+            ListField = 'NOMBRE'
+            ListSource = DataSource2
+            TabOrder = 5
           end
-          object DBLookupComboBox3: TDBLookupComboBox
+          object cmbRegEstado: TDBLookupComboBox
             Left = 56
             Top = 280
             Width = 145
@@ -389,40 +399,51 @@ object PagAgenda: TPagAgenda
             KeyField = 'CIT_CODIGO'
             ListField = 'CIT_DESCRIPCION'
             ListSource = DataSource4
-            TabOrder = 1
+            TabOrder = 6
           end
-          object Edit1: TEdit
+          object edtCodigoConsulta: TEdit
             Left = 56
             Top = 24
-            Width = 97
+            Width = 84
             Height = 21
-            TabOrder = 2
-            Text = 'Edit1'
+            TabOrder = 0
           end
-          object Edit2: TEdit
+          object edtCodigoPaciente: TEdit
             Left = 56
             Top = 88
             Width = 84
             Height = 21
-            TabOrder = 3
-            Text = 'Edit2'
+            TabOrder = 1
           end
-          object Edit5: TEdit
+          object edtNombrePaciente: TEdit
             Left = 155
             Top = 88
             Width = 294
             Height = 21
-            TabOrder = 4
-            Text = 'Edit2'
+            TabOrder = 2
           end
-          object DateTimePicker1: TDateTimePicker
+          object fechaReg: TDateTimePicker
             Left = 56
             Top = 152
-            Width = 186
-            Height = 21
+            Width = 144
+            Height = 25
             Date = 44438.000000000000000000
             Time = 0.652935532409173900
-            TabOrder = 5
+            ParentShowHint = False
+            ShowHint = False
+            TabOrder = 3
+          end
+          object horaReg: TDateTimePicker
+            Left = 224
+            Top = 152
+            Width = 144
+            Height = 25
+            Date = 44438.000000000000000000
+            Time = 0.652935532409173900
+            Kind = dtkTime
+            ParentShowHint = False
+            ShowHint = False
+            TabOrder = 4
           end
         end
         object PnlPieBotonEdicion: TPanel
@@ -445,6 +466,7 @@ object PagAgenda: TPagAgenda
             Images = ImageList1
             Flat = True
             Layout = blGlyphTop
+            OnClick = btnBorrarClick
           end
           object btnCancelar: TSpeedButton
             Left = 948

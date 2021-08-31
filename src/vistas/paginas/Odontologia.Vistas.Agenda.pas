@@ -4,7 +4,6 @@ interface
 
 uses
   Data.DB,
-  System.SysUtils,
   System.Variants,
   System.Classes,
   System.ImageList,
@@ -29,6 +28,7 @@ uses
   Odontologia.Controlador.Estado.Cita.Interfaces,
   Odontologia.Controlador.Interfaces,
   Odontologia.Controlador.Medico.Interfaces,
+  Odontologia.Controlador.Paciente.Interfaces,
   Odontologia.Vistas.Main,
   Odontologia.Vista.Estilos;
 
@@ -47,7 +47,6 @@ type
     DBGrid1: TDBGrid;
 
     CalendarView1: TCalendarView;
-    cmbEstadoCita: TDBLookupComboBox;
 
     PnlPrincipal: TPanel;
     PnlCabecera: TPanel;
@@ -95,6 +94,10 @@ type
     DataSource4: TDataSource;
     horaReg: TDateTimePicker;
     lblHora: TLabel;
+    RadioButton1: TRadioButton;
+    RadioButton2: TRadioButton;
+    RadioButton3: TRadioButton;
+    RadioButton4: TRadioButton;
 
     procedure btnNuevoClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);
@@ -103,24 +106,41 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnBorrarClick(Sender: TObject);
+    procedure RadioButton1Click(Sender: TObject);
+    procedure RadioButton2Click(Sender: TObject);
+    procedure RadioButton3Click(Sender: TObject);
+    procedure RadioButton4Click(Sender: TObject);
+    procedure CalendarView1Change(Sender: TObject);
+    procedure EdtMedicoKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EdtPacienteKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
 
   private
     { Private declarations }
     FController : iController;
     FAgenda     : iControllerAgenda;
     FMedico     : iControllerMedico;
+    FPaciente   : iControllerPaciente;
     FEstadoCita : iControllerEstadoCita;
     procedure prc_estado_inicial;
+    procedure prc_buscar_por_parametros;
 
   public
     { Public declarations }
   end;
 
 var
-  PagAgenda: TPagAgenda;
-  Insercion: Boolean;
+  PagAgenda : TPagAgenda;
+  Insercion : Boolean;
+  estado    : string;
+
 
 implementation
+
+uses
+  System.SysUtils;
 
 {$R *.dfm}
 
@@ -162,59 +182,138 @@ end;
 
 procedure TPagAgenda.btnGuardarClick(Sender: TObject);
 begin
+  inherited;
   modoEdicion := False;
+  if Insercion then
+    begin
+      FAgenda.Entidad.AGE_FECHA           := FormatDateTime('yyyy/mm/dd', fechaReg.Date);
+      FAgenda.Entidad.AGE_HORA            := horaReg.Time;
+      FAgenda.Entidad.AGE_PACIENTE        := StrToInt(edtCodigoPaciente.Text);
+      FAgenda.Entidad.AGE_MEDICO          := cmbRegMedico.KeyValue;
+      FAgenda.Entidad.AGE_COD_ESTADO_CITA := cmbRegEstado.KeyValue;
+      FAgenda.Insertar;
+    end else
+    begin
+      FAgenda.Entidad.AGE_CODIGO          := StrToInt(edtCodigoConsulta.Text);
+      FAgenda.Entidad.AGE_FECHA           := FormatDateTime('yyyy/mm/dd', fechaReg.Date);
+      FAgenda.Entidad.AGE_HORA            := horaReg.DateTime;
+      FAgenda.Entidad.AGE_PACIENTE        := StrToInt(edtCodigoPaciente.Text);
+      FAgenda.Entidad.AGE_MEDICO          := cmbRegMedico.KeyValue;
+      FAgenda.Entidad.AGE_COD_ESTADO_CITA := cmbRegEstado.KeyValue;
+      FAgenda.Modificar;
+    end;
+  prc_estado_inicial;
 end;
 
 procedure TPagAgenda.btnNuevoClick(Sender: TObject);
 begin
-  modoEdicion := True;
+  Insercion             := True;
+  modoEdicion           := True;
   CardPanel1.ActiveCard := Card2;
-  lblTitulo2.Caption := 'Agregar nuevo registro';
+  lblTitulo2.Caption    := 'Agregar nuevo registro';
+  cmbRegMedico.KeyValue := 1;
+  cmbRegEstado.KeyValue := 1;
+  edtCodigoPaciente.SetFocus;
+end;
 
+procedure TPagAgenda.CalendarView1Change(Sender: TObject);
+begin
+  prc_buscar_por_parametros;
+end;
+
+procedure TPagAgenda.EdtMedicoKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  prc_buscar_por_parametros;
+end;
+
+procedure TPagAgenda.EdtPacienteKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  prc_buscar_por_parametros;
 end;
 
 procedure TPagAgenda.FormCreate(Sender: TObject);
 begin
-  Self.Font.Color := FONT_COLOR;
-  Self.Font.Size := FONT_H7;
-  lblTitulo.Caption := 'Agendamiento de citas y consultas';
-  CardPanel1.ActiveCard := Card1;
-  CardPanel1.Color := COLOR_BACKGROUND;
-  PnlPrincipal.Color := COLOR_BACKGROUND;
-  PnlCabecera.Color := COLOR_BACKGROUND;
-  PnlCabeceraTitulo.Color := COLOR_BACKGROUND;
-  PnlCentralGridLinea.Color := COLOR_BACKGROUND_DESTAK;
-  PnlCentralGrid.Color := COLOR_BACKGROUND;
-  PnlCentralFiltro.Color := COLOR_BACKGROUND;
-  PnlPieBotonAccion.Color := COLOR_BACKGROUND;
-  PnlPieBotonPagina.Color := COLOR_BACKGROUND;
-  PnlCentralFormulario.Color := COLOR_BACKGROUND;
-  PnlPieBotonEdicion.Color := COLOR_BACKGROUND;
-  PnlSubTitulo.Color := COLOR_BACKGROUND;
-  lblTitulo.Font.Color := FONT_COLOR3;
-  lblTitulo.Font.Size := FONT_H5;
-  lblTitulo2.Font.Color := FONT_COLOR3;
-  lblTitulo2.Font.Size := FONT_H5;
+  Self.Font.Color             := FONT_COLOR;
+  Self.Font.Size              := FONT_H7;
+  lblTitulo.Caption           := 'Agendamiento de citas y consultas';
+  CardPanel1.ActiveCard       := Card1;
+  CardPanel1.Color            := COLOR_BACKGROUND;
+  PnlPrincipal.Color          := COLOR_BACKGROUND;
+  PnlCabecera.Color           := COLOR_BACKGROUND;
+  PnlCabeceraTitulo.Color     := COLOR_BACKGROUND;
+  PnlCentralGridLinea.Color   := COLOR_BACKGROUND_DESTAK;
+  PnlCentralGrid.Color        := COLOR_BACKGROUND;
+  PnlCentralFiltro.Color      := COLOR_BACKGROUND;
+  PnlPieBotonAccion.Color     := COLOR_BACKGROUND;
+  PnlPieBotonPagina.Color     := COLOR_BACKGROUND;
+  PnlCentralFormulario.Color  := COLOR_BACKGROUND;
+  PnlPieBotonEdicion.Color    := COLOR_BACKGROUND;
+  PnlSubTitulo.Color          := COLOR_BACKGROUND;
+  lblTitulo.Font.Color        := FONT_COLOR3;
+  lblTitulo.Font.Size         := FONT_H5;
+  lblTitulo2.Font.Color       := FONT_COLOR3;
+  lblTitulo2.Font.Size        := FONT_H5;
 
-  FController       := TController.New;
-  FAgenda           := FController.Agenda.DataSource(DataSource1);
-  FMedico           := FController.Medico.DataSource(DataSource2);
-  FEstadoCita       := FController.EstadoCita.DataSource(DataSource4);
+  FController                 := TController.New;
+  FAgenda                     := FController.Agenda.DataSource(DataSource1);
+  FMedico                     := FController.Medico.DataSource(DataSource2);
+  FPaciente                   := FController.Paciente.DataSource(DataSource3);
+  FEstadoCita                 := FController.EstadoCita.DataSource(DataSource4);
   prc_estado_inicial;
+end;
+
+procedure TPagAgenda.FormShow(Sender: TObject);
+begin
+  CalendarView1.Date    := now;
+end;
+
+procedure TPagAgenda.prc_buscar_por_parametros;
+var
+  fecha, medico, paciente : String;
+begin
+  fecha     := FormatDateTime('yyyy/mm/dd', CalendarView1.Date);
+  medico    := EdtMedico.Text;
+  paciente  := EdtPaciente.Text;
+  Fagenda.Buscar(fecha, '%'+medico+'%', '%'+paciente+'%', '%'+estado+'%');
 end;
 
 procedure TPagAgenda.prc_estado_inicial;
 begin
-  Insercion := True;
   CardPanel1.ActiveCard := Card1;
-  EdtMedico.Text := '';
-  EdtPaciente.Text := '';
+  RadioButton1.Checked;
+  EdtMedico.Text        := '';
+  EdtPaciente.Text      := '';
 
-  Fagenda.Buscar;
+  prc_buscar_por_parametros;
   FMedico.Buscar;
+  Fpaciente.buscar;
   FEstadoCita.Buscar;
-  cmbEstadoCita.KeyValue := 1;
-
   end;
+
+procedure TPagAgenda.RadioButton1Click(Sender: TObject);
+begin
+  estado := '';
+  prc_buscar_por_parametros;
+end;
+
+procedure TPagAgenda.RadioButton2Click(Sender: TObject);
+begin
+  estado := 'AGENDADA';
+  prc_buscar_por_parametros;
+end;
+
+procedure TPagAgenda.RadioButton3Click(Sender: TObject);
+begin
+  estado := 'REALIZADA';
+  prc_buscar_por_parametros;
+end;
+
+procedure TPagAgenda.RadioButton4Click(Sender: TObject);
+begin
+  estado := 'CANCELADA';
+  prc_buscar_por_parametros;
+end;
 
 end.
