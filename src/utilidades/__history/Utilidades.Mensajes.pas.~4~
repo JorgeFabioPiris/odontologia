@@ -1,0 +1,100 @@
+unit Utilidades.Mensajes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Buttons,
+  Vcl.Imaging.pngimage, Vcl.StdCtrls, utilidades;
+
+type
+  TPagMensagens = class(TForm)
+    pnlFondo: TPanel;
+    lblDescricion: TLabel;
+    pnlBotonConfirmacion: TPanel;
+    btnSi: TSpeedButton;
+    lblTitulo: TLabel;
+    pnlCabecera: TPanel;
+    pnlBotonCancelar: TPanel;
+    btnNo: TSpeedButton;
+    Shape1: TShape;
+    imgIcono: TImage;
+    lblTituloVentana: TLabel;
+    procedure btn_naoClick(Sender: TObject);
+    procedure btn_simClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    sTitulo, sMensagem, sIcone, sTipo : String;
+    bRespostaMensagem :boolean;{ Public declarations }
+  end;
+
+var
+  PagMensagens: TPagMensagens;
+
+
+implementation
+
+{$R *.dfm}
+
+procedure TPagMensagens.btn_simClick(Sender: TObject);
+begin
+  //ATRIBUI SIM A VARIAVEL DE RESPOSTA
+  bRespostaMensagem := True;
+
+  //FECHA O FORMULARIO
+  Close;
+end;
+
+procedure TPagMensagens.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  //SE A TECLA DIGITADA ENTER
+  if key = VK_RETURN then
+    btn_simClick( Self )
+  else
+  //SE A TECLA DIGITADA ESC
+  if key = VK_ESCAPE then
+    btn_naoClick( Self );
+
+end;
+
+procedure TPagMensagens.FormShow(Sender: TObject);
+begin
+  //MONTA A JANELA DE ACORDO COM OS PARAMTROS PASSADOS PARA AS VARIAVEIS
+  bRespostaMensagem      := False;
+
+  lbl_titulo.Caption     := sTitulo;
+  lbl_descricao.Caption  := sMensagem;
+  img_icone.Picture.LoadFromFile( sIcone );
+
+  if sTipo = 'CONFIRMA' then
+  begin
+    pnl_botao_cancelar.Visible := true;
+
+    pnl_botao_confirma.Color   := $00F48542;
+
+    btn_sim.Caption := 'SIM (Enter)';
+  end else
+  //sTipo = 'AVISO' // sTipo = 'ERRO' // sTipo = 'SUCESSO'
+  begin
+    pnl_botao_cancelar.Visible := False;
+
+    pnl_botao_confirma.Color   := $0053A834;
+
+    btn_sim.Caption := 'OK (Enter)';
+  end;
+
+end;
+
+procedure TPagMensagens.btn_naoClick(Sender: TObject);
+begin
+  //ATRIBUI NAO (CANCELA) A VARIAVEL DE RESPOSTA
+  bRespostaMensagem := False;
+  //FECHA O FORMULARIO
+  Close;
+end;
+
+end.

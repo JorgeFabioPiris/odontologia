@@ -90,15 +90,18 @@ uses
   Odontologia.Controlador.Agenda.Interfaces in 'src\controlador\agenda\Odontologia.Controlador.Agenda.Interfaces.pas',
   Odontologia.Controlador.Agenda in 'src\controlador\agenda\Odontologia.Controlador.Agenda.pas',
   Odontologia.Vistas.Paciente in 'src\vistas\paginas\Odontologia.Vistas.Paciente.pas' {PagPaciente},
-  Odontologia.Vistas.Medico in 'src\vistas\paginas\Odontologia.Vistas.Medico.pas' {PagMedico};
+  Odontologia.Vistas.Medico in 'src\vistas\paginas\Odontologia.Vistas.Medico.pas' {PagMedico},
+  utilidades in 'src\utilidades\utilidades.pas',
+  Utilidades.Mensajes in 'src\utilidades\Utilidades.Mensajes.pas' {PagMensajes};
 
 {$R *.res}
 begin
   Application.Initialize;
   ReportMemoryLeaksOnShutdown := True;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TModelConexion, ModelConexion);
-  Application.CreateForm(TPageMain, PageMain);
-  Application.CreateForm(TPagAgenda, PagAgenda);
-  Application.Run;
+  AApplication.CreateForm(TModelConexion, ModelConexion);
+  AApplication.CreateForm(TPageMain, PageMain);
+  AApplication.CreateForm(TPagAgenda, PagAgenda);
+  Application.CreateForm(TPagMensajes, PagMensajes);
+  lication.Run;
 end.

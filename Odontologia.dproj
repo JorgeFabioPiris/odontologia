@@ -236,6 +236,11 @@
             <Form>PagMedico</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\utilidades\utilidades.pas"/>
+        <DCCReference Include="src\utilidades\Utilidades.Mensajes.pas">
+            <Form>PagMensajes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="src\Iconos\ico_actualizar.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>ico_actualizar</ResourceId>
@@ -402,13 +407,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="src\Iconos\ico_saldo_caja.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="src\Iconos\ico_direccion.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="src\Iconos\ico_direccion.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="src\Iconos\ico_saldo_caja.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
