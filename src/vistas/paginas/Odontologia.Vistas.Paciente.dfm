@@ -1,6 +1,5 @@
 inherited PagPaciente: TPagPaciente
   Caption = 'PagPaciente'
-  ExplicitLeft = -30
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlPrincipal: TPanel

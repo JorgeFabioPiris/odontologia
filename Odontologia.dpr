@@ -102,6 +102,7 @@ begin
   AApplication.CreateForm(TModelConexion, ModelConexion);
   AApplication.CreateForm(TPageMain, PageMain);
   AApplication.CreateForm(TPagAgenda, PagAgenda);
-  Application.CreateForm(TPagMensajes, PagMensajes);
+  Application.CreateForm(TPagLogin, PagLogin);
+  Application.CreateForm(TPageMain, PageMain);
   lication.Run;
 end.

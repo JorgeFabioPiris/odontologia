@@ -16,23 +16,24 @@ uses
 
 type
   TPagPaciente = class(TPagTemplate)
-    btnGuardarImagen: TSpeedButton;
-    cmbEstado: TDBLookupComboBox;
-    edtCodigo: TEdit;
-    edtDocumento: TEdit;
-    edtDireccion: TEdit;
-    edtNombre: TEdit;
-    edtTelefono: TEdit;
-    lblCodigo: TLabel;
-    lblDocumento: TLabel;
-    lblEstado: TLabel;
-    lblDireccion: TLabel;
-    lblNombre: TLabel;
-    lblTelefono: TLabel;
-    Panel1: TPanel;
-    Image1: TImage;
-    DataSource2: TDataSource;
+    btnGuardarImagen  : TSpeedButton;
+    cmbEstado         : TDBLookupComboBox;
+    edtCodigo         : TEdit;
+    edtDocumento      : TEdit;
+    edtDireccion      : TEdit;
+    edtNombre         : TEdit;
+    edtTelefono       : TEdit;
+    lblCodigo         : TLabel;
+    lblDocumento      : TLabel;
+    lblEstado         : TLabel;
+    lblDireccion      : TLabel;
+    lblNombre         : TLabel;
+    lblTelefono       : TLabel;
+    Panel1            : TPanel;
+    Image1            : TImage;
+    DataSource2       : TDataSource;
     OpenPictureDialog1: TOpenPictureDialog;
+
     procedure FormCreate(Sender: TObject);
     procedure btnBorrarClick(Sender: TObject);
     procedure btnGuardarClick(Sender: TObject);
@@ -40,10 +41,10 @@ type
     procedure btnNuevoClick(Sender: TObject);
     procedure btnActualizarClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
-    procedure edtSearchKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure edtSearchKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Image1DblClick(Sender: TObject);
     procedure btnGuardarImagenClick(Sender: TObject);
+
   private
     { Private declarations }
     FController : iController;
@@ -117,13 +118,13 @@ begin
   end
   else
   begin
-    FPaciente.Entidad.pac_CODIGO      := StrToInt(edtCodigo.Text);
-    FPaciente.Entidad.pac_NOMBRE      := edtNombre.Text;
-    FPaciente.Entidad.pac_DOCUMENTO   := edtDocumento.Text;
-    FPaciente.Entidad.pac_TELEFONO    := edtTelefono.Text;
-    FPaciente.Entidad.PAC_DIRECCION   := edtDireccion.Text;
-    FPaciente.Entidad.pac_COD_ESTADO  := cmbEstado.KeyValue;
-    FPaciente.Entidad.pac_FOTO        := imagenURL;
+    FPaciente.Entidad.pac_CODIGO        := StrToInt(edtCodigo.Text);
+    FPaciente.Entidad.pac_NOMBRE        := edtNombre.Text;
+    FPaciente.Entidad.pac_DOCUMENTO     := edtDocumento.Text;
+    FPaciente.Entidad.pac_TELEFONO      := edtTelefono.Text;
+    FPaciente.Entidad.PAC_DIRECCION     := edtDireccion.Text;
+    FPaciente.Entidad.pac_COD_ESTADO    := cmbEstado.KeyValue;
+    FPaciente.Entidad.pac_FOTO          := imagenURL;
     FPaciente.Modificar;
   end;
   prc_estado_inicial;
@@ -139,8 +140,8 @@ begin
     end else
     begin
       prc_copiar_img_directorio(OpenPictureDialog1.FileName);
-      imagenModif              := true;
-      btnGuardarImagen.Enabled := false;
+      imagenModif               := true;
+      btnGuardarImagen.Enabled  := false;
     end;
   ShowMessage('La imagen ha sido guardada');
 end;
@@ -217,14 +218,14 @@ end;
 
 procedure TPagPaciente.prc_estado_inicial;
 begin
-  Insercion := True;
+  Insercion             := True;
   CardPanel1.ActiveCard := Card1;
-  edtSearch.Text := '';
-  edtCodigo.Text := '';
-  edtNombre.Text := '';
-  edtDocumento.Text := '';
-  edtTelefono.Text := '';
-  edtDireccion.Text := '';
+  edtSearch.Text        := '';
+  edtCodigo.Text        := '';
+  edtNombre.Text        := '';
+  edtDocumento.Text     := '';
+  edtTelefono.Text      := '';
+  edtDireccion.Text     := '';
   FPaciente.Buscar;
   FEstado.Buscar;
 end;
